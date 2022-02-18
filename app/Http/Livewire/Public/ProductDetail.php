@@ -90,6 +90,6 @@ class ProductDetail extends Component
         ];
 //        $this->addToCart($id);
         Cookie::queue('buyNow', json_encode($data), 60*60*3);
-
+        $this->redirect(route('buyNow'));
     }
 }

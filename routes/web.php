@@ -16,7 +16,11 @@ Route::get('italian-leather', App\Http\Livewire\Public\ItalianLeather::class)->n
 Route::get('buy', App\Http\Livewire\Public\BuyNow::class)->name('buyNow');
 
 Route::get('login', App\Http\Livewire\Public\Login::class)->middleware(['guest'])->name('login');
+//this confirm payment for cart
 Route::get('confirm-payment', App\Http\Livewire\Public\Component\ConfirmPayment::class)->name('confirm-payment');
+//this confirm payment for direct buy
+Route::get('payment', App\Http\Livewire\Public\Component\BuyNowConfirmPayment::class)->name('buyNow-confirm-payment');
+
 Route::get('order-success', App\Http\Livewire\Public\Component\OrderSuccess::class)->name('order-success');
 
 Route::get('track-order', App\Http\Livewire\Public\OrderTrack::class)->name('track-order');

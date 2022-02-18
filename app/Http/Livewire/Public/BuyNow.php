@@ -67,6 +67,6 @@ class BuyNow extends Component
 //                ->where('expire_at', '>', now())
 //                ->first();
 //        }
-        $this->redirect(route('confirm-payment'));
+        $this->redirect(route('buyNow-confirm-payment'));
     }
 }

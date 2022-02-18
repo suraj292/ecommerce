@@ -55,33 +55,33 @@
                                     @foreach($cart as $product)
                                         <tr>
                                             <td>
-                                                <a href="{{ route('product_details', Str::slug($product['title'])) }}">
-                                                    <img src="{{asset('storage/product/small/'.$product['image'])}}" alt="Cart Product" style="height: 50px;">
-                                                    {{ $product['title'] }} <span style="color: #0a0a0a; text-transform: none;">x {{ $product['quantity'] }}</span>
+                                                <a href="{{ route('product_details', Str::slug($product->title)) }}">
+                                                    <img src="{{asset('storage/product/small/'.$product->image)}}" alt="Cart Product" style="height: 50px;">
+                                                    {{ $product->title }} <span style="color: #0a0a0a; text-transform: none;">x {{ $product->quantity }}</span>
                                                 </a>
                                             </td>
                                             <td>
-                                                <img src="{{ asset('storage/public/color_image/'.$product->productColor->color_image) }}" width="30px">
+                                                <img src="{{ asset('storage/color_image/'.$product->productColor->color_image) }}" width="30px">
                                             </td>
                                             <td style="color: orangered; font-size: 20px;">
-                                                @if($product['offer_price'])
+                                                @if($product->offer_price)
                                                     {{--    this span for calculating total saving of offer product     --}}
                                                     <span style="display: none;">
-                                                        {{ $offerSavings = $product['price'] - $product['offer_price'], $couponOffer = 0 }}
-                                                        {{ $totalAmount = $product['price'] * $product['quantity'] }}
+                                                        {{ $offerSavings = $product->price - $product->offer_price, $couponOffer = 0 }}
+                                                        {{ $totalAmount = $product->price * $product->quantity }}
                                                     </span>
 
-                                                    &#8377; {{ $cost = $product['offer_price'] }} <del style="font-size: 14px;">&#8377; {{ $product['price'] }}</del>
+                                                    &#8377; {{ $cost = $product->offer_price }} <del style="font-size: 14px;">&#8377; {{ $product->price }}</del>
                                                 @else
                                                     <span style="display: none;">
-                                                        {{ $offerSavings = 0, $couponOffer = $totalAmount = $product['price'] * $product['quantity'] }}
+                                                        {{ $offerSavings = 0, $couponOffer = $totalAmount = $product->price * $product->quantity }}
                                                     </span>
 
-                                                    &#8377; {{ $cost = $product['price'] }}
+                                                    &#8377; {{ $cost = $product->price }}
                                                 @endif
                                             </td>
                                             <td style="color: orangered;">
-                                                &#8377; {{ $price = $product['quantity'] * $cost }}
+                                                &#8377; {{ $price = $product->quantity * $cost }}
                                             </td>
                                         </tr>
                                         <span style="display: none;">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Public\Component;
 
+use App\Models\select_product_color;
 use App\Models\user_address;
 use App\Models\user_cart;
 use App\Models\user_order;
@@ -20,13 +21,8 @@ class ConfirmPayment extends Component
 
     public function mount()
     {
-        $buyNowItem = Cookie::get('buyNow');
-        if ($buyNowItem){
-            $this->cart[] = json_decode($buyNowItem, true);
-            dd($this->cart);
-        }else {
-            $this->cart = user_cart::with('productColor')->where('user_id', Auth::id())->get();
-        }
+        $this->cart = user_cart::with('productColor')->where('user_id', Auth::id())->get();
+
         $this->user = Auth::user();
         $coupon = Cookie::get('coupon');
         if ($coupon){
@@ -79,6 +75,7 @@ class ConfirmPayment extends Component
             $cart = user_cart::where('user_id', Auth::id());
             $cart->delete();
             $this->redirect(route('order-success'));
+
         }
 
     }
