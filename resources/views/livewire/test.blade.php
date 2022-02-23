@@ -18,16 +18,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-12 mb-2">
-            <img src="https://www.pngitem.com/pimgs/m/181-1813924_400-400-pixel-hd-png-download.png" id="zoomImage" width="300px">
-        </div>
-        <div class="col-12" id="gallery">
-            @foreach($images as $index => $image)
-                <a {{--wire:click="switchImage({{ $index }})"--}} id="image_0{{ $index }}">
-                    <img src="{{ asset('storage/product/small/'.$image) }}" width="100px">
-                </a>
-            @endforeach
-        </div>
+
     </div>
 
 
@@ -38,37 +29,66 @@
 
 @endsection
 @section('script')
-{{--    <script src="{{ asset('assets/js/jquery.elevatezoom2.js') }}"></script>--}}
-    <script src="{{ asset('assets/js/BUP.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script>
-        const zoomImage = $('#zoomImage');
-        const contanerZoom = $('#undefinedBlowupLens');
-        $(zoomImage).BUP(null, 0.5);
-        {{--const images = @json($images);--}}
-        // $('#gallery a').on('click', function () {
-        //     alert($('#gallery a').attr("id"))
-        // })
-        const images = @json($images);
-        $('#image_00').on('click', function () {
-            zoomImage.attr("src","http://127.0.0.1:8000/storage/product/small/"+images[0]);
-            zoomImage.BUP(null, 0.5);
-        });
-        $('#image_01').on('click', function () {
-            zoomImage.attr("src","http://127.0.0.1:8000/storage/product/small/"+images[1]);
-            zoomImage.BUP(null, 0.5);
-        });
-        $('#image_02').on('click', function () {
-            zoomImage.attr("src","http://127.0.0.1:8000/storage/product/small/"+images[2]);
-            zoomImage.BUP(null, 0.5);
-        });
-        $('#image_03').on('click', function () {
-            zoomImage.attr("src","http://127.0.0.1:8000/storage/product/small/"+images[3]);
-            zoomImage.BUP(null, 0.5);
-        });
-        $('#image_04').on('click', function () {
-            zoomImage.attr("src","http://127.0.0.1:8000/storage/product/small/"+images[4]);
-            zoomImage.BUP(null, 0.5);
+        $(document).ready(function () {
+            const data = @json($test);
+
+            const shipped = $.map(data, function (dStatus) {
+                if (Number(dStatus.delivery_status) >= 2) return dStatus;
+            });
+            console.log(shipped);
+
+            // data.newOrder = $.map(data, function (newOrder) {
+            //     if (newOrder.user_delivery_id == 1){
+            //         return newOrder;
+            //     }
+            // });
+            //
+            // for (let i in data.newOrder){
+            //     data.newOrder[i];
+            // }
+            //
+            // var json ={"DEPARTMENT": [
+            //         {
+            //             "id":"1",
+            //             "deptemp":"840",
+            //             "shares":"1100",
+            //
+            //         },
+            //         {
+            //             "id":"2",
+            //             "deptemp":"1010",
+            //             "shares":"1900",
+            //         }, {
+            //             "id":"3",
+            //             "deptemp":"350",
+            //             "shares":"510",
+            //         },
+            //         {
+            //             "id":"4",
+            //             "deptemp":"575",
+            //             "shares":"1900",
+            //         },
+            //         {
+            //             "id":"5",
+            //             "deptemp":"475",
+            //             "shares":"1200",
+            //         }]};
+
+            // json.DEPARTMENT = $.map(json.DEPARTMENT,function(val,key) {
+            //     if(Number(val.deptemp) <= 500 ) return val;
+            // });
+            //
+            // for(var i in json.DEPARTMENT){
+            //     let x = json.DEPARTMENT[i];
+            //      // x += x;
+            //     console.log(x);
+            //     // return x;
+            // }
+            // const y =+ x;
+            // console.log(x);
         });
     </script>
 @endsection

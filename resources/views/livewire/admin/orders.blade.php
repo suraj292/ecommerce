@@ -11,18 +11,19 @@
         </div>
         <div class="row">
             {{--    CATEGORY    --}}
+            <div class="mb-2">
+                <button type="button" class="btn btn-inverse-primary btn-fw " id="buttonAll">All</button>
+                <button type="button" class="btn btn-inverse-success btn-fw " id="buttonNewOrder">New Order</button>
+                <button type="button" class="btn btn-inverse-info btn-fw " id="buttonShipped">shipped</button>
+                <button type="button" class="btn btn-inverse-secondary btn-fw " id="buttonDelivered">delivered</button>
+                <button type="button" class="btn btn-inverse-danger btn-fw " id="buttonCancelled">Cancelled</button>
+            </div>
             <div class="col-md-12 col-sm-12 grid-margin stretch-card">
-                <div class="card" wire:ignore>
-                    <div class="card-body" style="/*max-height: 300px;*/ overflow-y: auto;">
+                <div class="card">
+                    <div class="card-body" style="/*max-height: 300px;*/ overflow-y: auto;" wire:ignore>
                         <h4 class="card-title">Orders</h4>
-                        <div class="mb-3">
-                            <button type="button" class="btn btn-inverse-primary btn-fw">All</button>
-                            <button type="button" class="btn btn-inverse-success btn-fw">New Order</button>
-                            <button type="button" class="btn btn-inverse-info btn-fw">shipped</button>
-                            <button type="button" class="btn btn-inverse-secondary btn-fw">delivered</button>
-                            <button type="button" class="btn btn-inverse-danger btn-fw">Cancelled</button>
-                        </div>
-                        <table id="dtBasicExample" class="table table-striped table-bordered table-sm">
+
+                        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" >
                             <thead>
                             <tr>
                                 <th class="th-sm">Name
@@ -31,63 +32,68 @@
                                 </th>
                                 <th class="th-sm">Order Date
                                 </th>
-                                <th class="th-sm">Product Qty
-                                </th>
                                 <th class="th-sm">Total Price
                                 </th>
-                                <th class="th-sm">Payment Mthd
+                                <th class="th-sm">Payment Method
                                 </th>
                             </tr>
                             </thead>
                             <tbody>
-                            <!--
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-                            -->
-                            @foreach($orders as $order)
-                                <tr wire:click="getOrders({{ $order->id }})">
-                                    <td>{{ $order->user->name }}</td>
-                                    <td>{{ $order->order_number }}</td>
-                                    <td>{{ $order->created_at->isoFormat('Do MMM YYYY') }}</td>
-                                    {{--product qty--}}
-                                    <td>{{ count(explode(',', $order->product_user_cart_ids)) }}</td>
-                                    <td>&#8377; {{ $order->total_payable_cost }}</td>
-                                    @if($order->razorpay_id)
-                                        <td>Prepaid</td>
-                                    @else
-                                        <td>COD</td>
-                                    @endif
-                                </tr>
-                            @endforeach
+{{--                            <tr>--}}
+{{--                                <td>Tiger Nixon</td>--}}
+{{--                                <td>System Architect</td>--}}
+{{--                                <td>Edinburgh</td>--}}
+{{--                                <td>61</td>--}}
+{{--                                <td>2011/04/25</td>--}}
+{{--                                <td>$320,800</td>--}}
+{{--                            </tr>--}}
+{{--                            @foreach($orders as $order)--}}
+{{--                                <tr wire:click="getOrders({{ $order->id }})">--}}
+{{--                                    <td>{{ $order->user->name }}</td>--}}
+{{--                                    <td>{{ $order->order_number }}</td>--}}
+{{--                                    <td>{{ $order->created_at->isoFormat('Do MMM YYYY') }}</td>--}}
+{{--                                    --}}{{--product qty--}}
+{{--                                    <td>{{ count(explode(',', $order->product_user_cart_ids)) }}</td>--}}
+{{--                                    <td>&#8377; {{ $order->total_payable_cost }}</td>--}}
+{{--                                    @if($order->razorpay_id)--}}
+{{--                                        <td>Prepaid</td>--}}
+{{--                                    @else--}}
+{{--                                        <td>COD</td>--}}
+{{--                                    @endif--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
 
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th class="th-sm">Name
-                                </th>
-                                <th class="th-sm">Order No.
-                                </th>
-                                <th class="th-sm">Order Date
-                                </th>
-                                <th class="th-sm">Product Qty
-                                </th>
-                                <th class="th-sm">Total Price
-                                </th>
-                                <th class="th-sm">Payment Mthd
-                                </th>
-                            </tr>
-                            </tfoot>
+{{--                            <tfoot>--}}
+{{--                            <tr>--}}
+{{--                                <th class="th-sm">Name--}}
+{{--                                </th>--}}
+{{--                                <th class="th-sm">Order No.--}}
+{{--                                </th>--}}
+{{--                                <th class="th-sm">Order Date--}}
+{{--                                </th>--}}
+{{--                                <th class="th-sm">Product Qty--}}
+{{--                                </th>--}}
+{{--                                <th class="th-sm">Total Price--}}
+{{--                                </th>--}}
+{{--                                <th class="th-sm">Payment Mthd--}}
+{{--                                </th>--}}
+{{--                            </tr>--}}
+{{--                            </tfoot>--}}
                         </table>
+
+{{--                        <livewire:admin.component.order-table />--}}
+{{--                        <button wire:click="getOrders(5)">hello</button>--}}
                     </div>
                 </div>
             </div>
         </div>
+
+        @if(session()->has('order_shipped'))
+        <div class="alert alert-success">
+            {{ session('order_shipped') }}
+        </div>
+        @endif
 
         @if($getOrders)
         <div class="row">
@@ -203,7 +209,7 @@
                         </div>
                         @endforeach
                         <div class="form-group col-12" style="margin-bottom: -10px !important;">
-                            <button type="button" class="btn btn-success btn-fw float-right">SHIP</button>
+                            <button type="button" class="btn btn-success btn-fw float-right" wire:click="ship({{ $getOrders->id }})">SHIP</button>
                         </div>
                     </div>
                 </div>
@@ -232,8 +238,138 @@
 @section('script')
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.11.3/datatables.min.js"></script>
     <script type="text/javascript">
+        const data = @json($orders);
+        const preloadData = $.map(data, function (query) {
+            if (query.razorpay_id !== '' || query.razorpay_id !== null) {
+                query.razorpay_id = 'Prepaid';
+            }else {
+                query.razorpay_id = 'COD';
+            }
+            query.total_payable_cost = '&#8377; '+query.total_payable_cost;
+            query.created_at = new Date(query.created_at).toLocaleDateString('en-GB', {
+                day : 'numeric',
+                month : 'short',
+                year : 'numeric'
+            });
+            return query;
+        });
+        $('#dtBasicExample').DataTable({
+            data: preloadData,
+            columns: [
+                { data: "name" },
+                { data: "order_number" },
+                { data: "created_at" },
+                { data: "total_payable_cost" },
+                { data: "razorpay_id" },
+            ],
+            createdRow: function( row, data, dataIndex ) {
+                $(row).attr('x-on:click', '$wire.getOrder('+data['id']+')');
+            }
+        });
         $(document).ready(function() {
-            $('#dtBasicExample').DataTable();
+
+            // const shipped = $.map(data, function (query) {
+            //     if (Number(query.delivery_status) >= 2){
+            //         if (query.razorpay_id !== '' || query.razorpay_id !== null) {
+            //             query.razorpay_id = 'Prepaid';
+            //         }else {
+            //             query.razorpay_id = 'COD';
+            //         }
+            //         query.total_payable_cost = '&#8377; '+query.total_payable_cost;
+            //         // query.created_at = new Date(query.created_at).toISOString().slice(0, 10);
+            //         query.created_at = new Date(query.created_at).toLocaleDateString('en-GB', {
+            //             day : 'numeric',
+            //             month : 'short',
+            //             year : 'numeric'
+            //         });
+            //         return query;
+            //     }
+            // });
+            const filter = function (query, status) {
+                if (Number(query.delivery_status) === status){
+                    if (query.razorpay_id !== '' || query.razorpay_id !== null) {
+                        query.razorpay_id = 'Prepaid';
+                    }else {
+                        query.razorpay_id = 'COD';
+                    }
+                    query.total_payable_cost = '&#8377; '+query.total_payable_cost;
+                    query.created_at = new Date(query.created_at).toLocaleDateString('en-GB', {
+                        day : 'numeric',
+                        month : 'short',
+                        year : 'numeric'
+                    });
+                    return query;
+                }
+            }
+            const table = function (tableName) {
+                $('#dtBasicExample').DataTable({
+                    data: tableName,
+                    columns: [
+                        { data: "name" },
+                        { data: "order_number" },
+                        { data: "created_at" },
+                        { data: "total_payable_cost" },
+                        { data: "razorpay_id" },
+                    ],
+                    createdRow: function( row, data, dataIndex ) {
+                        $(row).attr('x-on:click', '$wire.getOrder('+data['id']+')');
+                    }
+
+                });
+            }
+            const  tbl = $('#dtBasicExample').DataTable();
+            const newOrder = $.map(data, function (query) {
+                return filter(query, 1);
+            });
+            const shipped = $.map(data, function (query) {
+                return filter(query, 2);
+            });
+            const delivered =$.map(data, function (query) {
+                return filter(query, 3)
+            });
+            const cancelled =$.map(data, function (query) {
+                return filter(query, 4)
+            });
+
+            $('#buttonNewOrder').on('click', function () {
+                tbl.on('draw', function () {
+                    table(newOrder);
+                });
+
+            });
+            $('#buttonShipped').on('click', function () {
+                tbl.destroy();
+                table(shipped);
+            });
+            $('#buttonDelivered').on('click', function () {
+                tbl.destroy();
+                table(delivered);
+            });
+            $('#buttonCancelled').on('click', function () {
+                tbl.destroy();
+                table(cancelled);
+            });
+            $('#buttonAll').on('click', function () {
+                tbl.destroy();
+                table(preloadData);
+            });
+            // console.log();
+
+            // $('#dtBasicExample').DataTable({
+            //     data: shipped,
+            //     columns: [
+            //         { data: "name" },
+            //         { data: "order_number" },
+            //         { data: "created_at" },
+            //         { data: "total_payable_cost" },
+            //         { data: "razorpay_id" },
+            //     ],
+            //     createdRow: function( row, data, dataIndex ) {
+            //         $(row).attr('x-on:click', '$wire.getOrder('+data['id']+')');
+            //     }
+            //
+            // });
+
         } );
     </script>
 @endsection

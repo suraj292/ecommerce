@@ -9,6 +9,8 @@ use App\Models\product_color;
 use App\Models\product_color_image;
 use App\Models\product_details;
 use App\Models\products;
+use App\Models\User;
+use App\Models\user_order;
 use App\Models\user_verification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -30,15 +32,20 @@ class Test extends Component
         return view('livewire.test')->layout('layouts.admin');
     }
 
-    public function mount($account='home')
+    public function mount()
     {
-        $color = product_color_image::where('product_id', 1)->get();
-        $this->demo = $color;
-        $this->image = explode(',', $this->demo[0]->images)[0];
-        $this->images = explode(',', $this->demo[0]->images);
-
+//        $this->test = user_order::with('user')
+//            ->select(['delivery_status', 'order_number', 'razorpay_id', 'total_payable_cost', 'created_at'])
+//            ->where('id', '!=', '1')
+//            ->get();
+//        $this->test = user_order::join('users', 'users.id', '=', 'user_order.user_id')
+//            ->select('razorpay_id', 'order_number', 'total_payable_cost', 'name', 'users.created_at')
+//            ->get();
+        $this->test = User::join('user_order', 'user_order.user_id', 'Users.id')
+            ->select('name', 'order_number', 'total_payable_cost', 'user_order.created_at', 'razorpay_id', 'delivery_status')
+            ->where('user_order.id', '!=', 1)
+            ->get();
 //        dd($this->test);
-
     }
 
     public function switchImage($index)

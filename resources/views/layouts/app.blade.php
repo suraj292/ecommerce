@@ -1009,7 +1009,8 @@
         arrows: false,
     });
 </script>
-@yield('script')
+
 <livewire:scripts />
+@yield('script')
 </body>
 </html>

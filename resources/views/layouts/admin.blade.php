@@ -135,8 +135,10 @@
 <script src="{{asset('admin_assets/js/todolist.js')}}"></script>
 <!-- End custom js for this page -->
 <!-- Alpine JS-->
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-@yield('script')
+{{--<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>--}}
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 <livewire:scripts />
+@yield('script')
 </body>
 </html>
