@@ -23,7 +23,6 @@ class Orders extends Component
     public function mount()
     {
         $this->orders = User::join('user_order', 'user_order.user_id', 'Users.id')
-//            ->select('name', 'order_number', 'total_payable_cost', DATE_FORMAT('user_order.created_at', '%d/%l/%Y'), 'razorpay_id', 'delivery_status')
             ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id'])
             ->where('user_order.id', '!=', 1)
             ->get();

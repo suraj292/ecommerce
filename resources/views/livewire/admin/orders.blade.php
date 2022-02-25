@@ -11,79 +11,93 @@
         </div>
         <div class="row">
             {{--    CATEGORY    --}}
-            <div class="mb-2">
-                <button type="button" class="btn btn-inverse-primary btn-fw " id="buttonAll">All</button>
-                <button type="button" class="btn btn-inverse-success btn-fw " id="buttonNewOrder">New Order</button>
-                <button type="button" class="btn btn-inverse-info btn-fw " id="buttonShipped">shipped</button>
-                <button type="button" class="btn btn-inverse-secondary btn-fw " id="buttonDelivered">delivered</button>
-                <button type="button" class="btn btn-inverse-danger btn-fw " id="buttonCancelled">Cancelled</button>
-            </div>
             <div class="col-md-12 col-sm-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body" style="/*max-height: 300px;*/ overflow-y: auto;" wire:ignore>
                         <h4 class="card-title">Orders</h4>
 
-                        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" >
+                        <table id="dataTable" class="table table-striped table-bordered table-sm" >
                             <thead>
-                            <tr>
-                                <th class="th-sm">Name
-                                </th>
-                                <th class="th-sm">Order No.
-                                </th>
-                                <th class="th-sm">Order Date
-                                </th>
-                                <th class="th-sm">Total Price
-                                </th>
-                                <th class="th-sm">Payment Method
-                                </th>
-                            </tr>
+{{--                            <form>--}}
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputCity">Created Date From:</label>
+                                        <input type="text" class="form-control" id="min">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputState">Created Date To:</label>
+                                        <input type="text" class="form-control" id="max">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="dStatus">Order Status</label>
+                                        <select id="dStatus" class="form-control">
+                                            <option value selected>All</option>
+                                            <option value="1">New Order</option>
+                                            <option value="2">Shipped</option>
+                                            <option value="3">delivered</option>
+                                            <option value="4">Cancelled</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <br>
+                                        <button type="button" class="btn btn-primary" id="search">search</button>
+                                    </div>
+                                </div>
+{{--                            </form>--}}
+                                <tr>
+                                    <th class="th-sm">Name
+                                    </th>
+                                    <th class="th-sm">Order No.
+                                    </th>
+                                    <th class="th-sm">Order Date
+                                    </th>
+                                    <th class="th-sm">Total Cost
+                                    </th>
+                                    <th class="th-sm">Payment Method
+                                    </th>
+                                    <th style="display: none;">d status
+                                    </th>
+                                </tr>
                             </thead>
+
                             <tbody>
-{{--                            <tr>--}}
-{{--                                <td>Tiger Nixon</td>--}}
-{{--                                <td>System Architect</td>--}}
-{{--                                <td>Edinburgh</td>--}}
-{{--                                <td>61</td>--}}
-{{--                                <td>2011/04/25</td>--}}
-{{--                                <td>$320,800</td>--}}
-{{--                            </tr>--}}
-{{--                            @foreach($orders as $order)--}}
-{{--                                <tr wire:click="getOrders({{ $order->id }})">--}}
-{{--                                    <td>{{ $order->user->name }}</td>--}}
-{{--                                    <td>{{ $order->order_number }}</td>--}}
-{{--                                    <td>{{ $order->created_at->isoFormat('Do MMM YYYY') }}</td>--}}
-{{--                                    --}}{{--product qty--}}
-{{--                                    <td>{{ count(explode(',', $order->product_user_cart_ids)) }}</td>--}}
-{{--                                    <td>&#8377; {{ $order->total_payable_cost }}</td>--}}
-{{--                                    @if($order->razorpay_id)--}}
-{{--                                        <td>Prepaid</td>--}}
-{{--                                    @else--}}
-{{--                                        <td>COD</td>--}}
-{{--                                    @endif--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
+
+                            @foreach($orders as $order)
+                                <tr wire:click="getOrder({{ $order->id }})">
+                                    <td>{{ $order->name }}</td>
+                                    <td>{{ $order->order_number }}</td>
+                                    <td>{{ $order->created_at->format('d M Y') }}</td>
+                                    {{--product qty--}}
+                                    {{--<td>{{ count(explode(',', $order->product_user_cart_ids)) }}</td>--}}
+                                    <td>&#8377; {{ $order->total_payable_cost }}</td>
+                                    <td>
+                                        {{ $order->razorpay_id ? 'Prepaid' : 'COD' }}
+                                    </td>
+                                    <td style="display: none;">{{ $order->delivery_status }}</td>
+                                </tr>
+                            @endforeach
 
                             </tbody>
-{{--                            <tfoot>--}}
-{{--                            <tr>--}}
-{{--                                <th class="th-sm">Name--}}
-{{--                                </th>--}}
-{{--                                <th class="th-sm">Order No.--}}
-{{--                                </th>--}}
-{{--                                <th class="th-sm">Order Date--}}
-{{--                                </th>--}}
-{{--                                <th class="th-sm">Product Qty--}}
-{{--                                </th>--}}
-{{--                                <th class="th-sm">Total Price--}}
-{{--                                </th>--}}
-{{--                                <th class="th-sm">Payment Mthd--}}
-{{--                                </th>--}}
-{{--                            </tr>--}}
-{{--                            </tfoot>--}}
+
+                            <tfoot>
+                                <tr>
+                                    <th class="th-sm">Name
+                                    </th>
+                                    <th class="th-sm">Order No.
+                                    </th>
+                                    <th class="th-sm">Order Date
+                                    </th>
+                                    <th class="th-sm">Total Cost
+                                    </th>
+                                    <th class="th-sm">Payment Method
+                                    </th>
+                                    <th style="display: none;">d status
+                                    </th>
+                                </tr>
+                            </tfoot>
                         </table>
 
 {{--                        <livewire:admin.component.order-table />--}}
-{{--                        <button wire:click="getOrders(5)">hello</button>--}}
                     </div>
                 </div>
             </div>
@@ -110,11 +124,11 @@
                                     @break
 
                                     @case(2)
-                                    <span class="text-info">Cancelled</span>
+                                    <span class="text-info">Shipped</span>
                                     @break
 
                                     @case(3)
-                                    <span class="text-secondary">Cancelled</span>
+                                    <span class="text-secondary">Delivered</span>
                                     @break
 
                                     @default
@@ -219,7 +233,7 @@
     </div>
 </div>
 @section('style')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.11.3/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-html5-2.2.2/date-1.1.2/sb-1.3.1/sp-1.4.0/sl-1.3.4/datatables.min.css"/>
     <style>
         table.dataTable thead .sorting:after,
         table.dataTable thead .sorting:before,
@@ -236,140 +250,66 @@
     </style>
 @endsection
 @section('script')
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.11.3/datatables.min.js"></script>
-    <script type="text/javascript">
-        const data = @json($orders);
-        const preloadData = $.map(data, function (query) {
-            if (query.razorpay_id !== '' || query.razorpay_id !== null) {
-                query.razorpay_id = 'Prepaid';
-            }else {
-                query.razorpay_id = 'COD';
-            }
-            query.total_payable_cost = '&#8377; '+query.total_payable_cost;
-            query.created_at = new Date(query.created_at).toLocaleDateString('en-GB', {
-                day : 'numeric',
-                month : 'short',
-                year : 'numeric'
-            });
-            return query;
-        });
-        $('#dtBasicExample').DataTable({
-            data: preloadData,
-            columns: [
-                { data: "name" },
-                { data: "order_number" },
-                { data: "created_at" },
-                { data: "total_payable_cost" },
-                { data: "razorpay_id" },
-            ],
-            createdRow: function( row, data, dataIndex ) {
-                $(row).attr('x-on:click', '$wire.getOrder('+data['id']+')');
-            }
-        });
-        $(document).ready(function() {
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-html5-2.2.2/date-1.1.2/sb-1.3.1/sp-1.4.0/sl-1.3.4/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
-            // const shipped = $.map(data, function (query) {
-            //     if (Number(query.delivery_status) >= 2){
-            //         if (query.razorpay_id !== '' || query.razorpay_id !== null) {
-            //             query.razorpay_id = 'Prepaid';
-            //         }else {
-            //             query.razorpay_id = 'COD';
-            //         }
-            //         query.total_payable_cost = '&#8377; '+query.total_payable_cost;
-            //         // query.created_at = new Date(query.created_at).toISOString().slice(0, 10);
-            //         query.created_at = new Date(query.created_at).toLocaleDateString('en-GB', {
-            //             day : 'numeric',
-            //             month : 'short',
-            //             year : 'numeric'
-            //         });
-            //         return query;
-            //     }
-            // });
-            const filter = function (query, status) {
-                if (Number(query.delivery_status) === status){
-                    if (query.razorpay_id !== '' || query.razorpay_id !== null) {
-                        query.razorpay_id = 'Prepaid';
-                    }else {
-                        query.razorpay_id = 'COD';
-                    }
-                    query.total_payable_cost = '&#8377; '+query.total_payable_cost;
-                    query.created_at = new Date(query.created_at).toLocaleDateString('en-GB', {
-                        day : 'numeric',
-                        month : 'short',
-                        year : 'numeric'
-                    });
-                    return query;
+    <script>
+        var minDate, maxDate;
+
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function( settings, data, dataIndex ) {
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date( data[2] );
+
+                if (
+                    ( min === null && max === null ) ||
+                    ( min === null && date <= max ) ||
+                    ( min <= date   && max === null ) ||
+                    ( min <= date   && date <= max )
+                ) {
+                    return true;
                 }
+                return false;
             }
-            const table = function (tableName) {
-                $('#dtBasicExample').DataTable({
-                    data: tableName,
-                    columns: [
-                        { data: "name" },
-                        { data: "order_number" },
-                        { data: "created_at" },
-                        { data: "total_payable_cost" },
-                        { data: "razorpay_id" },
-                    ],
-                    createdRow: function( row, data, dataIndex ) {
-                        $(row).attr('x-on:click', '$wire.getOrder('+data['id']+')');
-                    }
+        );
 
-                });
-            }
-            const  tbl = $('#dtBasicExample').DataTable();
-            const newOrder = $.map(data, function (query) {
-                return filter(query, 1);
+        $(document).ready(function() {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'DD MMM YYYY'
             });
-            const shipped = $.map(data, function (query) {
-                return filter(query, 2);
-            });
-            const delivered =$.map(data, function (query) {
-                return filter(query, 3)
-            });
-            const cancelled =$.map(data, function (query) {
-                return filter(query, 4)
+            maxDate = new DateTime($('#max'), {
+                format: 'DD MMM YYYY'
             });
 
-            $('#buttonNewOrder').on('click', function () {
-                tbl.on('draw', function () {
-                    table(newOrder);
-                });
+            // DataTables initialisation
+            var table = $('#dataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel',
+                ]
+            });
 
+            // Refilter the table
+            $('#min, #max').on('change', function () {
+                table.draw();
             });
-            $('#buttonShipped').on('click', function () {
-                tbl.destroy();
-                table(shipped);
+            /*
+            Custom filter
+            1. val = get value of th or dropdown
+            2. grab column number-1
+             */
+            $('#dStatus').on('change', function () {
+                var val = $('#dStatus').val();
+                table.column(5)
+                    .search(val ? '^' + $(this).val() + '$' : val, true, false)
+                    .draw()
             });
-            $('#buttonDelivered').on('click', function () {
-                tbl.destroy();
-                table(delivered);
-            });
-            $('#buttonCancelled').on('click', function () {
-                tbl.destroy();
-                table(cancelled);
-            });
-            $('#buttonAll').on('click', function () {
-                tbl.destroy();
-                table(preloadData);
-            });
-            // console.log();
-
-            // $('#dtBasicExample').DataTable({
-            //     data: shipped,
-            //     columns: [
-            //         { data: "name" },
-            //         { data: "order_number" },
-            //         { data: "created_at" },
-            //         { data: "total_payable_cost" },
-            //         { data: "razorpay_id" },
-            //     ],
-            //     createdRow: function( row, data, dataIndex ) {
-            //         $(row).attr('x-on:click', '$wire.getOrder('+data['id']+')');
-            //     }
-            //
-            // });
-
-        } );
+        });
     </script>
 @endsection
