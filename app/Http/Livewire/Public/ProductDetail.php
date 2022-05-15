@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class ProductDetail extends Component
 {
-    public $product, $images, $color, $productId, $quantity=1, $product_color;
+    public $product, $images, $color, $productId, $quantity=1, $productd, $product_color;
 
     public function render()
     {
@@ -26,8 +26,8 @@ class ProductDetail extends Component
         $this->color = product_color_image::where('product_id', $this->productId)->get();
 //        $this->color = json_encode($color, false);
         $this->images = explode(',', $this->color[0]->images);
-        $this->product_color = $this->color[0]->product_color_id;
-//        dd($this->color);
+        $this->productd = $this->color[0];
+//        $this->stock = $this->color[0]->stock;
     }
 
     public function getProductColor($array)
@@ -35,8 +35,10 @@ class ProductDetail extends Component
         //$color = product_color_image::where('product_id', $this->productId)->get();
         //$this->images = null;
 //        $this->images = explode(',', $this->color[$array]->images);
-        $this->product_color = $this->color[$array]->product_color_id;
-//        dd($this->images->images);
+        $this->productd = $this->color[$array];
+        $this->quantity = 1;
+//        $this->stock = $this->color[$array]->stock;
+//        dd($this->productd);
     }
 
     public function addToCart($id)
@@ -50,13 +52,16 @@ class ProductDetail extends Component
         $addToCart = [
             'user_id' => $user_id,
             'product_id' => $product->product_id,
-            'product_color_id' => $this->product_color,
+//            'product_color_id' => $product->product_color_img->product_color_id,// not used in model
+            'select_product_color_id'=>$this->productd->product_color_id,
+            'product_color_image_id'=>$this->productd->id,
             'title' => $product->title,
-            'price' => $product->price,
-            'offer_price' => $product->offer_price,
+            'price' => (int)$product->price,
+            'offer_price' => (int)$product->offer_price,
             'image' => $image[0],
             'quantity' => $this->quantity,
         ];
+//        dd($addToCart);
         $this->emit('cartUpdated', $addToCart);
     }
 
@@ -68,8 +73,11 @@ class ProductDetail extends Component
     }
     public function increment()
     {
-
-        $this->quantity++;
+        if ($this->quantity < $this->productd->stock) {
+            $this->quantity++;
+        }else{
+            session()->flash('less_stock', 'Only '.$this->productd->stock.' left.');
+        }
 //        dd($this->color);
     }
 

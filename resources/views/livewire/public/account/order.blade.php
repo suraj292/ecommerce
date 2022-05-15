@@ -30,11 +30,15 @@
                                             <br>
                                             <strong>Qty</strong>: {{ $userCrt->quantity }}
                                             <br>
-                                            Color: <img src="{{ asset('storage/color_image/'.$color->find($userCrt->product_color_id)->color_image) }}" style="width: 25px;">
+                                            Color: <img class="rounded-circle"
+                                                src="{{ asset('storage/color_image/'.$color->find($userCrt->select_product_color_id)->color_image) }}" style="width: 25px;">
                                         </p>
                                     </div>
                                     <div class="col-sm-12 col-md-1">
                                         <p>&#8377; {{ $userCrt->offer_price > 0 ? $userCrt->offer_price : $userCrt->price }}</p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 text-right">
+                                        hello
                                     </div>
                                 </div>
                             </div>

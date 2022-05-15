@@ -61,7 +61,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <img src="{{ asset('storage/color_image/'.$getColor['color_image']) }}" width="30px">
+{{--                                                <img src="{{ asset('storage/color_image/'.$getColor['color_image']) }}" width="30px">--}}
                                             </td>
                                             <td style="color: orangered; font-size: 20px;">
                                                 @if($cart['offer_price'])
@@ -138,9 +138,12 @@
                                                         <li>
                                                             <div class="radio-option">
                                                                 <input type="radio" name="payment-group" id="payment-2">
-                                                                <label for="payment-2">Cash On Delivery<span class="small-text">Please send a check to Store
+                                                                <label for="payment-2">Cash On Delivery
+                                                                    <span class="small-text">Please send a check to Store
                                                                     Name, Store Street, Store Town, Store State /
-                                                                    County, Store Postcode.</span></label>
+                                                                    County, Store Postcode.
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         </li>
                                                         <li>
@@ -155,7 +158,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-end">
-                                                {{--                                                <a href="#" class="btn-solid btn">Place Order</a>--}}
+                                                {{--<a href="#" class="btn-solid btn">Place Order</a>--}}
                                                 <form {{--wire:submit.prevent="getRazorpayResponse"--}} id="prepaid">
                                                     <script src="https://checkout.razorpay.com/v1/checkout.js"
                                                             data-key="{{ env('RAZORPAY_KEY') }}"
@@ -163,11 +166,11 @@
                                                             data-buttontext="Confirm & Pay"
                                                             data-name="HouseOfBhavana"
                                                             data-description="Rozerpay"
-                                                            {{--                                                            data-image="https://www.itsolutionstuff.com/frontTheme/images/logo.png"--}}
+                                                            {{--data-image="https://www.itsolutionstuff.com/frontTheme/images/logo.png"--}}
                                                             data-prefill.name="{{ $user->name }}"
                                                             data-prefill.contact="{{ $user->mobile }}"
                                                             data-prefill.email="{{ $user->email }}"
-                                                        {{--                                                            data-theme.color="#ff7529"--}}
+                                                        {{--data-theme.color="#ff7529"--}}
                                                     >
                                                     </script>
                                                 </form>

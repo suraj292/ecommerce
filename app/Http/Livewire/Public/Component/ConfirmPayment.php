@@ -61,7 +61,7 @@ class ConfirmPayment extends Component
                 'user_id' => Auth::id(),
                 'user_delivery_id' => $addressId,
                 'i_think_logistics_id' => null,
-                //this will get all ordered product [eg="1,2"]
+                //this will get all ordered product id [eg="1,2"]
                 'product_user_cart_ids' => $this->cart->implode('id', ','),
                 'coupon_code' => $data['couponCode'],
                 'coupon_discount' => $data['couponValue'],

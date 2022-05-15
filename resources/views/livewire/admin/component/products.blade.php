@@ -188,7 +188,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Offer Price</label>
+                                <label class="col-sm-3 col-form-label">Price</label>
                                 <div class="col-sm-9 input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-gradient-primary text-white" style="height: 46px;">&#8377;</span>
@@ -247,7 +247,7 @@
             @endif
             {{--    edit product    --}}
             @if($editProductId)
-                <livewire:admin.component.edit-product  :editProductId="$editProductId" />
+                <livewire:admin.component.edit-product :wire:key="$editProductId" :editProductId="$editProductId" />
             @endif
 
         </div>

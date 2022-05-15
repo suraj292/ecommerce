@@ -31,7 +31,8 @@ class OrderSuccess extends Component
         $this->address = user_address::find($this->order->user_delivery_id);
 
         foreach ($this->cart as $cart){
-            $colorId = $cart->product_color_id;
+            $product = $cart->product_id;
+            $colorId = $cart->product_color_image_id;
             $qty = $cart->quantity;
             $product_color_stock = product_color_image::find($colorId);
             $product_color_stock->decrement('stock', $qty);

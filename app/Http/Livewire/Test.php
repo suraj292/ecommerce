@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class Test extends Component
 {
@@ -41,11 +42,16 @@ class Test extends Component
 //        $this->test = user_order::join('users', 'users.id', '=', 'user_order.user_id')
 //            ->select('razorpay_id', 'order_number', 'total_payable_cost', 'name', 'users.created_at')
 //            ->get();
-        $this->test = User::join('user_order', 'user_order.user_id', 'Users.id')
-            ->select('name', 'order_number', 'total_payable_cost', 'user_order.created_at', 'razorpay_id', 'delivery_status')
-            ->where('user_order.id', '!=', 1)
-            ->get();
+//        $this->test = User::join('user_order', 'user_order.user_id', 'Users.id')
+//            ->select('name', 'order_number', 'total_payable_cost', 'user_order.created_at', 'razorpay_id', 'delivery_status')
+//            ->where('user_order.id', '!=', 1)
+//            ->get();
 //        dd($this->test);
+        $faker = \Faker\Factory::create();
+        $imageLarge = $faker->image(public_path('storage/product') ,800, 1000, null, false);
+//        $x = Image::make(storage_path('app/public/product/') . $imageLarge)->resize(400, 500);
+//        $x->save();
+        dd($imageLarge);
     }
 
     public function switchImage($index)

@@ -124,6 +124,7 @@ class Products extends Component
         $this->editProduct['discount'] = $product->discount;
         $this->editProduct['italian'] = $product->italian;
 //        dd($this->editProduct['specification']);
+//        dd($id);
     }
 
 }

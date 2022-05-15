@@ -73,7 +73,7 @@ class Register extends Component
             'email' => $this->register['email'],
             'mobile' => $this->register['mobile'],
             'social_network' => 'EMAIL',
-            'password' => $this->register['password'],
+            'password' => Hash::make($this->register['password']),
         ])->user_verification()->save($verification);
 
         $userID = Crypt::encrypt($newUser->id);

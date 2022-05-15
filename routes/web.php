@@ -65,4 +65,4 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
 
 });
 //      Test
-Route::get('test/{account?}', App\Http\Livewire\Test::class);
+Route::get('test', App\Http\Livewire\Test::class);

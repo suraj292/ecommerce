@@ -38,14 +38,15 @@ class BuyNow extends Component
             $userOrder = user_order::where('user_id', Auth::id())
                 ->where('coupon_code', $coupon->code)
                 ->exists();
-            if ($this->cart['offer_price'] == 0){
-                    $offer = true;
-                }else{
-                    $offer = null;
-                }
+            if ($this->cart['offer_price'] == 0 || $this->cart['offer_price'] == null){
+                $offer = true;
+            }else{
+                $offer = null;
+            }
 
             if (is_null($offer)){
                 Session::flash('offer_not_applicable', 'Offer Not applicable on this item.');
+                dd('failed');
             }elseif ($userOrder){
                 Session::flash('used_coupon', 'You already used this coupon.');
             }else
@@ -57,6 +58,7 @@ class BuyNow extends Component
         {
             Session::flash('invalid_coupon', 'Coupon has been expired or invalid.');
         }
+//        dd($coupon);
     }
     public function placeOrder()
     {

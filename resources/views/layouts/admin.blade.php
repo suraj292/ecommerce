@@ -131,7 +131,7 @@
 <script src="{{asset('admin_assets/js/misc.js')}}"></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
-<script src="{{asset('admin_assets/js/dashboard.js')}}"></script>
+{{--<script src="{{asset('admin_assets/js/dashboard.js')}}"></script>--}}
 <script src="{{asset('admin_assets/js/todolist.js')}}"></script>
 <!-- End custom js for this page -->
 <!-- Alpine JS-->

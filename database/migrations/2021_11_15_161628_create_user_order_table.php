@@ -24,11 +24,10 @@ class CreateUserOrderTable extends Migration
             $table->string('coupon_discount')->nullable();
             $table->string('order_number');
             $table->char('invoice_number')->nullable();
-            $table->boolean('dispatch')->default(0);
+            $table->date('dispatch')->nullable();
             $table->string('total_payable_cost');
             $table->string('gst_charge');
             $table->integer('delivery_status')->default(1);
-//            $table->boolean('cancelled')->default(0);
             $table->timestamps();
         });
 

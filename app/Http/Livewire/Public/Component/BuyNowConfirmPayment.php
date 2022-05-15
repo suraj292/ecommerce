@@ -84,7 +84,7 @@ class BuyNowConfirmPayment extends Component
             $newCart->delete();
             $this->redirect(route('order-success'));
 
-        }
+        }dd($this->cart);
 
     }
 

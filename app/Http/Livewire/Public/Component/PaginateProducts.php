@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Public\Component;
 
+use App\Models\product_color_image;
 use App\Models\product_details;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -39,22 +40,25 @@ class PaginateProducts extends Component
 
     public function addToCart($id)
     {
-        $product = product_details::with('product_color_img')->find($id);
+        $product = product_details::with('product_color_img', 'product_all_img')->find($id);
         Auth::check() ? $user_id=Auth::id() : $user_id=null;
 //        $product->offer_price ? $price = $product->offer_price : $price = $product->price;
         $image = explode(',', $product->product_color_img->images);
-//        $product_color = product_color_image::where('product_id', '=', $product->product_id)->first();
+//        $product_color = product_color_image::where('product_id', $product->product_id)->first();
 
         $addToCart = [
             'user_id' => $user_id,
             'product_id' => $product->product_id,
-            'product_color_id' => $product->product_color_img->product_color_id,
+//            'product_color_id' => $product->product_color_img->product_color_id,// not used in model
+            'select_product_color_id'=>$product->product_color_img->product_color_id,
+            'product_color_image_id'=>$product->product_color_img->id,
             'title' => $product->title,
             'price' => (int)$product->price,
             'offer_price' => (int)$product->offer_price,
             'image' => $image[0],
             'quantity' => 1,
         ];
+//        dd($addToCart);
 
         $this->emit('cartUpdated', $addToCart);
     }

@@ -40,7 +40,8 @@ class CheckoutUserAuth2 extends Component
         }else{
             Session::flash('wrong_password', 'Incorrect credential');
         }
-//        dd($this->user);
+//        dd(User::where('email', $this->emailPhone)->orWhere('mobile', $this->emailPhone)->first());
+//        dd($user);
     }
 
     public function sendOTP()

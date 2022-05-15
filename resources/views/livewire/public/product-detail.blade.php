@@ -33,7 +33,7 @@
                         /*Change the colour*/
                         .active img{border:2px solid #333 !important;}
                     </style>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" wire:ignore>
                         <div class="col-lg-12" id="zoomImage">
 {{--                            <img id="zoom_01"--}}
 {{--                                 src="{{ asset('storage/product/small/'.$images[0]) }}"--}}
@@ -51,7 +51,6 @@
 {{--                                </div>--}}
 {{--                            @endforeach--}}
                         </div>
-
                     </div>
 
                     <div class="col-lg-7 accordion-body mx-auto">
@@ -164,6 +163,9 @@
                                                 </button>
                                             </span>
                                         </div>
+                                        @if(session()->has('less_stock'))
+                                        <span class="text-danger">{{ session('less_stock') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -369,7 +371,7 @@
                         // console.log(image);
                         setTimeout(function () {
                             $('#image_00').trigger('click');
-                        }, 800)
+                        }, 800);
                     }
                 }
                 $('#zoom_01').elevateZoom({

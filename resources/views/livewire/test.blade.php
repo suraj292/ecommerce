@@ -18,7 +18,7 @@
     <hr>
 
     <div class="row">
-
+        <img src="{{ $test }}" alt="">
     </div>
 
 

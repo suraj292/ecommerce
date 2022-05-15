@@ -15,7 +15,6 @@
                 <div class="card">
                     <div class="card-body" style="/*max-height: 300px;*/ overflow-y: auto;" wire:ignore>
                         <h4 class="card-title">Orders</h4>
-
                         <table id="dataTable" class="table table-striped table-bordered table-sm" >
                             <thead>
 {{--                            <form>--}}
@@ -57,6 +56,7 @@
                                     </th>
                                     <th style="display: none;">d status
                                     </th>
+                                    <th class="th-sm">Dispatched</th>
                                 </tr>
                             </thead>
 
@@ -74,6 +74,7 @@
                                         {{ $order->razorpay_id ? 'Prepaid' : 'COD' }}
                                     </td>
                                     <td style="display: none;">{{ $order->delivery_status }}</td>
+                                    <td>{{ $order->dispatch ? 'yes' : 'No' }}</td>
                                 </tr>
                             @endforeach
 
@@ -93,6 +94,7 @@
                                     </th>
                                     <th style="display: none;">d status
                                     </th>
+                                    <th class="th-sm">Dispatched</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -213,7 +215,7 @@
                                         <br>
                                         <strong>Qty</strong>: {{ $item->quantity }}
                                         <br>
-                                        Color: <img src="{{ asset('storage/color_image/'.$color->find($item->product_color_id)->color_image) }}" style="width: 25px;">
+                                        Color: <img src="{{ asset('storage/color_image/'.$color->find($item->select_product_color_id)->color_image) }}" style="width: 25px;">
                                     </p>
                                 </div>
                                 <div class="col-sm-12 col-md-1">
@@ -223,7 +225,77 @@
                         </div>
                         @endforeach
                         <div class="form-group col-12" style="margin-bottom: -10px !important;">
-                            <button type="button" class="btn btn-success btn-fw float-right" wire:click="ship({{ $getOrders->id }})">SHIP</button>
+{{--                            <button type="button" class="btn btn-success btn-fw float-right" wire:click="ship({{ $getOrders->id }})">SHIP</button>--}}
+                            @if(!$getOrders->i_think_logistics_id)
+                            <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" {{--wire:click="confirmOrder({{ $getOrders->id }})"--}}
+                                wire:click="showLogistics">Confirm Order</button>
+                            @endif
+
+                            <!-- Modal -->
+                            @if($logisticsDiv)
+                            <div class="modal fade show" style="padding-right: 16px; display: block; background-color: #0000009e;" id="courierModel">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Select Logistics</h5>
+                                            <button type="button" class="close" wire:click="hideLogistics" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Form -->
+                                            @if($logisticsRate)
+                                            <p>
+                                                Logistic Name : {{ $logisticsRate['data'][0]['logistic_name'] }}
+                                                <br>
+                                                Expected Delivery Date = {{ $logisticsRate['expected_delivery_date'] }}
+                                                <br>
+                                                Logistic Rate = {{ $logisticsRate['data'][0]['rate'] }}
+                                            </p>
+                                                <button type="submit" class="btn btn-primary" wire:click="confirmLogistics">Confirm Logistics</button>
+                                            @else
+                                            <form wire:submit.prevent="confirmOrder({{ $getOrders->id }})">
+                                                <div class="form-group">
+                                                    <label>Item Length (cm)</label>
+                                                    <input type="text" class="form-control" placeholder="Item Length (cm)" wire:model.lazy="selectLogistics.length">
+                                                    @error('selectLogistics.length')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Item width (cm)</label>
+                                                    <input type="text" class="form-control" placeholder="Item width (cm)" wire:model.lazy="selectLogistics.width">
+                                                    @error('selectLogistics.width')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Item height (cm)</label>
+                                                    <input type="text" class="form-control" placeholder="Item height (cm)" wire:model.lazy="selectLogistics.height">
+                                                    @error('selectLogistics.height')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Item weight (kg)</label>
+                                                    <input type="text" class="form-control" placeholder="Item weight (kg)" wire:model.lazy="selectLogistics.weight">
+                                                    @error('selectLogistics.weight')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-secondary" wire:click="hideLogistics">Close</button>
+{{--                                                    <button type="submit" class="btn btn-primary" wire:click="confirmOrder(2)">Confirm</button>--}}
+                                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                                </div>
+                                            </form>
+                                            @endif
+                                            <!-- end form -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -310,6 +382,10 @@
                     .search(val ? '^' + $(this).val() + '$' : val, true, false)
                     .draw()
             });
+
+        });
+        $('#toggleLogistics').on('click', function () {
+            alert('hello world')
         });
     </script>
 @endsection
