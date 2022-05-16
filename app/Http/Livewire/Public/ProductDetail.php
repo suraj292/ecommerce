@@ -89,7 +89,9 @@ class ProductDetail extends Component
         $data = [
             'user_id' => $user_id,
             'product_id' => $product->product_id,
-            'product_color_id' => $this->product_color,
+//            'product_color_id' => $product->product_color_img->id,
+            'select_product_color_id' => $product->product_color_img->getColor->id,
+            'product_color_image_id' => $product->product_color_img->id,
             'title' => $product->title,
             'price' => $product->price,
             'offer_price' => $product->offer_price,

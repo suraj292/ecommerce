@@ -24,9 +24,10 @@ class BuyNowConfirmPayment extends Component
         if (!$buyNowItem){
             return redirect()->back();
         }
+//        dd($buyNowItem);
         // is for direct buying single product
         $this->cart = $buyNowItem;
-        $colorId = $buyNowItem['product_color_id'];
+        $colorId = $buyNowItem['select_product_color_id'];
         $this->getColor = select_product_color::select('color_image')->find($colorId);
 
         $this->user = Auth::user();
@@ -84,7 +85,7 @@ class BuyNowConfirmPayment extends Component
             $newCart->delete();
             $this->redirect(route('order-success'));
 
-        }dd($this->cart);
+        }
 
     }
 
