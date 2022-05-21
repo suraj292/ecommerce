@@ -60,6 +60,28 @@ class CheckoutUserAuth2 extends Component
         }else{
             user_verification::create(['user_id'=>$user->id,'mobile_otp'=>$otp,]);
         }
+
+        //sending otp to registered mobile
+            // Account details
+            $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
+            // Message details
+            $numbers = array('91'.$this->mobileNumber);
+            $sender = urlencode('HOBHAV');
+            $message = rawurlencode('Dear Customer, '.$otp.' is the OTP for your mobile verification at houseofbhavana.in. Thank you');
+
+            $numbers = implode(',', $numbers);
+
+            // Prepare data for POST request
+            $data = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, 'message' => $message);
+            // Send the POST request with cURL
+            $ch = curl_init('https://api.textlocal.in/send/');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            // Process your response here
+//            dd($response);
         $this->otpDiv = true;
     }
 
@@ -70,7 +92,8 @@ class CheckoutUserAuth2 extends Component
             $verification->delete();
             $user = User::find(Auth::id());
             $user->update(['mobile_verified_at'=>now()]);
-            $this->redirect(route('checkout'));
+//            $this->redirect(route('checkout'));
+            $this->dispatchBrowserEvent('page_reload');
         }else{
             Session::flash('incorrect_otp', 'OTP has been expired or incorrect.');
         }

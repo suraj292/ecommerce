@@ -17,8 +17,9 @@
     </table>
     <hr>
 
-    <div class="row">
-        <img src="{{ $test }}" alt="">
+    <div class="row ml-5">
+        <p>{{ $test }}</p>
+        <button wire:click="click">click to refresh</button>
     </div>
 
 
@@ -39,6 +40,10 @@
                 if (Number(dStatus.delivery_status) >= 2) return dStatus;
             });
             console.log(shipped);
+
+            window.addEventListener('page_reload', event => {
+                window.location.reload();
+            })
 
             // data.newOrder = $.map(data, function (newOrder) {
             //     if (newOrder.user_delivery_id == 1){

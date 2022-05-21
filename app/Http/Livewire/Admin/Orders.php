@@ -15,7 +15,7 @@ class Orders extends Component
 {
     public $orders, $getOrders, $items, $color, $DlAddress;
     public $selectLogistics = ['length'=>null, 'width', 'height', 'weight'];
-    public $logisticsDiv, $logisticsRate;
+    public $logisticsDiv, $logisticsRate, $orderId;
 //    protected $listeners = ['getOrders'];
     public function render()
     {
@@ -34,11 +34,12 @@ class Orders extends Component
     public function getOrder($id)
     {
         $this->getOrders = user_order::with('user:id,name,email,mobile')
-            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id')
+            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id', 'razorpay_id', 'total_payable_cost')
             ->find($id);
         $this->color = select_product_color::all();
         $this->DlAddress = user_address::find($this->getOrders->user_delivery_id);
         $this->items = user_cart::withTrashed()->find(explode(',', $this->getOrders->product_user_cart_ids));
+        $this->orderId = $id;
     }
 
     // update order status
@@ -111,47 +112,47 @@ class Orders extends Component
             "shipments" => [
                 [
                     "waybill" => "",
-                    "order" => "15",
+                    "order" => "21",
                     "sub_order" => "A",
                     "order_date" => now()->format('d-m-Y'),
-                    "total_amount" => "300",
-                    "name" => "Bharat",
+                    "total_amount" => $this->getOrders->total_payable_cost,
+                    "name" => $this->DlAddress->name,
                     "company_name" => "",
-                    "add" => "104, Shreeji Sharan",
+                    "add" => $this->DlAddress->address,
                     "add2" => "",
                     "add3" => "",
-                    "pin" => "400067",
-                    "city" => "Mumbai",
-                    "state" => "Maharashtra",
+                    "pin" => $this->DlAddress->pincode,
+                    "city" => $this->DlAddress->city,
+                    "state" => $this->DlAddress->state,
                     "country" => "India",
-                    "phone" => "9876543210",
-                    "alt_phone" => "9876543210",
-                    "email" => "abc@gmail.com",
+                    "phone" => $this->DlAddress->phone,
+                    "alt_phone" => $this->DlAddress->alternate_phone,
+                    "email" => $this->getOrders->email,
                     "is_billing_same_as_shipping" => "yes",
                     "products" => [
                         [
-                            "product_name" => "Green color tshirt",
-                            "product_sku" => "GC001-1",
+                            "product_name" => "HOUSE OF BHAVANA DELIVERY",
+                            "product_sku" => null,
                             "product_quantity" => "1",
-                            "product_price" => "300", // product amount 1
-                            "product_tax_rate" => "5",
-                            "product_hsn_code" => "91308",
+                            "product_price" => $this->getOrders->total_payable_cost, // product amount 1
+                            "product_tax_rate" => "0",
+                            "product_hsn_code" => null,
                             "product_discount" => "0"
                         ],
                     ],
-                    "shipment_length" => "10",
-                    "shipment_width" => "10",
-                    "shipment_height" => "5",
-                    "weight" => "90",
+                    "shipment_length" => $this->selectLogistics['length'],
+                    "shipment_width" => $this->selectLogistics['width'],
+                    "shipment_height" => $this->selectLogistics['height'],
+                    "weight" => $this->selectLogistics['weight'],
                     "shipping_charges" => "0",
                     "giftwrap_charges" => "0",
                     "transaction_charges" => "0",
                     "total_discount" => "0",
                     "first_attemp_discount" => "0",
                     "cod_charges" => "0",
-                    "advance_amount" => "0",
-                    "cod_amount" => "300", //total amount cod
-                    "payment_mode" => "COD",
+                    "advance_amount" => $this->getOrders->razorpay_id ? $this->getOrders->total_payable_cost:0,
+                    "cod_amount" => $this->getOrders->razorpay_id ? "0":$this->getOrders->total_payable_cost, //total amount cod
+                    "payment_mode" => $this->getOrders->razorpay_id ? 'prepaid':'cod',
                     "reseller_name" => "",
                     "eway_bill_number" => "",
                     "gst_number" => "",
@@ -169,7 +170,22 @@ class Orders extends Component
         ]);
         $newOrder = new Client();
         $order = $newOrder->post('https://pre-alpha.ithinklogistics.com/api_v3/order/add.json', ['body'=>$orderData]);
-        dd(json_decode($order->getBody()->getContents()));
+        $result = json_decode($order->getBody()->getContents(), true);
+//        $user_order = $this->getOrders;
+        $user_order = user_order::find($this->orderId);
+        $user_order->update(['delivery_status'=>2]);
+//            user_order::update([
+//            'i_think_logistics_id' => $result['data'][1]['waybill'],
+//            'dispatch' => 2,
+//        ]);
+        $this->getOrders = null;
+        $this->orders = User::join('user_order', 'user_order.user_id', 'Users.id')
+            ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id', 'user_order.dispatch'])
+            ->where('user_order.id', '!=', 1)
+            ->get();
+//        dd($result['data'][1]['waybill']);
+//        dd(json_decode($orderData, true));
+//        dd($user_order);
     }
 
 }

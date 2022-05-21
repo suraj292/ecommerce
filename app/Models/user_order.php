@@ -22,7 +22,7 @@ class user_order extends Model
         'dispatch',
         'total_payable_cost',
         'gst_charge',
-        'cancelled',
+        'delivery_status',
     ];
 
     public function user()

@@ -15,6 +15,7 @@ use App\Models\user_verification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -35,6 +36,31 @@ class Test extends Component
 
     public function mount()
     {
+//        // Account details
+//        $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
+//        // Message details
+//        $numbers = array(919958394985);
+//        $sender = urlencode('HOBHAV');
+//        $otp = 789456;
+//        $message = rawurlencode('Dear Customer, '.$otp.' is the OTP for your mobile verification at houseofbhavana.in. Thank you');
+//
+//        $numbers = implode(',', $numbers);
+//
+//        // Prepare data for POST request
+//        $data = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, 'message' => $message);
+//        // Send the POST request with cURL
+//        $ch = curl_init('https://api.textlocal.in/send/');
+//            curl_setopt($ch, CURLOPT_POST, true);
+//            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+//            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//            $response = curl_exec($ch);
+//            curl_close($ch);
+//            // Process your response here
+//            $this->test = $response;
+//        $url = request();
+//        $url = request()->path();
+//            dd($url);
+    }
 //        $this->test = user_order::with('user')
 //            ->select(['delivery_status', 'order_number', 'razorpay_id', 'total_payable_cost', 'created_at'])
 //            ->where('id', '!=', '1')
@@ -47,12 +73,12 @@ class Test extends Component
 //            ->where('user_order.id', '!=', 1)
 //            ->get();
 //        dd($this->test);
-        $faker = \Faker\Factory::create();
-        $imageLarge = $faker->image(public_path('storage/product') ,800, 1000, null, false);
+//        $faker = \Faker\Factory::create();
+//        $imageLarge = $faker->image(public_path('storage/product') ,800, 1000, null, false);
 //        $x = Image::make(storage_path('app/public/product/') . $imageLarge)->resize(400, 500);
 //        $x->save();
-        dd($imageLarge);
-    }
+//        dd($imageLarge);
+//    }
 
     public function switchImage($index)
     {
@@ -135,5 +161,11 @@ class Test extends Component
         $this->c--;
         Session::put('key', $this->c);
         Session::save();
+    }
+
+    public function click()
+    {
+//        redirect(request()->path());header("Refresh:0");
+        $this->dispatchBrowserEvent('page_reload');
     }
 }

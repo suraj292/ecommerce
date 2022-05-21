@@ -61,5 +61,8 @@
                 location.reload();
             });
         })
+        window.addEventListener('page_reload', event => {
+            window.location.reload();
+        })
     </script>
 </div>
