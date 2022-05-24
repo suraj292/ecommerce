@@ -9,7 +9,7 @@
     <meta name="author" content="multikart">
     <link rel="icon" href="{{asset('assets/images/favicon/5.png')}}" type="image/x-icon">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon/5.png')}}" type="image/x-icon">
-    <title>Multikart - Multi-purpopse E-commerce Html Template</title>
+    <title>House Of Bhavana</title>
 
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">

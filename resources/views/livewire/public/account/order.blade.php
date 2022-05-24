@@ -21,10 +21,10 @@
                         <a class="card my-3 shadow-sm" style="border: none;" href="{{ route('track-order', ['order'=>$order->id, 'product'=>\Illuminate\Support\Str::slug($userCrt->title)]) }}">
                             <div class="card-body">
                                 <div class="row" >
-                                    <div class="col-sm-12 col-md-1">
+                                    <div class="col-sm-12 col-md-1 my-auto">
                                         <img src="{{asset('storage/product/small/'.$userCrt->image)}}" alt="product" class="rounded" style="width: 50px;">
                                     </div>
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-sm-12 col-md-4 my-auto">
                                         <p>
                                             {{ $userCrt->title }}
                                             <br>
@@ -34,11 +34,27 @@
                                                 src="{{ asset('storage/color_image/'.$color->find($userCrt->select_product_color_id)->color_image) }}" style="width: 25px;">
                                         </p>
                                     </div>
-                                    <div class="col-sm-12 col-md-1">
+                                    <div class="col-sm-12 col-md-1 my-auto">
                                         <p>&#8377; {{ $userCrt->offer_price > 0 ? $userCrt->offer_price : $userCrt->price }}</p>
                                     </div>
-                                    <div class="col-sm-12 col-md-6 text-right">
-                                        hello
+                                    <div class="col-sm-12 col-md-6 text-center my-auto">
+                                        @switch($order->delivery_status)
+                                            @case(1)
+                                            <span class="text-success font-weight-bold">Preparing</span>
+                                            @break
+
+                                            @case(2)
+                                            <span class="text-info font-weight-bold">Shipped</span>
+                                            @break
+
+                                            @case(3)
+                                            <span class="text-secondary font-weight-bold">Delivered</span>
+                                            @break
+
+                                            @default
+                                            <span class="text-danger font-weight-bold">Cancelled</span>
+                                        @endswitch
+{{--                                        {{ $order->delivery_status }} // hello--}}
                                     </div>
                                 </div>
                             </div>

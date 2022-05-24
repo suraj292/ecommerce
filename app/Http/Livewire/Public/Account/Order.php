@@ -19,7 +19,7 @@ class Order extends Component
 
     public function mount()
     {
-        $this->orders = user_order::select('id', 'product_user_cart_ids')->where('user_id', Auth::id())->latest('id')->get();
+        $this->orders = user_order::select('id', 'product_user_cart_ids', 'delivery_status')->where('user_id', Auth::id())->latest('id')->get();
         $this->userCarts = user_cart::withTrashed()->where('user_id', Auth::id())->get();
         $this->color = select_product_color::all();
 //        dd($this->orders);

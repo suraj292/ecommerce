@@ -64,5 +64,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
     Route::get('orders', App\Http\Livewire\Admin\Orders::class)->name('admin.orders');
 
 });
+//      Blog
+Route::view('blog', 'blog');
+
 //      Test
 Route::get('test', App\Http\Livewire\Test::class);

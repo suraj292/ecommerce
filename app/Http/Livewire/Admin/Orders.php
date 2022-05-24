@@ -107,6 +107,7 @@ class Orders extends Component
 
     public function confirmLogistics()
     {
+        // entering data to to logistics
         $orderData = json_encode([
             "data" => [
             "shipments" => [
@@ -170,22 +171,27 @@ class Orders extends Component
         ]);
         $newOrder = new Client();
         $order = $newOrder->post('https://pre-alpha.ithinklogistics.com/api_v3/order/add.json', ['body'=>$orderData]);
+
+        // response of logistics
         $result = json_decode($order->getBody()->getContents(), true);
-//        $user_order = $this->getOrders;
-        $user_order = user_order::find($this->orderId);
-        $user_order->update(['delivery_status'=>2]);
-//            user_order::update([
-//            'i_think_logistics_id' => $result['data'][1]['waybill'],
-//            'dispatch' => 2,
-//        ]);
-        $this->getOrders = null;
-        $this->orders = User::join('user_order', 'user_order.user_id', 'Users.id')
-            ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id', 'user_order.dispatch'])
-            ->where('user_order.id', '!=', 1)
-            ->get();
+        // if logistics success
+        if ($result['data'][1]['status'] != 'error') {
+            $user_order = user_order::find($this->orderId);
+            $user_order->update(['delivery_status' => 2]);
+            $this->getOrders = null;
+            $this->logisticsDiv = false;
+            $this->selectLogistics = null;
+            $this->logisticsRate = null;
+            $this->orders = User::join('user_order', 'user_order.user_id', 'Users.id')
+                ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id', 'user_order.dispatch'])
+                ->where('user_order.id', '!=', 1)
+                ->get();
+        }else{
+            dd('logistics error please contact your developer. Error: '.$result['data'][1]['remark']);
+        }
 //        dd($result['data'][1]['waybill']);
 //        dd(json_decode($orderData, true));
-//        dd($user_order);
+//        dd($result['data'][1]['remark']);
     }
 
 }
