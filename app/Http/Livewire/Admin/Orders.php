@@ -113,7 +113,7 @@ class Orders extends Component
             "shipments" => [
                 [
                     "waybill" => "",
-                    "order" => "21",
+                    "order" => "22",
                     "sub_order" => "A",
                     "order_date" => now()->format('d-m-Y'),
                     "total_amount" => $this->getOrders->total_payable_cost,

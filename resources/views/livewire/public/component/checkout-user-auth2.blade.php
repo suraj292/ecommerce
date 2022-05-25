@@ -40,6 +40,7 @@
                             <form wire:submit.prevent="checkOTP">
                                 <input type="text" style="border: none; border-bottom: #d9d9d9c7 1px solid; font-size: 15px;" placeholder="Mobile number" wire:model.lazy="mobileNumber" disabled>
                                 <input type="text" style="border: none; border-bottom: #d9d9d9c7 1px solid; font-size: 15px;" placeholder="Enter OTP" wire:model.lazy="otp">
+                                @if(session()->has('incorrect_otp'))<p style="color: red; margin-top: 8px;">{{ session('incorrect_otp') }}</p>@endif
                                 <button type="submit" class="btn btn-solid me-3 mt-2">submit</button>
                             </form>
                         @else
