@@ -31,7 +31,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/themify-icons.css')}}">
 
     <!-- Bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">--}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -41,7 +42,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 
     <!--  jquery  -->
-    <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
+{{--    <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>--}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Custome css -->
     @yield('style')
 

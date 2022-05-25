@@ -54,7 +54,6 @@
                                             @default
                                             <span class="text-danger font-weight-bold">Cancelled</span>
                                         @endswitch
-{{--                                        {{ $order->delivery_status }} // hello--}}
                                     </div>
                                 </div>
                             </div>
