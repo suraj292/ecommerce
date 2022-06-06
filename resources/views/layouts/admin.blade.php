@@ -88,6 +88,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.stocks') }}">
+                        <span class="menu-title">Stocks</span>
+                        <i class="mdi mdi-cart-plus menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <span class="menu-title">Sale / Offer</span>
                         <i class="mdi mdi-sale menu-icon"></i>
