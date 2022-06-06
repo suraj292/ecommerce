@@ -6,11 +6,6 @@
 /* Icons */
 @font-face {
   font-family: "slick";
-  src: url("http://themes.pixelstrap.com/multikart/assets/fonts/slick.eot");
-  src: url("http://themes.pixelstrap.com/multikart/assets/fonts/slick.eot?#iefix") format("embedded-opentype"),
-  url("http://themes.pixelstrap.com/multikart/assets/fonts/slick.woff") format("woff"),
-  url("http://themes.pixelstrap.com/multikart/assets/fonts/slick.ttf") format("truetype"),
-  url("http://themes.pixelstrap.com/multikart/assets/fonts/slick.svg#slick") format("svg");
   font-weight: normal;
   font-style: normal; }
 
