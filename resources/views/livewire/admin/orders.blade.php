@@ -250,6 +250,8 @@
                                                 <br>
                                                 Expected Delivery Date = {{ $logisticsRate['expected_delivery_date'] }}
                                                 <br>
+                                                Weight Slab = {{ $logisticsRate['data'][0]['weight_slab'] }} KG
+                                                <br>
                                                 Logistic Rate = {{ $logisticsRate['data'][0]['rate'] }}
                                             </p>
                                                 <button type="submit" class="btn btn-primary" wire:click="confirmLogistics">Confirm Logistics</button>
