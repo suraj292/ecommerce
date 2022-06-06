@@ -8,7 +8,7 @@
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -43,9 +43,13 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+@section('script')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@endsection

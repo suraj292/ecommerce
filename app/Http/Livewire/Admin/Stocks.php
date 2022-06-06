@@ -11,10 +11,7 @@ class Stocks extends Component
     {
         return view('livewire.admin.stocks')->layout('layouts.admin');
     }
-
-    public function mount()
-    {
+    public function mount(){
 
     }
-
 }
