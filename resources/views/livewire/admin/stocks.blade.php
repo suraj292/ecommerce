@@ -44,6 +44,37 @@
                         </table>
                     </div>
 
+                    <div class="p-5">
+                        <h4>Alert with input type</h4>
+                        <button class="btn btn-primary" id="subscribe">Subscribe</button>
+                    </div>
+                    <script>
+                        $('#subscribe').on('click', function () {
+                            Swal.fire({
+                                title: 'Stock Control',
+                                html: `<p>Product: <br>
+                                            sub-category: <br>
+                                            Color: <br>
+                                            <input type="text" id="stock" class="swal2-input" placeholder="Enter new stock">
+                                       </p>`,
+                                confirmButtonText: 'Update',
+                                focusConfirm: false,
+                                preConfirm: () => {
+                                    const stock = Swal.getPopup().querySelector('#stock').value
+                                    if (!stock) {
+                                        Swal.showValidationMessage(`Please enter stock`)
+                                    }
+                                    return { stock: stock }
+                                }
+                            }).then((result) => {
+                                Swal.fire(`
+                                Stock: ${result.value.stock}
+                              `.trim())
+                            })
+
+                        })
+                    </script>
+
                 </div>
             </div>
         </div>
@@ -51,5 +82,7 @@
     </div>
 </div>
 @section('script')
+@endsection
+@section('style')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
