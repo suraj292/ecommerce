@@ -23,6 +23,7 @@ use Intervention\Image\Facades\Image;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use SendGrid\Mail\Mail as SendGridMail;
 
 class Test extends Component
 {
@@ -31,11 +32,29 @@ class Test extends Component
     public $test, $images, $image, $demo;
     public function render()
     {
-        return view('livewire.test')->layout('layouts.admin');
+//        return view('livewire.test')->layout('layouts.admin');
     }
 
     public function mount()
     {
+        $email = new SendGridMail();
+        $email->setFrom("no-reply@houseofbhavana.in", "Sender name");
+        $email->setSubject("Sending with Twilio SendGrid is Fun");
+        $email->addTo("surajkumarsharma123@gmail.com", "Suraj");
+        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $email->addContent(
+            "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+        );
+        $sendgrid = new \SendGrid('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');
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
+    }
 //        // Account details
 //        $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
 //        // Message details
@@ -60,7 +79,7 @@ class Test extends Component
 //        $url = request();
 //        $url = request()->path();
 //            dd($url);
-    }
+//    }
 //        $this->test = user_order::with('user')
 //            ->select(['delivery_status', 'order_number', 'razorpay_id', 'total_payable_cost', 'created_at'])
 //            ->where('id', '!=', '1')
