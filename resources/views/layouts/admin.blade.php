@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('admin_assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('admin_assets/images/favicon.ico')}}" />
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     @yield('style')
     <livewire:styles />
 </head>
@@ -85,6 +85,12 @@
                     <a class="nav-link" href="{{ route('admin.collection') }}">
                         <span class="menu-title">Collections</span>
                         <i class="mdi mdi-animation menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.stocks') }}">
+                        <span class="menu-title">Stocks</span>
+                        <i class="mdi mdi-cart-plus menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
