@@ -41,24 +41,6 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="p-5">
-                        <h4>Alert with input type</h4>
-                        <button class="btn btn-primary" id="subscribe">Subscribe</button>
-                    </div>
-                    <script>
-                        $('#subscribe').on('click', function () {
-                            Swal.fire({
-                                title: 'Stock Control',
-                                html: `<input type="text" id="stock" class="swal2-input" placeholder="Enter new stock">`,
-                                confirmButtonText: 'Update',
-                                focusConfirm: false,
-                            })
-
-                        })
-
-                    </script>
-
                 </div>
             </div>
         </div>
