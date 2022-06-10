@@ -13,14 +13,18 @@ class Login extends Component
         return view('livewire.admin.login')
             ->layout('layouts.admin_login');
     }
-    protected $rules = [
-      'username'=>'required',
-      'password'=>'required|min:8'
-    ];
-    public function updated($propertyName){
-        $this->validateOnly($propertyName);
-    }
+//    protected $rules = [
+//      'username'=>'required',
+//      'password'=>'required|min:8'
+//    ];
+//    public function updated($propertyName){
+//        $this->validateOnly($propertyName);
+//    }
     public function login(){
+        $this->validate([
+            'username'=>'required',
+            'password'=>'required|min:8'
+        ]);
         $admin = admin_login::find(1);
         if ($this->username == $admin->username && $this->password == $admin->password){
             session()->put('admin', $admin->username);
