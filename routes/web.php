@@ -66,6 +66,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
 
     Route::get('stocks', Admin\Stocks::class)->name('admin.stocks');
     Route::get('orders', Admin\Orders::class)->name('admin.orders');
+    Route::get('sale', Admin\Orders::class)->name('admin.sale');
 
 });
 //      Blog

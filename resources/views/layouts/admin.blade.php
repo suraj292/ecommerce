@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.sale') }}">
                         <span class="menu-title">Sale / Offer</span>
                         <i class="mdi mdi-sale menu-icon"></i>
                     </a>
