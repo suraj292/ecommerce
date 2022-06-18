@@ -116,7 +116,7 @@
                                             <a href="#">value combo</a>
                                         </li>
                                         <li>
-                                            <a href="#">Blogs</a>
+                                            <a href="{{ route('blog') }}">Blogs</a>
                                         </li>
 
                                     </ul>

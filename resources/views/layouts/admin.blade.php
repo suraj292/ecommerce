@@ -100,6 +100,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.giftCard') }}">
+                        <span class="menu-title">Gift Card</span>
+                        <i class="mdi mdi-cash-multiple menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('coupon') }}">
                         <span class="menu-title">Coupons</span>
                         <i class="mdi mdi-tag-multiple menu-icon"></i>

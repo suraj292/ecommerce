@@ -87,7 +87,7 @@ class Register extends Component
             'email'=>$this->register['email'],
         ];
         //$userMailID = $this->register['email'];
-        newUserEmailVerification::dispatch($data);
+//        newUserEmailVerification::dispatch($data);
 
         session()->flash('verifyEmail', 'Email verification Link has been sent to your Email: '.$this->register['email']);
     }

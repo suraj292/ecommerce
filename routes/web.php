@@ -66,11 +66,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
 
     Route::get('stocks', Admin\Stocks::class)->name('admin.stocks');
     Route::get('orders', Admin\Orders::class)->name('admin.orders');
-    Route::get('sale', Admin\Orders::class)->name('admin.sale');
+    Route::get('sale', Admin\Sale::class)->name('admin.sale');
+    Route::get('gift-card', Admin\GiftCard::class)->name('admin.giftCard');
 
 });
 //      Blog
-Route::view('blog', 'blog');
+Route::view('blog', 'blog')->name('blog');
 
 //      Test
 Route::get('test', App\Http\Livewire\Test::class);

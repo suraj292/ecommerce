@@ -42,7 +42,6 @@ class Stocks extends Component
             ->get();
         $this->dispatchBrowserEvent('swal:updateSuccessMessage', [
             'icon' => 'success',
-//            'type' => 'success',
             'title' => 'Stock Updated Successfully!',
             'timer' => 1500,
         ]);
