@@ -44,6 +44,11 @@ class Account extends Component
         $this->account = 'password';
     }
 
+    public function switchWallet()
+    {
+        $this->account = 'wallet';
+    }
+
     public function logout()
     {
         Auth::logout();

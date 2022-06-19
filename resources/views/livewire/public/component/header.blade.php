@@ -146,6 +146,11 @@
                                                     </a>
                                                 </li>
                                                 <li>
+                                                    <a href="{{ route('public.account').'/wallet' }}">
+                                                        Wallet
+                                                    </a>
+                                                </li>
+                                                <li>
                                                     <a href="{{ route('public.account').'/order' }}">
                                                         My Orders
                                                     </a>
