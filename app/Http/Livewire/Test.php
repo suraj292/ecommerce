@@ -45,7 +45,7 @@ class Test extends Component
         $email->addContent(
             "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
         );
-        $sendgrid = new \SendGrid('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');
+        $sendgrid = new \SendGrid('xxxxxx');
         try {
             $response = $sendgrid->send($email);
             print $response->statusCode() . "\n";
