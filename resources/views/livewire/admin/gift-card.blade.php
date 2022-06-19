@@ -51,9 +51,9 @@
                                         @if(now() <= $giftCard->expiry && $giftCard->user_id)
                                             Used
                                         @elseif(now() <= $giftCard->expiry && !$giftCard->user_id)
-                                            Expired
-                                        @else
                                             Unused
+                                        @else
+                                            Expired
                                         @endif
                                     </td>
                                     <td style="display: none;"> {{ $giftCard->id }} </td>
