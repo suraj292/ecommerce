@@ -9,5 +9,5 @@ class wallet extends Model
 {
     use HasFactory;
     protected $table = "wallet";
-    protected $fillable = ['user_id', 'giftCard_id', 'amount'];
+    protected $fillable = ['user_id', 'amount'];
 }

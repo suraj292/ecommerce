@@ -16,7 +16,6 @@ class CreateWalletTable extends Migration
         Schema::create('wallet', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('giftCard_id')->constrained('gift_card');
             $table->integer('amount');
             $table->timestamps();
         });
