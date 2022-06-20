@@ -38,6 +38,9 @@
                                 <li @if($account == 'profile') class="active" @endif>
                                     <a type="button" wire:click="switchProfile">Account</a>
                                 </li>
+                                <li @if($account == 'wallet') class="active" @endif>
+                                    <a type="button" wire:click="switchWallet">Wallet</a>
+                                </li>
                                 <li @if($account == 'address') class="active" @endif>
                                     <a type="button" wire:click="switchAddress">Address Book</a>
                                 </li>
@@ -64,6 +67,10 @@
 
                             @case('profile')
                                 <livewire:public.account.profile />
+                            @break
+
+                            @case('wallet')
+                                <livewire:public.account.wallet />
                             @break
 
                             @case('address')

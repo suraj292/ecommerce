@@ -22,59 +22,25 @@
                             <thead>
                             <tr>
                                 <th>Product</th>
-                                <th>Sub-Category</th>
+{{--                                <th>Sub-Category</th>--}}
                                 <th>Stock</th>
                                 <th>Color</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Photoshop</td>
-                                <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td>
-                                <td><label class="badge badge-danger">Pending</label></td>
+                            @foreach($stocks as $stock)
+                            <tr wire:click="editStock({{ $stock->id }})">
+                                <td>
+                                    <img src="{{ asset('storage/product/small/'.explode(',', $stock->images)[0]) }}" alt="image">
+                                    {{ $stock->productDetails->title }}
+                                </td>
+                                <td class="text-danger">{{ $stock->stock }}</td>
+                                <td><img src="{{ asset('storage/color_image/'.$stock->getColor->color_image) }}" alt="image"></td>
                             </tr>
-                            <tr>
-                                <td>Dave</td>
-                                <td>53275535</td>
-                                <td class="text-success"> 98.05% <i class="mdi mdi-arrow-up"></i></td>
-                                <td><label class="badge badge-warning">In progress</label></td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="p-5">
-                        <h4>Alert with input type</h4>
-                        <button class="btn btn-primary" id="subscribe">Subscribe</button>
-                    </div>
-                    <script>
-                        $('#subscribe').on('click', function () {
-                            Swal.fire({
-                                title: 'Stock Control',
-                                html: `<p>Product: <br>
-                                            sub-category: <br>
-                                            Color: <br>
-                                            <input type="text" id="stock" class="swal2-input" placeholder="Enter new stock">
-                                       </p>`,
-                                confirmButtonText: 'Update',
-                                focusConfirm: false,
-                                preConfirm: () => {
-                                    const stock = Swal.getPopup().querySelector('#stock').value
-                                    if (!stock) {
-                                        Swal.showValidationMessage(`Please enter stock`)
-                                    }
-                                    return { stock: stock }
-                                }
-                            }).then((result) => {
-                                Swal.fire(`
-                                Stock: ${result.value.stock}
-                              `.trim())
-                            })
-
-                        })
-                    </script>
-
                 </div>
             </div>
         </div>
@@ -82,6 +48,29 @@
     </div>
 </div>
 @section('script')
+    <script>
+        // window.addEventListener('swal:modal', event => {
+        //     Swal.fire(event.detail);
+        // });
+        window.addEventListener('swal:updateSuccessMessage', event => {
+            Swal.fire(event.detail);
+        });
+        window.addEventListener('swal:modal', event => {
+            Swal.fire({
+                title: event.detail.title,
+                input: event.detail.input,
+                inputValue: event.detail.inputValue,
+                confirmButtonText: event.detail.confirmButtonText,
+            }).then((result)=>{
+                // console.log(result);
+                if (result.isConfirmed===true){
+                    window.livewire.emit('stockUpdate', {
+                        updatedStock : result.value,
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
 @section('style')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

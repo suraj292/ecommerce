@@ -119,10 +119,20 @@
                                                     @elseif($savings > 0)
                                                         <li style="color: #00a20c;">Total Saving <span style="color: #00a20c;">&#8377; {{ $savings }}</span></li>
                                                     @endif
-                                                    <li style="color: orangered;">Total
-                                                        <span style="color: orangered;">
+                                                    {{-- if prepaid selected --}}
+                                                    <li style="display: block;" class="prepaidCh">Total
+                                                        <span style="color: orangered;" >
                                                             &#8377; {{ $finalCost = $total != null ? $total : $subtotal }}
+                                                            @if($finalCost != $maximumAmount)
                                                             <del>&#8377; {{ $maximumAmount }}</del>
+                                                            @endif
+                                                        </span>
+                                                    </li>
+                                                    {{-- if cod selected --}}
+                                                    <li style="display: none;" class="codCh">Cod Charges <span>₹ {{ $codFinalAmount = round($finalCost * 0.027) }}</span></li>
+                                                    <li style="display: none;" class="codCh">Total
+                                                        <span style="color: orangered;">
+                                                            ₹ {{ round($finalCost + $codFinalAmount) }}
                                                         </span>
                                                     </li>
                                                 </ul>
@@ -184,10 +194,14 @@
                                                     $("#payment-2").on('click', function (){
                                                         $("#prepaid").hide();
                                                         $("#cod").show();
+                                                        $(".codCh").show();
+                                                        $(".prepaidCh").hide();
                                                     });
                                                     $("#payment-3").on('click', function (){
                                                         $("#cod").hide();
                                                         $("#prepaid").show();
+                                                        $(".codCh").hide();
+                                                        $(".prepaidCh").show();
                                                     });
                                                 });
                                             </script>

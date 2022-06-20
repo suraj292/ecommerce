@@ -113,7 +113,7 @@ class BuyNowConfirmPayment extends Component
             'coupon_discount' => $data['couponValue'],
             'order_number' => 'ORD'.$order,
 //            'invoice_number' => 'INV'.$order,
-            'total_payable_cost' => $data['total'],
+            'total_payable_cost' => ($data['total'] * 0.027) + $data['total'],
             'gst_charge' => $data['gst'],
         ]);
         $userOrder->save();

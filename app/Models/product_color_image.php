@@ -16,4 +16,9 @@ class product_color_image extends Model
     {
         return $this->hasOne(select_product_color::class, 'id', 'product_color_id');
     }
+
+    public function productDetails()
+    {
+        return $this->hasOne(product_details::class, 'product_id', 'product_id');
+    }
 }

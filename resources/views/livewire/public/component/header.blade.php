@@ -116,7 +116,7 @@
                                             <a href="#">value combo</a>
                                         </li>
                                         <li>
-                                            <a href="#">Blogs</a>
+                                            <a href="{{ route('blog') }}">Blogs</a>
                                         </li>
 
                                     </ul>
@@ -143,6 +143,11 @@
                                                 <li>
                                                     <a href="{{ route('public.account') }}">
                                                         Account
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('public.account').'/wallet' }}">
+                                                        Wallet
                                                     </a>
                                                 </li>
                                                 <li>

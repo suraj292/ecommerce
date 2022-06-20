@@ -37,6 +37,7 @@ class Test extends Component
 
     public function mount()
     {
+      /*
         $email = new SendGridMail();
         $email->setFrom("no-reply@houseofbhavana.in", "Sender name");
         $email->setSubject("Sending with Twilio SendGrid is Fun");
@@ -54,6 +55,7 @@ class Test extends Component
         } catch (Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
+        */
     }
 //        // Account details
 //        $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
