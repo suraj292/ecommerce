@@ -25,9 +25,14 @@ class Login extends Component
             'username'=>'required',
             'password'=>'required|min:8'
         ]);
-        $admin = admin_login::find(1);
-        if ($this->username == $admin->username && $this->password == $admin->password){
+        $admin = admin_login::where('username', $this->username)->first();
+
+        if ($this->username === 'admin' && $admin->password == $this->password){
             session()->put('admin', $admin->username);
+            session()->save();
+            $this->redirect(route('dashboard'));
+        }elseif ($this->username === 'editor' && $admin->password == $this->password){
+            session()->put('editor', $admin->username);
             session()->save();
             $this->redirect(route('dashboard'));
         }else{

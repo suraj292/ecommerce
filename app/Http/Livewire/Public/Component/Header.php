@@ -124,7 +124,6 @@ class Header extends Component
     public function logout()
     {
         Auth::logout();
-        Session::flush();
         return redirect(route('login'));
     }
 
