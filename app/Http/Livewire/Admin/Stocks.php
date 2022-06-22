@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Stocks extends Component
 {
-    public $stocks, $stockId;
+    public $stocks, $stockId, $stockList;
     protected $listeners = ['stockUpdate'];
     public function render()
     {
@@ -16,7 +16,6 @@ class Stocks extends Component
     }
     public function mount(){
         $this->stocks = product_color_image::with(['getColor', 'productDetails:product_id,title'])
-            ->where('stock', '<=', 3)
             ->get();
     }
 
@@ -38,12 +37,27 @@ class Stocks extends Component
         $stock = product_color_image::find($this->stockId);
         $stock->update(['stock'=>(int)$payload['updatedStock']]);
         $this->stocks = product_color_image::with(['getColor', 'productDetails:product_id,title'])
-            ->where('stock', '<=', 3)
             ->get();
+        $this->stockList = null;
         $this->dispatchBrowserEvent('swal:updateSuccessMessage', [
             'icon' => 'success',
             'title' => 'Stock Updated Successfully!',
             'timer' => 1500,
         ]);
+    }
+
+    public function stockListUpdate()
+    {
+        $stock = $this->stockList != null ? (int)$this->stockList : null;
+        $this->stocks = product_color_image::with(['getColor', 'productDetails:product_id,title'])
+//            ->where('stock', '=', '*')
+            ->where(function ($query) use ($stock){
+                if ($stock <= 5 && $stock != null){
+                    $query->where('stock', '<', 5);
+                }elseif ($stock >= 5) {
+                    $query->where('stock', '>', 5);
+                }else{return;}
+            })
+            ->get();
     }
 }

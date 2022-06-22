@@ -33,7 +33,7 @@ class SelectColor extends Component
         if (!empty($this->newColorImage)){
             $name = $this->newColorImage->hashName();
             $img = Image::make($this->newColorImage->path())->resize(100, 100);
-            $img->save('storage/color_image/'.$name);
+            $img->save(storage_path('app/public/color_image/'.$name));
 
             $color = select_product_color::create([
                 'color_name'=>$this->newColor,
@@ -73,7 +73,8 @@ class SelectColor extends Component
     public function deleteColor($id){
         $this->deleteColorId = select_product_color::find($id);
         $this->deleteColorId->delete();
-        Storage::delete('public/color_image/'.$this->deleteColorId->color_image);
+//        Storage::delete('public/color_image/'.$this->deleteColorId->color_image);
+        Storage::delete(storage_path('app/public/color_image/'.$this->deleteColorId->color_image));
         $this->colors = select_product_color::latest('id')->get();
         $this->colorId = null;
         session()->flash('success_delete', 'Color has been deleted.');

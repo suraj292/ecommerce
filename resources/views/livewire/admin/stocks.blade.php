@@ -18,6 +18,14 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+                        <form class="input-group mb-3" wire:submit.prevent="stockListUpdate">
+                            <select class="custom-select mt-1" id="inputGroupSelect01" wire:model.lazy="stockList">
+                                <option selected value="null">All Stock</option>
+                                <option value="5">Less than 5 Stock Qty</option>
+                                <option value="10">More than 5 Stock Qty</option>
+                            </select>
+                            <button class="btn btn-primary ml-2">submit</button>
+                        </form>
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -40,6 +48,7 @@
                             @endforeach
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
