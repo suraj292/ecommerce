@@ -19,7 +19,10 @@ class CreateAdminLoginTable extends Migration
             $table->string('password');
             $table->string('key');
         });
-        \Illuminate\Support\Facades\DB::table('admin_login')->insert(['username'=>'admin', 'password'=>'admin123', 'key'=>'0000']);
+        \Illuminate\Support\Facades\DB::table('admin_login')->insert([
+            ['username'=>'admin', 'password'=>'admin123', 'key'=>'0000'],
+            ['username'=>'editor', 'password'=>'password', 'key'=>'0000'],
+        ]);
     }
 
     /**
