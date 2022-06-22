@@ -37,6 +37,7 @@ class Test extends Component
 
     public function mount()
     {
+      /*
         $email = new SendGridMail();
         $email->setFrom("no-reply@houseofbhavana.in", "Sender name");
         $email->setSubject("Sending with Twilio SendGrid is Fun");
@@ -45,7 +46,7 @@ class Test extends Component
         $email->addContent(
             "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
         );
-        $sendgrid = new \SendGrid('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');
+        $sendgrid = new \SendGrid('xxxxxx');
         try {
             $response = $sendgrid->send($email);
             print $response->statusCode() . "\n";
@@ -54,9 +55,7 @@ class Test extends Component
         } catch (Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
-//        $x = products::with('details')
-//            ->get();
-//        dd($x);
+        */
     }
 //        // Account details
 //        $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
