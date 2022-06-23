@@ -32,11 +32,14 @@ class Test extends Component
     public $test, $images, $image, $demo;
     public function render()
     {
-//        return view('livewire.test')->layout('layouts.admin');
+        return view('livewire.test')->layout('layouts.admin');
+//        return response('you are not authorized');
     }
 
     public function mount()
     {
+//        return response('you are not authorized');
+    }
       /*
         $email = new SendGridMail();
         $email->setFrom("no-reply@houseofbhavana.in", "Sender name");
@@ -56,7 +59,7 @@ class Test extends Component
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
         */
-    }
+//    }
 //        // Account details
 //        $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
 //        // Message details

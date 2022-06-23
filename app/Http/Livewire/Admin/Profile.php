@@ -73,7 +73,6 @@ class Profile extends Component
     {
         $admin = admin_login::find(1);
         $admin->update([
-            'username'=>$this->username,
             'password'=>$this->password
         ]);
         Session::flash('admin_updated', 'Admin Credential Updated');

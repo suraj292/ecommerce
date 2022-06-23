@@ -27,12 +27,8 @@ class Login extends Component
         ]);
         $admin = admin_login::where('username', $this->username)->first();
 
-        if ($this->username === 'admin' && $admin->password == $this->password){
+        if ($admin->username == $this->username && $admin->password == $this->password){
             session()->put('admin', $admin->username);
-            session()->save();
-            $this->redirect(route('dashboard'));
-        }elseif ($this->username === 'editor' && $admin->password == $this->password){
-            session()->put('editor', $admin->username);
             session()->save();
             $this->redirect(route('dashboard'));
         }else{

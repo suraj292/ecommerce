@@ -71,14 +71,13 @@
                 <div class="card-body">
                     <h4 class="text-uppercase">Admin Credentials</h4>
                     @if(session()->has('admin_updated'))
-                        <p class="alert alert-success">hello</p>
+                        <p class="alert alert-success">{{ session('admin_updated') }}</p>
                     @else
                     <form class="forms-sample" wire:submit.prevent="updateAdminPassword" id="adminPassword">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Name" wire:model.lazy="username" @if(!$nowCanChange) disabled @endif>
-                                @error('name')<span class="text-danger">{{ $message }}</span>@enderror
+                                <input type="text" class="form-control" placeholder="Name" wire:model.lazy="username" disabled>
                             </div>
                         </div>
                         <div class="form-group row">

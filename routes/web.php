@@ -61,7 +61,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
         Route::get('/', Admin\Component\Products::class)->name('admin.products');
         Route::get('addColor', Admin\Component\SelectColor::class)->name('admin.color');
     });
-    Route::get('coupon', Admin\Coupon::class)->name('coupon');
+    Route::get('coupon', Admin\Coupon::class)->name('coupon')->middleware('R_editor');
     Route::get('profile', Admin\Profile::class)->name('admin.profile');
 
     Route::get('stocks', Admin\Stocks::class)->name('admin.stocks');
