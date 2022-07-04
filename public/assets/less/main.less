@@ -1,0 +1,235 @@
+@duration: 1s;
+@ease: cubic-bezier(.6,.0,.2,1);
+
+@offsetSize: 10%;
+@contentOffset: @offsetSize * 1.4;
+/* @offsetSize * 2 means the content won't appear to move at all. Set to a lower value for squishing effects. */
+
+@textColor: #FFF;
+@overlayColor: #000;
+@highlightColor: #FFC12D;
+@borderColor: @highlightColor;
+
+/*////////////////////////////////////////*/
+/* Layout */
+
+.panels {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: @overlayColor;
+  pointer-events: none;
+}
+
+.panels__container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
+  height: 100%;
+  width: unit( 100 + (@offsetSize * 2),%);
+  margin: 0 -(@offsetSize);
+  visibility: hidden;
+}
+
+.panel {
+  display: inline-block;
+  height: 100%;
+  visibility: visible;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/*////////////////////////////////////////*/
+/* Image/Text Container */
+
+.panel__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: center center no-repeat;
+  background-size: cover;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: @overlayColor;
+    opacity: 0.5;
+    transition: opacity @duration @ease;
+  }
+}
+
+/*////////////////////////////////////////*/
+/* Title */
+
+.panel__title {
+  pointer-events: auto;
+  color: @textColor;
+  position: relative;
+  z-index: 1;
+  transition: color @duration @ease;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: @overlayColor;
+    background: fade(@overlayColor,1%);
+    //border: solid 2px #FFFFFF;
+    z-index: -1;
+    padding: 0.5em 1em;
+    margin: -0.5em -1em;
+
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all @duration @ease;
+    transition-property: opacity, transform;
+  }
+}
+
+/*////////////////////////////////////////*/
+/* Hover States */
+
+.panel {
+  transform: translate3d(0,0,0);
+  transition: transform @duration @ease;
+
+  .panel__content {
+    transform: translateX(@offsetSize);
+    transition: transform @duration @ease;
+  }
+
+  &:last-child .panel__content {
+    transform: translateX(-@offsetSize);
+  }
+
+  /* Inactive panel */
+  .panels:hover & {
+    transform: translate3d(-@offsetSize, 0, 0);
+
+    .panel__content {
+      transform: translateX(@contentOffset);
+      &:before { opacity: 0.7; }
+    }
+  }
+
+  /* Override styles for an inactive panel AFTER the hovered panel */
+  .panels &:hover ~ & {
+    transform: translate3d(@offsetSize, 0, 0);
+
+    .panel__content {
+      transform: translateX(-@contentOffset);
+    }
+  }
+
+  /* Active panel */
+  .panels &:hover {
+    z-index: 2;
+    transform: translate3d(@offsetSize,0,0);
+    pointer-events: auto;
+
+    &:last-child { transform: translate3d(-@offsetSize,0,0); }
+
+    .panel__content {
+      transform: translateX(0%);
+      &:before { opacity: 0; }
+    }
+
+    .panel__title {
+      color: @highlightColor;
+
+      &:before {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+/*////////////////////////////////////////*/
+/* Vertical layout */
+
+.panels--stacked {
+
+  .panels__container {
+    width: 100%;
+    height: unit( 100 + (@offsetSize * 2),%);
+    margin: -(@offsetSize) 0;
+    flex-direction: column;
+  }
+
+  .panel {
+    height: 50%;
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+
+    .panel__content {
+      transform: translate3d(0, @offsetSize, 0);
+    }
+
+    &:last-child .panel__content {
+      transform: translate3d(0, -@offsetSize,0);
+    }
+  }
+
+    /* Inactive panel */
+  &:hover .panel {
+    transform: translate3d(0, -@offsetSize, 0);
+
+    .panel__content {
+      transform: translate3d(0, @contentOffset, 0);
+    }
+  }
+
+  /* Override styles for an inactive panel AFTER the hovered panel */
+  & .panel:hover ~ .panel {
+    transform: translate3d(0, @offsetSize, 0);
+
+    .panel__content {
+      transform: translate3d(0, -@contentOffset, 0);
+    }
+  }
+
+  /* Active panel */
+  & .panel:hover {
+    transform: translate3d(0, @offsetSize, 0);
+
+    &:last-child { transform: translate3d(0, -@offsetSize, 0); }
+
+    .panel__content {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 550px) {
+  .panels { .panels--stacked; }
+}
+
+/*////////////////////////////////////////*/
+/* Specific Design Setup */
+
+@import 'https://fonts.googleapis.com/css?family=Oswald';
+
+.panel__title {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  letter-spacing: 0.1em;
+
+  @media (max-width: 800px) {
+    font-size: 1.5em;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.25em;
+  }
+}
