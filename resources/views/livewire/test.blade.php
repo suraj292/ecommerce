@@ -1,27 +1,35 @@
-<div>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>image</th>
-            <th>title</th>
-            <th>price</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td> title </td>
-                <td class="text-success text-uppercase"> image </td>
-                <td> price </td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
+<div style="background-color: #E0E0E0D6">
 
-    <div class="row ml-5">
-        <p>{{ $test }}</p>
-        <button wire:click="click">click to refresh</button>
+    <div class="m-5 p-3 rounded" style="background-color: white;">
+        <img src="https://houseofbhavana.in/assets/images/favicon/5.png" width="12px">
+        <!-- url -->
+        <span
+        style="line-height: 1.54; margin-bottom: 3px; font-size: 14px;"
+        >https://houseofbhavana.in > login</span>
+        <!-- Title -->
+        <p
+        style="font-size: 18px; margin-top: 3px; color: #3228d0;"
+        >House Of Bhavana</p>
+        <!-- Description -->
+        <p
+        style="font-size: 14px; margin-top: -12px;"
+        >
+            <!-- Date -->
+            <span>31-Jan-2020 --</span>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            At beatae debitis delectus porro quidem reprehenderit.</p>
+        <!-- rating & review -->
+        <div>
+            <div>
+                <i class="mdi mdi-star" style="color: #ffd500;"></i>
+                <i class="mdi mdi-star" style="color: #ffd500;"></i>
+                <i class="mdi mdi-star" style="color: #ffd500;"></i>
+                <i class="mdi mdi-star" style="color: #ffd500;"></i>
+                <i class="mdi mdi-star-outline" style="color: #afafaf;"></i>
+                <span style="color: #939393; font-size: 16px;">Rating: 8.2/10</span>
+            </div>
+        </div>
     </div>
-
 
 </div>
 @section('style')
@@ -34,16 +42,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script>
         $(document).ready(function () {
-            const data = @json($test);
+            {{--const data = @json($test);--}}
 
-            const shipped = $.map(data, function (dStatus) {
-                if (Number(dStatus.delivery_status) >= 2) return dStatus;
-            });
-            console.log(shipped);
+            {{--const shipped = $.map(data, function (dStatus) {--}}
+            {{--    if (Number(dStatus.delivery_status) >= 2) return dStatus;--}}
+            {{--});--}}
+            {{--console.log(shipped);--}}
 
-            window.addEventListener('page_reload', event => {
-                window.location.reload();
-            })
+            {{--window.addEventListener('page_reload', event => {--}}
+            {{--    window.location.reload();--}}
+            {{--})--}}
 
             // data.newOrder = $.map(data, function (newOrder) {
             //     if (newOrder.user_delivery_id == 1){

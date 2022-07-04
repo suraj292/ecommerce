@@ -45,6 +45,12 @@
 {{--    <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>--}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Custome css -->
+    <style>
+        .manu-hover-effect:hover{
+            background-color: whitesmoke;
+            transition:800ms;
+        }
+    </style>
     @yield('style')
 
     <livewire:styles />

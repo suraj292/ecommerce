@@ -2,28 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\collection_link;
-use App\Models\collection_name;
-use App\Models\product_category;
-use App\Models\product_color;
-use App\Models\product_color_image;
-use App\Models\product_details;
-use App\Models\products;
-use App\Models\User;
-use App\Models\user_order;
-use App\Models\user_verification;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use SendGrid\Mail\Mail as SendGridMail;
 
 class Test extends Component
 {
@@ -33,12 +13,11 @@ class Test extends Component
     public function render()
     {
         return view('livewire.test')->layout('layouts.admin');
-//        return response('you are not authorized');
     }
 
     public function mount()
     {
-//        return response('you are not authorized');
+
     }
       /*
         $email = new SendGridMail();
@@ -104,10 +83,10 @@ class Test extends Component
 //        dd($imageLarge);
 //    }
 
-    public function switchImage($index)
-    {
-        $this->image = explode(',', $this->demo[0]->images)[$index];
-    }
+//    public function switchImage($index)
+//    {
+//        $this->image = explode(',', $this->demo[0]->images)[$index];
+//    }
 
 
 //        $request = request()->getRequestUri();
@@ -173,23 +152,23 @@ class Test extends Component
 //        dd($y);
 //    }
 
-    public function increase()
-    {
-        $this->c++;
-        Session::put('key', $this->c);
-        Session::save();
-    }
-
-    public function decrease()
-    {
-        $this->c--;
-        Session::put('key', $this->c);
-        Session::save();
-    }
-
-    public function click()
-    {
-//        redirect(request()->path());header("Refresh:0");
-        $this->dispatchBrowserEvent('page_reload');
-    }
+//    public function increase()
+//    {
+//        $this->c++;
+//        Session::put('key', $this->c);
+//        Session::save();
+//    }
+//
+//    public function decrease()
+//    {
+//        $this->c--;
+//        Session::put('key', $this->c);
+//        Session::save();
+//    }
+//
+//    public function click()
+//    {
+////        redirect(request()->path());header("Refresh:0");
+//        $this->dispatchBrowserEvent('page_reload');
+//    }
 }
