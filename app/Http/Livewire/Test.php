@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use http\Client;
+use http\Client\Request;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -17,7 +20,9 @@ class Test extends Component
 
     public function mount()
     {
-
+        $client = Http::get('http://127.0.0.1:8001/api/coupon');
+        dd(json_decode($client->body(), true));
+//        $url = dd( url('api/coupon') );
     }
       /*
         $email = new SendGridMail();

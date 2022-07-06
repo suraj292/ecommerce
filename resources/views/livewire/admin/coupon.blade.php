@@ -32,23 +32,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($coupons as $index => $coupon)
+                            @foreach($coupons as $index => $coupon){{-- @if($coupon['active']) text-success @else text-danger @endif --}}
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td class="@if($coupon->active) text-success @else text-danger @endif text-uppercase">{{ $coupon->code }}</td>
-                                    <td> {{ $coupon->value }} % </td>
+                                    <td>{{ (int)$index + 1 }}</td>
+{{--                                    <td class="text-uppercase {{ $coupon['active']==1 ? 'text-success':'text-danger' }}">{{ $coupon['code'] }}</td>--}}
+                                    <td> {{ $coupon['value'] }} % </td>
                                     <td> {{ $coupon->expire_at->format('d M Y') }} </td>
                                     <td>
-                                        @if($coupon->active)
+                                        @if($coupon['active'])
                                             <i class="mdi mdi-toggle-switch"
                                                style="font-size: xx-large; color: #157715;" title="Active"
-                                                wire:click="couponActive({{ $coupon->id }})"
+                                                wire:click="couponActive({{ $coupon['id'] }})"
                                             >
                                             </i>
                                         @else
                                             <i class="mdi mdi-toggle-switch-off"
                                                style="font-size: xx-large; color: #fc476b;" title="Deactivate"
-                                               wire:click="couponActive({{ $coupon->id }})"
+                                               wire:click="couponActive({{ $coupon['id'] }})"
                                             >
                                             </i>
                                         @endif

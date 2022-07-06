@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\coupon_code;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -17,7 +18,9 @@ class Coupon extends Component
     }
     public function mount()
     {
-        $this->coupons = coupon_code::latest('id')->get();
+        $coupon = Http::get('http://127.0.0.1:8001/api/coupon');
+        $this->coupons = json_decode($coupon, true);
+        dd($this->coupons);
     }
     public function couponGenerate()
     {
