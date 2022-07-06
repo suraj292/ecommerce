@@ -19,4 +19,4 @@ use App\Http\Controllers\Api\Admin\CouponController;
 //    return $request->user();
 //});
 
-Route::resource('coupon', CouponController::class)->names();
+Route::resource('coupon', CouponController::class);
