@@ -29,7 +29,7 @@
     <!-- Home Video banner end -->
 
     <!-- home page custom image animation -->
-    <section class="">
+    <section class="container">
         <div class="panels">
             <div class="panels__container">
                 <a href="#" class="panel">
