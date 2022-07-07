@@ -18,9 +18,7 @@ class Coupon extends Component
     }
     public function mount()
     {
-        $coupon = Http::get('http://127.0.0.1:8001/api/coupon');
-        $this->coupons = json_decode($coupon, true);
-        dd($this->coupons);
+
     }
     public function couponGenerate()
     {

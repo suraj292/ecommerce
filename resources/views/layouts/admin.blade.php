@@ -150,6 +150,7 @@
 {{--<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>--}}
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+<script src="{{ mix('js/app.js') }}"></script>
 <livewire:scripts />
 @yield('script')
 </body>
