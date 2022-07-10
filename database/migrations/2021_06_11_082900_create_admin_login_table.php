@@ -17,11 +17,11 @@ class CreateAdminLoginTable extends Migration
             $table->id();
             $table->string('username');
             $table->string('password');
-            $table->string('key');
+            $table->rememberToken();
         });
         \Illuminate\Support\Facades\DB::table('admin_login')->insert([
-            ['username'=>'admin', 'password'=>'admin123', 'key'=>'0000'],
-            ['username'=>'editor', 'password'=>'password', 'key'=>'0000'],
+            ['username'=>'admin', 'password'=>'admin123'],
+            ['username'=>'editor', 'password'=>'password'],
         ]);
     }
 

@@ -59,7 +59,7 @@
                                     <input type="text" class="form-control text-uppercase"
                                            style="border: 1px solid #c4c4c4"
                                            placeholder="enter new Coupon" v-model="newCoupon.couponCode">
-<!--                                    @error('coupons.code')<p class="text-danger">{{ $message }}</p>@enderror-->
+                                    <p class="text-danger" v-if="errors && errors.couponCode">{{ errors.couponCode[0] }}</p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -68,7 +68,7 @@
                                     <input type="text" class="form-control"
                                            style="border: 1px solid #c4c4c4"
                                            id="exampleInputEmail2" placeholder="enter 1-100 %" v-model="newCoupon.couponValue">
-<!--                                    @error('coupons.value')<p class="text-danger">{{ $message }}</p>@enderror-->
+                                    <p class="text-danger" v-if="errors && errors.couponValue">{{ errors.couponValue[0] }}</p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -77,7 +77,7 @@
                                     <input type="text" class="form-control"
                                            style="border: 1px solid #c4c4c4"
                                            id="exampleInputMobile" placeholder="&#8377; xxx" v-model="newCoupon.couponMaxAmount">
-<!--                                    @error('coupons.maxAmount')<p class="text-danger">{{ $message }}</p>@enderror-->
+                                    <p class="text-danger" v-if="errors && errors.couponMaxAmount">{{ errors.couponMaxAmount[0] }}</p>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-gradient-primary mr-2">Add Coupon</button>
@@ -92,16 +92,14 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import Swal from "sweetalert2";
 
 export default {
     data(){
         return {
             coupons: [],
-            newCoupon: {
-                couponCode: '',
-                couponValue: '',
-                couponMaxAmount: ''
-            },
+            newCoupon: {},
+            errors: {},
             isEditing: false,
             moment: moment
         }
@@ -122,19 +120,36 @@ export default {
             axios.post('/api/coupon', this.newCoupon)
                 .then(response => {
                     this.fetchCoupon()
-                    this.newCoupon = {
-                        couponCode: '',
-                        couponValue: '',
-                        couponMaxAmount: ''
+                    this.newCoupon = {}
+                    this.errors = {}
+                }).catch(error => {
+                    if (error.response.status === 422){
+                        this.errors = error.response.data.errors
                     }
-                })
+                    console.log(this.errors)
+            })
         },
         couponDel(id){
             try {
-                axios.delete(`/api/coupon/${id}`)
-                    .then(res => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete(`/api/coupon/${id}`)
                         this.fetchCoupon()
-                    })
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
             } catch (e) {
                 console.log(e)
             }

@@ -125,7 +125,8 @@
             </ul>
         </nav>
         <!-- partial -->
-        {{$slot}}
+{{--        {{$slot}}--}}
+        @yield('content') @if( isset($slot) ) {{ $slot }} @endif
         <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->

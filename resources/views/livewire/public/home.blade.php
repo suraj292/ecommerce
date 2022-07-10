@@ -29,19 +29,19 @@
     <!-- Home Video banner end -->
 
     <!-- home page custom image animation -->
-    <section class="container">
+    <section class="container" id="home-img-animation">
         <div class="panels">
             <div class="panels__container">
                 <a href="#" class="panel">
                     <div class="panel__content panel__title">
-                        <img src="https://www.dior.com/couture/var/dior/storage/images/29895135/53-int-EN/cdc-dispatch8_1440_1200.jpg" width="100%" height="600px">
+                        <img src="https://www.dior.com/couture/var/dior/storage/images/29895135/53-int-EN/cdc-dispatch8_1440_1200.jpg">
                         {{--                    <h3 class="panel__title">EXPLORE</h3>--}}
                         {{--                    <div style="height: 100%; "></div>--}}
                     </div>
                 </a>
                 <a href="#" class="panel">
                     <div class="panel__content panel__title">
-                        <img src="https://www.dior.com/couture/var/dior/storage/images/29893608/94-int-EN/pcd-dispatch11_1440_1200.jpg" width="100%" height="600px">
+                        <img src="https://www.dior.com/couture/var/dior/storage/images/29893608/94-int-EN/pcd-dispatch11_1440_1200.jpg">
                         {{--                    <h3 class="panel__title">DISCOVER</h3>--}}
                         {{--                    <div style="height: 100%; "></div>--}}
                     </div>
@@ -240,12 +240,49 @@
         }
     </style>
     <style>
-        @media screen and (min-width: 799px) {
-
+        @media screen and (min-width: 800px) {
+            .panels__container img{
+                width: 100%;
+                height: 550px;
+            }
         }
         @media screen and (max-width: 800px) {
             .tagline-video{
                 margin-top: -30px;
+            }
+            /*.panel__content img{*/
+            /*    width: 100%;*/
+            /*    height: 415px;*/
+            /*}*/
+        }
+        @media screen and (max-width: 990px) {
+            .panel__content img{
+                width: 90%;
+                height: 350px;
+            }
+            .panels{
+                background: none;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            .panel__content img{
+                width: 90%;
+                height: 290px;
+            }
+            .panels{
+                background: none;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            #home-img-animation{
+                margin-top: -200px;
+            }
+            .panel__content img {
+                width: 90%;
+                height: 220px;
+            }
+            .panels{
+                background: none;
             }
         }
         @media screen and (max-width: 576px) {
@@ -255,9 +292,9 @@
         }
         /*516*/
         @media screen and (max-width: 516px) {
-            /*.home-img-animate{*/
-            /*    margin-top: -50px;*/
-            /*}*/
+            .home-img-animate{
+                margin-top: -50px;
+            }
         }
     </style>
 @endsection
@@ -265,8 +302,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
     <script>
         $(document).ready(function () {
-            if($(window).width() > 800){
-
+            if($(window).width() < 801){
+                $('#home-img-animation div').removeClass('panels__container');
+                $('#home-img-animation a').removeClass('panel');
             }
         });
     </script>
