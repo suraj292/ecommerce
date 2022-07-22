@@ -59,11 +59,12 @@
 <body>
 <content id="app">
     <!-- header start -->
-    {{--<livewire:public.component.header />--}}
-    <public-header></public-header>
+    <livewire:public.component.header />
+{{--    <public-header></public-header>--}}
     <!-- header end -->
 
-    {{$slot}}
+{{--    {{$slot}}--}}
+    @yield('content') @if( isset($slot) ) {{ $slot }} @endif
 
     <!-- footer start -->
     <footer class="footer-light">

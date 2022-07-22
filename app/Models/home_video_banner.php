@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class slider extends Model
+class home_video_banner extends Model
 {
     use HasFactory;
-    protected $table = "slider";
     public $timestamps = false;
-    protected $fillable = ['image', 'h4', 'h1', 'button_link', 'button_name'];
+    protected $table = "home_video_banner";
+    protected $fillable = ['video', 'heading', 'para', 'button_name', 'button_link'];
 }

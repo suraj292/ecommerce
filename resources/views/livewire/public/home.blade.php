@@ -4,7 +4,7 @@
     <section class="p-0 height-100 sm-responsive">
         <div class="banner">
             <video autoplay muted loop class="tagline-video">
-                <source src="http://www.bigcom.com/assets/2014/10/asmc_bg2.mp4" type="video/mp4">
+                <source src="{{ $banners->video }}" type="video/mp4">
             </video>
             <div class="overlay"></div>
             <div class="banner-innner">
@@ -13,11 +13,9 @@
 
                         <div class="col-md-12">
                             <div class="banner-left">
-                                <h1> Lorem ipsum dolor sit amet, consectetur adipiscing elit </h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                                <a href="#"> Contact </a>
+                                <h1> {{ $banners->heading }} </h1>
+                                <p> {{ $banners->para }} </p>
+                                <a href="{{ $banners->link }}"> {{ $banners->button_name }} </a>
                             </div>
                         </div>
 

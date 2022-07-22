@@ -7,7 +7,10 @@ use App\Http\Controllers\login as Login;
 
 //      PUBLIC
 Route::get('/', Public\Home::class)->name('home');
-Route::get('products/{category?}', Public\Products::class)->name('products');
+//Route::get('products/{category?}', Public\Products::class)->name('products');
+//Route::get('products/{category?}', Public\Products::class)->name('products');
+Route::view('products', 'products');
+Route::view('leathers-and-arts', 'leatherAndArts');
 Route::get('product/{slug}', Public\ProductDetail::class)->name('product_details');
 Route::get('register', Public\Register::class)->middleware('guest')->name('register');
 Route::get('verification/{user}/{code}', Public\Component\EmailVerify::class)->name('email_verify');
@@ -52,8 +55,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
     Route::get('collection', Admin\Collections::class)->name('admin.collection');
 //    Route::get('home/{component?}', Admin\Home::class)->name('admin_home');
     Route::group(['prefix'=>'home'], function (){
-        Route::get('slider', Admin\Component\Slides::class)->name('slider');
-        Route::get('collection_banner', Admin\Component\CollectionBanner::class)->name('collection_banner');
+        Route::get('home-page', Admin\Component\HomeVideoBanner::class)->name('home_video_banner');
     });
     Route::group(['prefix'=>'product'], function (){
         Route::get('category', Admin\Component\ProductCategory::class)->name('product_category');

@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Public;
 
-use App\Models\collection_banner;
-use App\Models\slider;
-//use Illuminate\Filesystem\Cache;
+use App\Models\home_video_banner;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 use Livewire\Component;
@@ -17,13 +15,14 @@ class Home extends Component
         return view('livewire.public.home');
     }
     public function mount(){
+
 //        if (Cache::has('slides') && Cache::has('banners')){
 //            $this->slides = json_decode(Cache::get('slides'));
 //            $this->banners = json_decode(Cache::get('banners'));
 //        }else{
-            $this->slides = slider::all();
+//            $this->slides = slider::all();
 //            Cache::put('slides', $this->slides, 2 * 60);
-            $this->banners = collection_banner::all();
+            $this->banners = home_video_banner::find(1);
 //            Cache::put('banners', $this->banners, 2 * 60);
 //        }
     }

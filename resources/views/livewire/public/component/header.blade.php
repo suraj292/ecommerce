@@ -21,9 +21,11 @@
                             <div class="icon-nav">
                                 <ul>
                                     <li class="onhover-div mobile-search">
-                                        <div><img src="../assets/images/icon/search.png" onclick="openSearch()"
-                                                  class="img-fluid blur-up lazyload" alt=""><i class="ti-search"
-                                                                                               onclick="openSearch()"></i></div>
+                                        <div>
+                                            <img src="/assets/images/icon/search.png" onclick="openSearch()"
+                                                  class="img-fluid blur-up lazyload" alt="">
+                                            <i class="ti-search" onclick="openSearch()"></i>
+                                        </div>
                                         <div id="search-overlay" class="search-overlay">
                                             <div><span class="closebtn" onclick="closeSearch()"
                                                        title="Close Overlay">×</span>
@@ -38,7 +40,8 @@
                                                                                placeholder="Search a Product">
                                                                     </div>
                                                                     <button type="submit" class="btn btn-primary"><i
-                                                                            class="fa fa-search"></i></button>
+                                                                            class="fa fa-search"></i>
+                                                                    </button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -48,7 +51,7 @@
                                         </div>
                                     </li>
                                     <li class="onhover-div mobile-setting">
-                                        <div><img src="../assets/images/icon/setting.png"
+                                        <div><img src="/assets/images/icon/setting.png"
                                                   class="img-fluid blur-up lazyload" alt=""><i class="ti-settings"></i>
                                         </div>
                                         <div class="show-div setting">
@@ -74,7 +77,7 @@
                                             <li>
                                                 <div class="media">
                                                     <a href="#"><img class="me-3"
-                                                                     src="../assets/images/furniture/product/4.jpg" alt=""></a>
+                                                                     src="/assets/images/furniture/product/4.jpg" alt=""></a>
                                                     <div class="media-body">
                                                         <a href="#">
                                                             <h4>item name</h4>
@@ -88,7 +91,7 @@
                                             <li>
                                                 <div class="media">
                                                     <a href="#"><img class="me-3"
-                                                                     src="../assets/images/furniture/product/10.jpg" alt=""></a>
+                                                                     src="/assets/images/furniture/product/10.jpg" alt=""></a>
                                                     <div class="media-body">
                                                         <a href="#">
                                                             <h4>item name</h4>
