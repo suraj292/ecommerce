@@ -7,7 +7,7 @@
     <meta name="description" content="multikart">
     <meta name="keywords" content="multikart">
     <meta name="author" content="multikart">
-    <link rel="icon" href="{{asset('assets/images/favicon/5.png')}}" type="image/x-icon">
+{{--    <link rel="icon" href="{{asset('assets/images/favicon/5.png')}}" type="image/x-icon">--}}
     <link rel="shortcut icon" href="{{asset('assets/images/favicon/5.png')}}" type="image/x-icon">
     <title>House Of Bhavana</title>
 
@@ -57,14 +57,13 @@
 </head>
 
 <body>
-<content id="app">
     <!-- header start -->
     <livewire:public.component.header />
 {{--    <public-header></public-header>--}}
     <!-- header end -->
 
-{{--    {{$slot}}--}}
-    @yield('content') @if( isset($slot) ) {{ $slot }} @endif
+    {{$slot}}
+{{--    @yield('content') @if( isset($slot) ) {{ $slot }} @endif--}}
 
     <!-- footer start -->
     <footer class="footer-light">
@@ -255,8 +254,6 @@
         <div><i class="fa fa-angle-double-up"></i></div>
     </div>
     <!-- tap to top end -->
-
-</content>
 
 <!-- latest jquery-->
 

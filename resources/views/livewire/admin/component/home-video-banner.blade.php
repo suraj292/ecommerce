@@ -116,7 +116,7 @@
                             <h4 class="card-title">VIDEO</h4>
                             <div class="media">
                                 <video autoplay muted loop class="tagline-video m-2 w-50">
-                                    <source src="{{ $data->video }}" type="video/mp4">
+                                    <source src="https://drive.google.com/uc?export=download&id={{ $data->video }}" type='video/mp4'>
                                 </video>
                             </div>
                             <form wire:submit.prevent="video">
@@ -129,6 +129,11 @@
                                     </div>
                                 </div>
                             </form>
+                            <p>
+                                eg: https://drive.google.com/file/d/
+                                <span style="background-color: #1B8505FF; color: whitesmoke;">1k1ZeTmaQDtQK_wVPWT69kfwzZQXYS7ny</span>
+                                /view?usp=sharing
+                            </p>
                         </div>
                     </div>
                 </div>

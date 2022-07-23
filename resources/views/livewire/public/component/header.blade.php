@@ -13,7 +13,7 @@
                             </div>
                         </div>
                         <div class="brand-logo layout2-logo">
-                            <a href="#">
+                            <a href="{{route('home')}}">
                                 <h2>BHAVANA</h2>
                             </a>
                         </div>
@@ -51,68 +51,112 @@
                                         </div>
                                     </li>
                                     <li class="onhover-div mobile-setting">
-                                        <div><img src="/assets/images/icon/setting.png"
-                                                  class="img-fluid blur-up lazyload" alt=""><i class="ti-settings"></i>
+                                        <div>
+                                            <img src="/assets/images/icon/setting.png"
+                                                 class="img-fluid lazyload" alt="">
+                                            <i class="ti-settings"></i>
                                         </div>
                                         <div class="show-div setting">
-                                            <h6>language</h6>
-                                            <ul>
-                                                <li><a href="#">english</a></li>
-                                                <li><a href="#">french</a></li>
-                                            </ul>
-                                            <h6>currency</h6>
-                                            <ul class="list-inline">
-                                                <li><a href="#">euro</a></li>
-                                                <li><a href="#">rupees</a></li>
-                                                <li><a href="#">pound</a></li>
-                                                <li><a href="#">doller</a></li>
-                                            </ul>
+                                            @auth()
+                                                <h6 class="text-uppercase">{{ $user->name }}</h6>
+                                                <ul>
+                                                    <li><a href="{{ route('public.account') }}">Account</a></li>
+                                                    <li><a href="{{ route('public.account').'/wallet' }}">Wallet</a></li>
+                                                    <li><a href="{{ route('public.account').'/order' }}">My Orders</a></li>
+                                                    <li><a wire:click="logout">Logout</a></li>
+                                                </ul>
+                                            @endauth
+                                            @guest()
+                                                <h6>Account</h6>
+                                                <ul class="list-inline">
+                                                    <li>
+                                                        <a href="{{ route('login') }}">
+                                                            Sign in
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ route('register') }}">
+                                                            Register
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            @endguest
                                         </div>
                                     </li>
                                     <li class="onhover-div mobile-cart">
-                                        <div><img src="../assets/images/icon/cart.png"
-                                                  class="img-fluid blur-up lazyload" alt=""><i
-                                                class="ti-shopping-cart"></i></div>
-                                        <ul class="show-div shopping-cart">
-                                            <li>
-                                                <div class="media">
-                                                    <a href="#"><img class="me-3"
-                                                                     src="/assets/images/furniture/product/4.jpg" alt=""></a>
-                                                    <div class="media-body">
-                                                        <a href="#">
-                                                            <h4>item name</h4>
-                                                        </a>
-                                                        <h4><span>1 x $ 299.00</span></h4>
+                                        <div>
+                                            <img src="assets/images/icon/cart.png"
+                                                 class="img-fluid blur-up lazyload" alt=""><i
+                                                class="ti-shopping-cart"></i>
+                                        </div>
+                                        @if(!is_null($cart))
+                                            <span class="cart_qty_cls">{{ count($cart) }}</span>
+                                            <ul class="show-div shopping-cart">
+                                                <!-- Cart product -->
+                                                <span style="display: none;">
+                                                    {{ $subtotal=0 }}
+                                            </span>
+                                                @foreach($cart as $key => $cartProduct)
+                                                    <li>
+                                                        <div class="media">
+                                                            <a href="#">
+                                                                <img class="me-3" src="{{asset('storage/product/small/'.$cartProduct['image'])}}" alt="{{ $cartProduct['title'] }}">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <a href="#">
+                                                                    <h4>{{ $cartProduct['title'] }}</h4>
+                                                                </a>
+                                                                <h4>
+                                                                    {{--                                                                <span>1 x $ 299.00</span>--}}
+                                                                    <span>
+                                                                {{ $cartProduct['quantity'] }}  x &#8377;
+                                                                {{ $cartSubtotal = $cartProduct['offer_price'] > 0 ? $cartProduct['offer_price'] : $cartProduct['price'] }}
+                                                                </span>
+                                                                    <span style="display: none;">
+                                                                    {{ $subtotal += $cartSubtotal * $cartProduct['quantity'] }}
+                                                                </span>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="close-circle">
+                                                            @auth()
+                                                                <a wire:click="dProductCart({{ $cartProduct['product_id'] }})">
+                                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                                </a>
+                                                            @endauth
+                                                            @guest()
+                                                                <a wire:click="dProductCart({{ $key }})">
+                                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                                </a>
+                                                            @endguest
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                                <li>
+                                                    <div class="total">
+                                                        <h5>subtotal : <span>&#8377;{{ $subtotal }}</span></h5>
                                                     </div>
-                                                </div>
-                                                <div class="close-circle"><a href="#"><i class="fa fa-times"
-                                                                                         aria-hidden="true"></i></a></div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <a href="#"><img class="me-3"
-                                                                     src="/assets/images/furniture/product/10.jpg" alt=""></a>
-                                                    <div class="media-body">
-                                                        <a href="#">
-                                                            <h4>item name</h4>
-                                                        </a>
-                                                        <h4><span>1 x $ 299.00</span></h4>
+                                                </li>
+                                                <li>
+                                                    <div class="buttons">
+                                                        <a href="{{ route('cart') }}" class="view-cart">view cart</a>
+                                                        <a href="{{ route('checkout') }}" class="checkout">checkout</a>
                                                     </div>
-                                                </div>
-                                                <div class="close-circle"><a href="#"><i class="fa fa-times"
-                                                                                         aria-hidden="true"></i></a></div>
-                                            </li>
-                                            <li>
-                                                <div class="total">
-                                                    <h5>subtotal : <span>$299.00</span></h5>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="buttons"><a href="cart.html" class="view-cart">view cart</a>
-                                                    <a href="#" class="checkout">checkout</a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                </li>
+                                            </ul>
+                                        @else
+                                            <span class="cart_qty_cls">0</span>
+                                            <ul class="show-div shopping-cart">
+                                                <!-- if empty Cart product -->
+                                                <li>
+                                                    <div class="media">
+                                                        <div class="media-body">
+                                                            <h5>Your Cart is empty.</h5>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        @endif
                                     </li>
                                 </ul>
                             </div>

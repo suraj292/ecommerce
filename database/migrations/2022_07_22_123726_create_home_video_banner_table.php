@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('button_link')->nullable();
         });
         \Illuminate\Support\Facades\DB::table('home_video_banner')->insert([
-            'video' => 'http://www.bigcom.com/assets/2014/10/asmc_bg2.mp4',
+            'video' => '1k1ZeTmaQDtQK_wVPWT69kfwzZQXYS7ny',
             'heading' => 'Heading here',
             'para' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, quibusdam?',
             'button_name' => 'Click me',
