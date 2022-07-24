@@ -243,6 +243,9 @@
                 width: 100%;
                 height: 550px;
             }
+            .banner-innner{
+                margin-top: 100px;
+            }
         }
         @media screen and (max-width: 800px) {
             .tagline-video{

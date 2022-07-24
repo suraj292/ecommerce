@@ -7,10 +7,12 @@ use App\Http\Controllers\login as Login;
 
 //      PUBLIC
 Route::get('/', Public\Home::class)->name('home');
+
 //Route::get('products/{category?}', Public\Products::class)->name('products');
 //Route::get('products/{category?}', Public\Products::class)->name('products');
 Route::view('products', 'products');
-Route::view('leathers-and-arts', 'leatherAndArts');
+Route::view('leathers-and-arts', 'leatherAndArts')->name('leather&art');
+
 Route::get('product/{slug}', Public\ProductDetail::class)->name('product_details');
 Route::get('register', Public\Register::class)->middleware('guest')->name('register');
 Route::get('verification/{user}/{code}', Public\Component\EmailVerify::class)->name('email_verify');

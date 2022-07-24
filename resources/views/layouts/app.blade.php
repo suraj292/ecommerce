@@ -62,8 +62,8 @@
 {{--    <public-header></public-header>--}}
     <!-- header end -->
 
-    {{$slot}}
-{{--    @yield('content') @if( isset($slot) ) {{ $slot }} @endif--}}
+{{--    {{$slot}}--}}
+    @yield('content') @if( isset($slot) ) {{ $slot }} @endif
 
     <!-- footer start -->
     <footer class="footer-light">
