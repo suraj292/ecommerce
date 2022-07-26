@@ -30,7 +30,7 @@ class SelectColor extends Component
             'newColor' => ['required'],
             'newColorImage'=>'required'
             ]);
-        if (!empty($this->newColorImage)){
+
             $name = $this->newColorImage->hashName();
             $img = Image::make($this->newColorImage->path())->resize(100, 100);
             $img->save(storage_path('app/public/color_image/'.$name));
@@ -43,7 +43,6 @@ class SelectColor extends Component
             session()->flash('added', 'New Color added');
             $this->newColor = null;
             $this->newColorImage = null;
-        }
     }
 
     public function getColor($id){

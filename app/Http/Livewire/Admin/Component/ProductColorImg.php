@@ -83,6 +83,7 @@ class ProductColorImg extends Component
            'product_id'=>$this->productId,
            'product_color_id'=>$this->colorId,
            'stock'=>$this->stockQuantity,
+           'color' => select_product_color::find($this->colorId)->color_image,
            'images'=> $this->imgName,
         ]);
         if ($create_color_img){

@@ -204,7 +204,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @if($collections->count() > 0)
+{{--                                                    @if($collections->count() > 0)--}}
                                                     <div class="col mega-box">
                                                         <div class="link-section">
                                                             <div class="menu-title">
@@ -223,7 +223,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @endif
+{{--                                                    @endif--}}
                                                     <div class="col mega-box">
                                                         <div class="link-section">
                                                             <div class="menu-title">
@@ -244,18 +244,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <img src="../assets/images/menu-banner.jpg" class="img-fluid mega-img">
-                                                    </div>
-                                                </div>
+{{--                                                <div class="row">--}}
+{{--                                                    <div class="col-12">--}}
+{{--                                                        <img src="../assets/images/menu-banner.jpg" class="img-fluid mega-img">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
                                             </div>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ route('leather&art') }}">Leather & art</a></li>
-                                <li><a href="#">value combo</a></li>
-                                <li><a href="{{ route('blog') }}">Blogs</a></li>
+                                <li>
+                                    <a href="{{ route('leather&art') }}">Leather & art</a>
+                                </li>
+{{--                                <li><a href="#">value combo</a></li>--}}
+{{--                                <li><a href="{{ route('blog') }}">Blogs</a></li>--}}
                             </ul>
                         </nav>
                     </div>

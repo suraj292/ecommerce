@@ -90,6 +90,8 @@ class Products extends Component
         $product_created = \App\Models\products::create([
             'product_category_id' => $this->categoryID,
             'sub_category_id' => $this->subCategoryID,
+            'category_name' => product_category::find($this->categoryID)->product_category,
+            'sub_category_name' => sub_category::find($this->subCategoryID)->sub_category,
         ])->details()->save($product_details);
 
         $this->products = \App\Models\products::with('details', 'product_color_img')

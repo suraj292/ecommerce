@@ -10,7 +10,7 @@ class product_color_image extends Model
     use HasFactory;
     protected $table = "product_color_image";
     public $timestamps = false;
-    protected $fillable = ['product_id', 'product_color_id', 'stock', 'images'];
+    protected $fillable = ['product_id', 'product_color_id', 'stock', 'color', 'images'];
 
     public function getColor()
     {

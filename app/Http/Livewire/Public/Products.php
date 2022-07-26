@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Public;
 
 use App\Models\product_color_image;
 use App\Models\product_details;
+use App\Models\products as Product;
 use App\Models\sub_category;
 use App\Models\user_cart;
 use Illuminate\Support\Facades\Auth;
@@ -19,14 +20,28 @@ class Products extends Component
     {
         return view('livewire.public.products');
     }
-    public function mount($category)//$category
+    public function mount()//$category
     {
-        $cat = str_replace('-', ' ', $category);
-        $this->productCategoryId = product_category::where('product_category', $cat)->value('id');
-        $this->sub_categories = sub_category::where('product_category_id', $this->productCategoryId)->get();
+        $cat = request('category');
+        $category = str_replace('-', ' ', $cat);
+        $subCat = request('filter');
+        $subCategory = str_replace('-', ' ', $subCat);
 
-        $this->gender = $category;
-//        dd($category);
+        if (is_null($subCat)){
+            $this->products = Product::with('details', 'details.product_all_img')->where('category_name', $category)->get();
+        }else{
+            $this->products = Product::with('details', 'details.product_all_img')->where('sub_category_name', $subCategory)->get();
+        }
+
+        $categoryId = Product::where('category_name', $category)->first()->product_category_id;
+        $this->sub_categories = sub_category::where('product_category_id', $categoryId)->get();
+//        dd($categoryId);
+//        $this->productCategoryId = product_category::where('$category', $category)->value('id');
+//        $this->sub_categories = sub_category::where('product_category_id', $this->productCategoryId)->get();
+//
+//        $this->gender = $category;
+
+//        dd($this->products);
     }
     public function updatedSelectFilter($selectFilter)
     {
@@ -72,9 +87,10 @@ class Products extends Component
     }
     */
 
-    public function addToWishlist($id)
+    public function subCategory($id)
     {
-
+//        $this->products = Product::with('details', 'details.product_all_img')->where('sub_category_id', $id)->get();
+        dd($id);
     }
 
 }
