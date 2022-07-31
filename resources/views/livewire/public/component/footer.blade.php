@@ -53,25 +53,13 @@
         </div>
         <div class="col">
             <div class="sub-title">
-                <div class="footer-title">
-                    <h4>store information</h4>
-                </div>
+{{--                <div class="footer-title">--}}
+{{--                    <h4>store information</h4>--}}
+{{--                </div>--}}
                 <div class="footer-contant">
-                    <ul class="contact-list">
-                        <li><i class="fa fa-map-marker"></i>{{ $adminProfile->address }}
-                        </li>
-                        <li><i class="fa fa-phone"></i>
-                            <a href="tel:+91{{ explode(',', $adminProfile->mobile)[0] }}">
-                                Call Us: +91 {{ explode(',', $adminProfile->mobile)[0] }}
-                            </a>
-                        </li>
-                        <li><i class="fa fa-envelope-o"></i>
-                            <a href="mailto:{{ explode(',', $adminProfile->email)[0] }}">
-                                Email Us: <span class="text-lowercase">{{ explode(',', $adminProfile->email)[0] }}</span>
-                            </a>
-                        </li>
-{{--                        <li><i class="fa fa-fax"></i>Fax: 123456</li>--}}
-                    </ul>
+                    <div class="">
+                        <img src="{{ asset('assets/fixed image/Make_In_India.png') }}" alt="make in india" width="200px">
+                    </div>
                 </div>
             </div>
         </div>

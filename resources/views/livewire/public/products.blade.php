@@ -27,7 +27,7 @@
                 <div class="row partition1">
                     @foreach($sub_categories as $subCategory)
                         <div class="col-md-2 col-sm-6"><a
-                                href="{{ route('products', ['category'=>request('category'), 'filter'=>str_replace(' ', '-', $subCategory->sub_category)]) }}"
+                                href="{{ route('products', ['category'=>str_replace('-', ' ', request('category')), 'filter'=>str_replace(' ', '-', $subCategory->sub_category)]) }}"
                                                           class="btn btn-outline btn-block">
                                 {{ $subCategory->sub_category }}</a>
                         </div>
@@ -47,11 +47,13 @@
                             <div class="shadow"></div>
                             <img src="https://webdevtrick.com/wp-content/uploads/jordan.jpg" alt="" />
                             <div class="image_overlay"></div>
-                            <div id="detailsV">View details</div>
+                            <a id="detailsV" href="{{ route('product_details', str_replace(' ', '-', $product->details->title)) }}">
+                                View details
+                            </a>
                             <div class="details">
-                                <div class="details-container" title="{{ $product->details->title }}">
+                                <div class="details-container">
                                     <span class="price">₹{{ $product->details->offer_price == null ? $product->details->price : $product->details->offer_price }}</span>
-                                    <span class="title text-capitalize">{{ \Illuminate\Support\Str::limit($product->details->title, 17) }}</span>
+                                    <span class="title text-capitalize" title="{{ $product->details->title }}">{{ \Illuminate\Support\Str::limit($product->details->title, 17) }}</span>
                                     <p class="text-capitalize">{{ $product->category_name.' & '.$product->sub_category_name }}</p>
 
                                     <div class="select-option">
@@ -63,9 +65,6 @@
 {{--                                            <div><img src="{{ storage_path('/color_image/'.$color->color) }}"></div>--}}
                                             <div><img src="{{ asset('storage/color_image/'.$color->color) }}"></div>
                                             @endforeach
-{{--                                            <div class="blueC"><span></span></div>--}}
-{{--                                            <div class="yellowC"><span></span></div>--}}
-{{--                                            <div class="redC"><span></span></div>--}}
                                         </div>
                                     </div>
                                 </div>

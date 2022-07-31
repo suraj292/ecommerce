@@ -33,15 +33,16 @@ class Products extends Component
             $this->products = Product::with('details', 'details.product_all_img')->where('sub_category_name', $subCategory)->get();
         }
 
-        $categoryId = Product::where('category_name', $category)->first()->product_category_id;
-        $this->sub_categories = sub_category::where('product_category_id', $categoryId)->get();
+        $categoryId = Product::where('category_name', $category)->first();
+        if (is_null($categoryId)){
+            return redirect(route('home'));
+        }
+        $this->sub_categories = sub_category::where('product_category_id', $categoryId->product_category_id)->get();
 //        dd($categoryId);
 //        $this->productCategoryId = product_category::where('$category', $category)->value('id');
 //        $this->sub_categories = sub_category::where('product_category_id', $this->productCategoryId)->get();
-//
-//        $this->gender = $category;
 
-//        dd($this->products);
+//        $this->gender = $category;
     }
     public function updatedSelectFilter($selectFilter)
     {

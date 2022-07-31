@@ -10,7 +10,8 @@ Route::get('/', Public\Home::class)->name('home');
 
 //Route::get('products/{category?}', Public\Products::class)->name('products');
 Route::get('product', Public\Products::class)->name('products');
-Route::view('product2', 'products');
+Route::get('product_detail/{slug}', Public\ProductDetail::class)->name('product_details');
+//Route::view('product2', 'products');
 Route::view('leathers-and-arts', 'leatherAndArts')->name('leather&art');
 
 Route::get('product/{slug}', Public\ProductDetail::class)->name('product_details');

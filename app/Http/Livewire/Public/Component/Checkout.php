@@ -29,7 +29,7 @@ class Checkout extends Component
         }else{
             $this->cart = Session::get('cart');
         }
-        if (is_null($this->cart) || $this->cart->isEmpty()){
+        if (is_null($this->cart) || count($this->cart) < 1){
             dd('cart is null');
         }
     }

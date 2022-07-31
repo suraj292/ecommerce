@@ -20,14 +20,16 @@ class ProductDetail extends Component
     public function mount($slug)
     {
         $title = str_replace('-', ' ', $slug);
-        $this->productId = product_details::where('title', $title)->value('product_id');
+//        $this->productId = product_details::where('title', $title)->value('product_id');
 
-        $this->product = product_details::where('product_id', $this->productId)->first();
-        $this->color = product_color_image::where('product_id', $this->productId)->get();
+//        $this->product = product_details::where('product_id', $this->productId)->first();
+        $this->product = product_details::where('title', $title)->first();
+        $this->color = product_color_image::where('product_id', $this->product->id)->get();
 //        $this->color = json_encode($color, false);
         $this->images = explode(',', $this->color[0]->images);
         $this->productd = $this->color[0];
 //        $this->stock = $this->color[0]->stock;
+//        dd($this->productd);
     }
 
     public function getProductColor($array)

@@ -183,69 +183,7 @@
     <!-- Section ends -->
 
     <!-- product-tab starts / Reviews or comment -->
-    <section class="tab-product m-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-lg-12">
-                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
-                        <!--<li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab"
-                                href="#top-home" role="tab" aria-selected="true"><i
-                                    class="icofont icofont-ui-home"></i>Details</a>
-                            <div class="material-border"></div>
-                        </li>-->
-                        <li class="nav-item">
-                            <a class="nav-link" id="review-top-tab" data-bs-toggle="tab" href="#top-review" role="tab" aria-selected="false">
-                                <i class="icofont icofont-contacts"></i>
-                                Write Review
-                            </a>
-                            <div class="material-border"></div>
-                        </li>
-                    </ul>
-                    <div class="tab-content nav-material" id="top-tabContent">
-                        <div class="tab-pane fade show active" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
-                            <form class="theme-form">
-                                <div class="form-row row">
-                                    <div class="col-md-12">
-                                        <div class="media">
-                                            <label>Rating</label>
-                                            <div class="media-body ms-3">
-                                                <div class="rating three-star"><i class="fa fa-star"></i> <i
-                                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                        class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Enter Your name"
-                                               required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="email">Email</label>
-                                        <input type="text" class="form-control" id="email" placeholder="Email" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="review">Review Title</label>
-                                        <input type="text" class="form-control" id="review"
-                                               placeholder="Enter your Review Subjects" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="review">Review Title</label>
-                                        <textarea class="form-control" placeholder="Wrire Your Testimonial Here"
-                                                  id="exampleFormControlTextarea1" rows="6"></textarea>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn btn-solid" type="submit">Submit YOur
-                                            Review</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- product-tab ends -->
 
     <!-- product section start / related product -->

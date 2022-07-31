@@ -194,7 +194,7 @@
                                                                     @foreach($categories as $category)
                                                                         <li>
 {{--                                                                            <a href="{{ route('products', \Illuminate\Support\Str::slug($category['product_category']) ) }}">--}}
-                                                                            <a href="#">
+                                                                            <a href="{{ route('products', ['category'=>str_replace(' ', '-', $category['product_category'])]) }}">
                                                                                 {{ $category['product_category'] }}
                                                                                 <i class="fa fa-bolt icon-trend" aria-hidden="true"></i>
                                                                             </a>
