@@ -15,7 +15,8 @@
                             <div class="banner-left">
                                 <h1> {{ $banners->heading }} </h1>
                                 <p> {{ $banners->para }} </p>
-                                <a href="{{ $banners->link }}"> {{ $banners->button_name }} </a>
+{{--                                <a href="{{ $banners->link }}"> {{ $banners->button_name }} </a>--}}
+                                <a href="{{ $banners->link }}" class="btn btn-outline me-3" style="background: #0000004d; color: whitesmoke;">{{ $banners->button_name }}</a>
                             </div>
                         </div>
 
@@ -32,14 +33,14 @@
             <div class="panels__container">
                 <a href="#" class="panel">
                     <div class="panel__content panel__title">
-                        <img src="https://www.dior.com/couture/var/dior/storage/images/29895135/53-int-EN/cdc-dispatch8_1440_1200.jpg">
+                        <img src="https://images.unsplash.com/photo-1621252346441-c42a54aa8707?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80">
                         {{--                    <h3 class="panel__title">EXPLORE</h3>--}}
                         {{--                    <div style="height: 100%; "></div>--}}
                     </div>
                 </a>
                 <a href="#" class="panel">
                     <div class="panel__content panel__title">
-                        <img src="https://www.dior.com/couture/var/dior/storage/images/29893608/94-int-EN/pcd-dispatch11_1440_1200.jpg">
+                        <img src="https://images.unsplash.com/photo-1523779105320-d1cd346ff52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80">
                         {{--                    <h3 class="panel__title">DISCOVER</h3>--}}
                         {{--                    <div style="height: 100%; "></div>--}}
                     </div>
@@ -117,34 +118,6 @@
             margin-bottom: 30px;
         }
 
-        .custom-btn {
-            width: 100%;
-            background: #E91E63;
-            color: #fff;
-            letter-spacing: 2.5px;
-            transition: 0.8 ease;
-        }
-
-        .banner-left a {
-            background: #e91e63;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            padding: 8px 35px;
-            border-radius: 4px;
-            transition: 0.8 ease;
-        }
-
-        .banner-left a:hover {
-            letter-spacing: 3px;
-            transition: 0.8 ease;
-        }
-
-        .custom-btn:hover {
-            letter-spacing: 3px;
-            transition: 0.8 ease;
-        }
 
         .navbar-light .navbar-brand {
             color: rgba(255, 255, 255, 0.9);

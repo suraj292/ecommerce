@@ -1,5 +1,5 @@
 <div>
-    <div class="hidden-hight-div"></div>
+{{--    <div class="hidden-hight-div"></div>--}}
     <!-- breadcrumb start -->
     <div class="breadcrumb-section">
         <div class="container">

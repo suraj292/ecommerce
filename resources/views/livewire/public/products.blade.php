@@ -28,10 +28,13 @@
                     @foreach($sub_categories as $subCategory)
                         <div class="col-md-2 col-sm-6"><a
                                 href="{{ route('products', ['category'=>str_replace('-', ' ', request('category')), 'filter'=>str_replace(' ', '-', $subCategory->sub_category)]) }}"
-                                                          class="btn btn-outline btn-block">
+                                                          class="btn btn-outline">
                                 {{ $subCategory->sub_category }}</a>
                         </div>
                     @endforeach
+{{--                        <div class="col-md-2 col-sm-6">--}}
+{{--                            <a href="#" class="btn btn-outline me-3">outline</a>--}}
+{{--                        </div>--}}
 {{--                    <div class="col-md-2 col-sm-6"><a href="#" class="btn btn-outline btn-block">burn bag</a></div>--}}
                 </div>
             </section>
@@ -301,7 +304,7 @@
         }
         .details-container .price{
             float:right;
-            color:#ff5757;
+            color: #2a7334;
             font-size:22px;
             font-weight:600;
         }
@@ -311,7 +314,7 @@
             left:0;
             width:100%;
             height:100%;
-            background:#ff5757;
+            background:#d7ead9;
             opacity:0;
         }
         #product-card.animate .image_overlay{
@@ -356,7 +359,7 @@
         }
         #detailsV:hover{
             background:#fff;
-            color:#ff5757;
+            color:#d7ead9;
             cursor:pointer;
 
         }

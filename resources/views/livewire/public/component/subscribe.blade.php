@@ -5,7 +5,7 @@
         <div class="form-group mx-sm-3">
             <input type="text" class="form-control" placeholder="Enter your email" wire:model.defer="email">
         </div>
-        <button type="submit" class="btn btn-solid">subscribe</button>
+        <button type="submit" class="btn btn-light p-3">subscribe</button>
 
         @error('email')
         <div class="text-center w-100">

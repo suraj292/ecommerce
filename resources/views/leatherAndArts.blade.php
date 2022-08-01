@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="title1" style="border-bottom: #0a53be solid 2px;">
+    <div class="title1 shadow-sm" >
 {{--        <h4>recent story</h4>--}}
-        <h2 class="">trending products</h2>
+        <h2 class="">Leather & Art</h2>
     </div>
     <div class="sticky-top">
         <!-- Main -->
@@ -11,8 +11,8 @@
                 <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
                     <div class="logoarea py-5">
 {{--                        <h2>Leather and Art</h2>--}}
-                        <video width="700" height="600" controls style="background-color: #0f253c;">
-                            <source src="{{ asset('assets/video/mov_bbb.mp4') }}" type="video/mp4">
+                        <video autoplay muted loop  width="700" height="600" controls style="background-color: #0f253c;">
+                            <source src="{{ asset('assets/video/landa.mp4') }}" type="video/mp4">
 {{--                            <source src="{{ asset('assets/video/mov_bbb.ogg') }}" type="video/ogg">--}}
                             Your browser does not support HTML video.
                         </video>
@@ -59,5 +59,15 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
+        {{--.custom-banner {--}}
+        {{--    background-image: url("{{ asset('assets/fixed image/WhatsApp Image 2022-08-01 at 8.34.03 PM.jpeg') }}"); /* The image used */--}}
+        {{--    background-color: #cccccc; /* Used if the image is unavailable */--}}
+        {{--    height: 200px; /* You must set a specified height */--}}
+        {{--    background-position: center; /* Center the image */--}}
+        {{--    background-repeat: no-repeat; /* Do not repeat the image */--}}
+        {{--    background-size: cover; /* Resize the background image to cover the entire container */--}}
+        {{--    filter: blur(8px);--}}
+        {{--    -webkit-filter: blur(8px);--}}
+        {{--}--}}
     </style>
 @endsection

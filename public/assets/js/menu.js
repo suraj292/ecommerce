@@ -781,7 +781,7 @@
 						}
 					}
 				}
-				$sub.css({ top: 'auto', left: '0', marginLeft: x, marginTop: y - itemH });
+				$sub.css({ top: 'auto', left: '200px', marginLeft: x, marginTop: y - itemH });
 			},
 			menuScroll: function($sub, once, step) {
 				var data = $sub.dataSM('scroll'),

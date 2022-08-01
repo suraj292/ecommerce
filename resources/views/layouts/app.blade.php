@@ -67,7 +67,7 @@
 
     <!-- footer start -->
     <footer class="footer-light">
-        <div class="light-layout">
+        <div class="white-layout">
             <div class="container">
                 <section class="small-section border-section border-top-0">
                     <div class="row">
@@ -84,7 +84,7 @@
                 </section>
             </div>
         </div>
-        <section class="section-b-space light-layout">
+        <section class="section-b-space white-layout">
             <livewire:public.component.footer />
         </section>
         <div class="sub-footer">
@@ -125,11 +125,11 @@
 
 
     <!-- offer section start -->
-    <div class="sale-box" data-bs-toggle="modal" data-bs-target="#blackfriday">
-        <div class="heading-right">
-            <h3>Black Friday</h3>
-        </div>
-    </div>
+{{--    <div class="sale-box" data-bs-toggle="modal" data-bs-target="#blackfriday">--}}
+{{--        <div class="heading-right">--}}
+{{--            <h3>Black Friday</h3>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- offer section end -->
 
 

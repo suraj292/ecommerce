@@ -1160,7 +1160,7 @@ button {
   display: inline-block;
   padding: 13px 29px;
   letter-spacing: 0.05em;
-  border: 2px solid var(--theme-deafult);
+  border: 2px solid #0b6a07;
   position: relative;
   color: #000000; }
   .btn-outline:before {
@@ -1173,7 +1173,7 @@ button {
     bottom: 0;
     opacity: 0;
     content: "";
-    background-color: var(--theme-deafult);
+    background-color: #0b6a07;
     z-index: -2; }
   .btn-outline:hover, .btn-outline:focus {
     color: #ffffff !important; }
@@ -3057,7 +3057,7 @@ button.btn.btn-solid:active, button.btn.btn-outline:active {
 
 .cart_qty_cls {
   position: absolute;
-  background: var(--theme-deafult);
+  background: #8b8b8b;
   width: 20px;
   height: 20px;
   color: #fff;
@@ -8874,7 +8874,7 @@ header.stickycls {
     padding-left: 0; }
 
 .pixelstrap .full-mega-menu {
-  width: 100% !important;
+  width: 50% !important;
   padding: 30px !important;
   border-radius: 0; }
   .pixelstrap .full-mega-menu .mega-box .link-section ul li a:hover, .pixelstrap .full-mega-menu .mega-box .link-section ul li a:focus {
@@ -12421,7 +12421,7 @@ header.stickycls {
   display: none;
   color: #fff;
   text-align: center;
-  background: var(--theme-deafult);
+  background: #8d8d8d;
   border: none;
   font-size: 22px;
   padding: 7px;

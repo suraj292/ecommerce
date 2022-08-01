@@ -1,5 +1,5 @@
 <div class="">
-    <header class="header-2 manu-hover-effect">
+    <header class="header-2 manu-hover-effect custom-banner">
         <div class="mobile-fix-option"></div>
         <div class="container">
             <div class="row">
@@ -184,7 +184,8 @@
                                         <li>
                                             <div class="container">
                                                 <div class="row">
-                                                    <div class="col mega-box">
+
+                                                    <div class="col-4">
                                                         <div class="link-section">
                                                             <div class="menu-title">
                                                                 <h5 class="text-uppercase">Category</h5>
@@ -196,7 +197,7 @@
 {{--                                                                            <a href="{{ route('products', \Illuminate\Support\Str::slug($category['product_category']) ) }}">--}}
                                                                             <a href="{{ route('products', ['category'=>str_replace(' ', '-', $category['product_category'])]) }}">
                                                                                 {{ $category['product_category'] }}
-                                                                                <i class="fa fa-bolt icon-trend" aria-hidden="true"></i>
+{{--                                                                                <i class="fa fa-bolt icon-trend" aria-hidden="true"></i>--}}
                                                                             </a>
                                                                         </li>
                                                                     @endforeach
@@ -205,7 +206,7 @@
                                                         </div>
                                                     </div>
 {{--                                                    @if($collections->count() > 0)--}}
-                                                    <div class="col mega-box">
+                                                    <div class="col-4">
                                                         <div class="link-section">
                                                             <div class="menu-title">
                                                                 <h5 class="text-uppercase">Collection</h5>
@@ -224,7 +225,7 @@
                                                         </div>
                                                     </div>
 {{--                                                    @endif--}}
-                                                    <div class="col mega-box">
+                                                    <div class="col-4">
                                                         <div class="link-section">
                                                             <div class="menu-title">
                                                                 <h5>GENDER</h5>
