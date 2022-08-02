@@ -12,7 +12,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="brand-logo layout2-logo">
+                        <div class="brand-logo layout2-logo" style="margin-left: 20px;">
                             <a href="{{route('home')}}">
                                 <h2>BHAVANA</h2>
                             </a>
@@ -166,7 +166,7 @@
             </div>
         </div>
         <!-- Navigation Menu -->
-        <div class="container">
+        <div class="container" style="margin-top: -35px;">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="main-nav-center">

@@ -15,7 +15,6 @@
                             <div class="banner-left">
                                 <h1> {{ $banners->heading }} </h1>
                                 <p> {{ $banners->para }} </p>
-{{--                                <a href="{{ $banners->link }}"> {{ $banners->button_name }} </a>--}}
                                 <a href="{{ $banners->link }}" class="btn btn-outline me-3" style="background: #0000004d; color: whitesmoke;">{{ $banners->button_name }}</a>
                             </div>
                         </div>
