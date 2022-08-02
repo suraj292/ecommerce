@@ -3,7 +3,7 @@
     <!-- Home Video banner -->
     <section class="p-0 height-100 sm-responsive">
         <div class="banner">
-            <video autoplay muted loop class="tagline-video">
+            <video autoplay muted loop class="tagline-video" style="width: 100%;">
                 <source src="https://drive.google.com/uc?export=download&id={{ $banners->video }}" type="video/mp4">
             </video>
             <div class="overlay"></div>
