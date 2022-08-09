@@ -18,7 +18,7 @@ class CreateProductDetailsTable extends Migration
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->string('title');
             $table->string('dimension')->nullable();
-            $table->char('description')->nullable();
+            $table->longText('description')->nullable();
             $table->char('care_instruction')->nullable();
             $table->longText('specification')->nullable();
             $table->string('price')->nullable();

@@ -38,36 +38,36 @@
                             <div class="form-row row">
                                 <div class="col-md-6">
                                     <label for="fname">Full Name <span class="text-danger"> * </span></label>
-                                    <input type="text" class="form-control" id="fname" placeholder="Full Name" wire:model.debounce.500ms="register.fullName">
+                                    <input type="text" class="form-control" id="fname" placeholder="Full Name" wire:model.defer="register.fullName">
                                     @error('register.fullName') <p class="text-danger" style="margin-top: -20px;">{{ $message }}</p> @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="dob">Date of Birth <span style="color: gray; font-size: 10px;"> (OPTIONAL) </span></label>
-                                    <input type="date" class="form-control" id="fname" wire:model.debounce.500ms="register.dob">
+                                    <input type="date" class="form-control" id="fname" wire:model.defer="register.dob">
                                     @error('register.dob') <p class="text-danger" style="margin-top: -20px;">{{ $message }}</p> @enderror
                                 </div>
                             </div>
                             <div class="form-row row">
                                 <div class="col-md-6">
                                     <label for="email">email <span class="text-danger"> * </span></label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email" wire:model.debounce.500ms="register.email">
+                                    <input type="text" class="form-control" id="email" placeholder="Email" wire:model.defer="register.email">
                                     @error('register.email') <p class="text-danger" style="margin-top: -20px;">{{ $message }}</p> @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="review">Mobile <span class="text-danger"> * </span></label>
-                                    <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" wire:model.debounce.500ms="register.mobile">
+                                    <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" wire:model.defer="register.mobile">
                                     @error('register.mobile') <p class="text-danger" style="margin-top: -20px;">{{ $message }}</p> @enderror
                                 </div>
                             </div>
                             <div class="form-row row">
                                 <div class="col-md-6">
                                     <label for="password">Password <span class="text-danger"> * </span></label>
-                                    <input type="text" class="form-control" id="password" placeholder="Password" wire:model.debounce.500ms="register.password">
+                                    <input type="password" class="form-control" id="password" placeholder="Password" wire:model.defer="register.password">
                                     @error('register.password') <p class="text-danger" style="margin-top: -20px;">{{ $message }}</p> @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="confirm_password">Confirm Password <span class="text-danger"> * </span></label>
-                                    <input type="text" class="form-control" placeholder="Confirm Password" wire:model.debounce.500ms="register.confirmPassword">
+                                    <input type="password" class="form-control" placeholder="Confirm Password" wire:model.defer="register.confirmPassword">
                                     @error('register.confirmPassword') <p class="text-danger" style="margin-top: -20px;">{{ $message }}</p> @enderror
                                 </div>
                             </div>

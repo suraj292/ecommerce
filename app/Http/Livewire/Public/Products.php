@@ -43,6 +43,7 @@ class Products extends Component
 //        $this->sub_categories = sub_category::where('product_category_id', $this->productCategoryId)->get();
 
 //        $this->gender = $category;
+//        dd($this->products);
     }
     public function updatedSelectFilter($selectFilter)
     {

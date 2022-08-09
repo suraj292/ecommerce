@@ -79,13 +79,24 @@ class ProductColorImg extends Component
         }
         $this->imgName = implode(',', $this->imgName);
 
+
         $create_color_img = product_color_image::create([
            'product_id'=>$this->productId,
-           'product_color_id'=>$this->colorId,
+           'product_color_id'=>(int)$this->colorId,
            'stock'=>$this->stockQuantity,
            'color' => select_product_color::find($this->colorId)->color_image,
            'images'=> $this->imgName,
         ]);
+        /*
+        $create_color_img = new product_color_image([
+            'product_id'=>$this->productId,
+            'product_color_id'=>$this->colorId,
+            'stock'=>$this->stockQuantity,
+            'color' => select_product_color::find($this->colorId)->color_image,
+            'images'=> $this->imgName,
+        ]);
+        $create_color_img->save();
+        */
         if ($create_color_img){
             session()->flash('color_img', 'Color & Images has been added.');
             $this->colorId = null;

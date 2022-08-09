@@ -14,7 +14,7 @@ Route::get('product_detail/{slug}', Public\ProductDetail::class)->name('product_
 //Route::view('product2', 'products');
 Route::view('leathers-and-arts', 'leatherAndArts')->name('leather&art');
 
-Route::get('product/{slug}', Public\ProductDetail::class)->name('product_details');
+//Route::get('product/{slug}', Public\ProductDetail::class)->name('product_details');
 Route::get('register', Public\Register::class)->middleware('guest')->name('register');
 Route::get('verification/{user}/{code}', Public\Component\EmailVerify::class)->name('email_verify');
 Route::get('sendEmailVerification', Public\Component\ResendEmailLink::class)->name('send_email_verify');

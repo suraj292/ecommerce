@@ -48,7 +48,7 @@
                     <div id="product-card">
                         <div id="front-side">
                             <div class="shadow"></div>
-                            <img src="https://webdevtrick.com/wp-content/uploads/jordan.jpg" alt="" />
+                            <img src="{{ asset('storage/product/small/'.explode(',', $product->details->product_all_img[0]->images)[0]) }}" alt="" />
                             <div class="image_overlay"></div>
                             <a id="detailsV" href="{{ route('product_details', str_replace(' ', '-', $product->details->title)) }}">
                                 View details

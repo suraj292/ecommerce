@@ -15,8 +15,8 @@ class Products extends Component
     public $addProductDiv, $editProductId;
     public $addProduct=[
         'product_id', 'title', 'dimension', 'description', 'care_instruction',
-        'specification', 'price', 'offer_price', 'gender', 'return',
-        'sale', 'discount', 'italian'
+        'specification', 'price', 'offer_price'=>null, 'gender'=>'common', 'return'=>null,
+        'sale'=>null, 'discount'=>null, 'italian'=>null
     ];
     public $editProduct=[
         'product_id', 'title', 'dimension', 'description', 'care_instruction',
@@ -125,8 +125,15 @@ class Products extends Component
         $this->editProduct['sale'] = $product->sale;
         $this->editProduct['discount'] = $product->discount;
         $this->editProduct['italian'] = $product->italian;
-//        dd($this->editProduct['specification']);
-//        dd($id);
+    }
+    public function deleteProduct($id)
+    {
+        $product = \App\Models\products::find($id);
+        $product->delete();
+        session()->flash('Product_deleted', 'Product has been successfully deleted');
+        $this->products = \App\Models\products::with('details', 'product_color_img')
+            ->where('sub_category_id', $this->subCategoryID)
+            ->get();
     }
 
 }

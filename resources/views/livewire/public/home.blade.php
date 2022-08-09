@@ -1,5 +1,4 @@
 <div>
-
     <!-- Home Video banner -->
     <section class="p-0 height-100 sm-responsive">
         <div class="banner">

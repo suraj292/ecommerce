@@ -128,7 +128,7 @@
                             <div class="form-group">
                                 <label>Color Name</label>
                                 <input type="text" class="form-control" placeholder="Add new Color" wire:model.lazy="newColor">
-                                @error('newColor') <p class="text-danger mt-2">{{ $message }}</p> @enderror
+{{--                                @error('newColor') <p class="text-danger mt-2">{{ $message }}</p> @enderror--}}
                             </div>
                             <div class="form-group">
                                 <label>Color Image</label><br>
@@ -136,6 +136,9 @@
                                 @error('newColorImage') <p class="text-danger mt-2">{{ $message }}</p> @enderror
                                 @if ($newColorImage)
                                     <img src="{{ $newColorImage->temporaryUrl() }}" alt="img" class="img-thumbnail" width="100px">
+{{--                                    {{ $newColorImage->getFilename() }}--}}
+{{--                                    {{ public_path('livewire-tmp/').$newColorImage->getFilename() }}--}}
+{{--                                    {{ asset('storage/color_image/'.$editImage) }}--}}
                                 @else
                                     <img src="{{ asset('assets\images\test\empty.jpg') }}" alt="img" class="img-thumbnail" width="100px">
                                 @endif
