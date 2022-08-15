@@ -33,7 +33,7 @@ class Test extends Component
         $email->addContent(
             "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
         );
-        $sendgrid = new \SendGrid('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');
+        $sendgrid = new \SendGrid('xxxxxxxxxxx');
         try {
             $response = $sendgrid->send($email);
             print $response->statusCode() . "\n";
@@ -45,7 +45,7 @@ class Test extends Component
         */
 //    }
 //        // Account details
-//        $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
+//        $apiKey = urlencode('xxxxxxxx');
 //        // Message details
 //        $numbers = array(919958394985);
 //        $sender = urlencode('HOBHAV');
