@@ -104,8 +104,11 @@
                                 <div class="col-6">
                                     <select style="border: none; border-bottom: #d9d9d9c7 1px solid; font-size: 15px; text-align: center;" wire:model.defer="newAddress.state">
                                         <option selected>-- Select State --</option>
-                                        <option value="delhi">delhi</option>
-                                        <option value="hariyana">hariyana</option>
+                                        @foreach($states as $state)
+                                            <option class="text-uppercase" value="{{ $state->state }}"> {{ $state->state }} </option>
+                                        @endforeach
+{{--                                        <option value="delhi">delhi</option>--}}
+{{--                                        <option value="hariyana">hariyana</option>--}}
                                     </select>
                                     @error('newAddress.state')<p class="text-danger mt-1">{{ $message }}</p>@enderror
                                 </div>

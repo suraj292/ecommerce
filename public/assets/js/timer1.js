@@ -1,5 +1,5 @@
 
-var sec         = 5 * 60 * 60,
+var sec         = 5 * 60,
     countDiv    = document.getElementById("timer"),
     secpass,
     countDown   = setInterval(function () {

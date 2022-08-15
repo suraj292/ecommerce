@@ -48,7 +48,7 @@
                     <div id="product-card">
                         <div id="front-side">
                             <div class="shadow"></div>
-                            <img src="{{ asset('storage/product/small/'.explode(',', $product->details->product_all_img[0]->images)[0]) }}" alt="" />
+                            <img src="{{ asset('storage/product/small/'.explode(',', $product->details->product_all_img[0]->images)[0]) }}" width="100%" />
                             <div class="image_overlay"></div>
                             <a id="detailsV" href="{{ route('product_details', str_replace(' ', '-', $product->details->title)) }}">
                                 View details
@@ -201,7 +201,7 @@
             left:50%;
             margin-left:-167px;
         }
-        #front-side, #back-side{
+        #front-side{
             width:335px;
             height:500px;
             background:#fff;
@@ -213,7 +213,7 @@
             -o-transition: all 100ms ease-out;
             transition: all 100ms ease-out;
         }
-        #product-card.animate #back-side, #product-card.animate #front-side{
+        #product-card.animate, #product-card.animate #front-side{
             top:0;
             left:0;
             -webkit-transition: all 100ms ease-out;

@@ -19,12 +19,12 @@ use Illuminate\Support\Facades\Hash;
 class Register extends Component
 {
     public $register = [
-        'fullName'=>'',
+        'fullName'=>'suraj sharma',
         'dob'=>'',
-        'email'=>'',
-        'mobile'=>'',
-        'password'=>'',
-        'confirmPassword'=>'',
+        'email'=>'surajkumarsharma123@gmail.com',
+        'mobile'=>'7042611736',
+        'password'=>'password',
+        'confirmPassword'=>'password',
     ];
     public function render()
     {
@@ -54,15 +54,15 @@ class Register extends Component
             'register.confirmPassword.required' => 'Confirm Password Required',
             'register.confirmPassword.same' => 'Confirm Password should same as Password',
         ]);
-
         // saving new user with virification link & mobile otp
         $verification = new user_verification([
             'email_verification_link' => Str::random(40),
             'mobile_otp' => random_int(100000, 999999),
         ]);
+        $dateOfBirth = $this->register['dob'] == '' ? null : $this->register['dob'];
         $newUser = User::create([
             'name' => $this->register['fullName'],
-            'dob' => $this->register['dob'],
+            'dob' => $dateOfBirth,
             'email' => $this->register['email'],
             'mobile' => $this->register['mobile'],
             'social_network' => 'EMAIL',
@@ -79,29 +79,8 @@ class Register extends Component
             'link'=>$verification->email_verification_link,
             'email'=>$this->register['email'],
         ];
-//        $email = new SendGridMail();
-        $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("no-reply@houseofbhavana.in", 'House Of Bhavana');
-        $email->setSubject("Account Verification");
-        $email->addTo($this->register['email'], $this->register['fullName']);
-//        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-        $email->addContent(
-            "text/html", "<strong>".$data['link']."</strong>"
-        );
-        $sendgrid = new \SendGrid('xxxxxxx');
-        try {
-            $response = $sendgrid->send($email);
-            //print $response->statusCode() . "\n";
-            //print_r($response->headers());
-            //print $response->body() . "\n";
-            session()->flash('verifyEmail', 'Email verification Link has been sent to your Email: '.$this->register['email']);
-        } catch (Exception $e) {
-            echo 'Caught exception: '. $e->getMessage() ."\n";
-        }
-        //$userMailID = $this->register['email'];
-//        newUserEmailVerification::dispatch($data);
-
-
+        newUserEmailVerification::dispatch($data);
+        session()->flash('verifyEmail', 'Email verification Link has been sent to your Email: '.$this->register['email']);
     }
 
     public function hgoogle()

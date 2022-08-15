@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Public\Component;
 
+use App\Models\state_list;
 use App\Models\user_address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -9,7 +10,7 @@ use Livewire\Component;
 
 class CheckoutAddress extends Component
 {
-    public $address, $selectedAddress;
+    public $address, $selectedAddress, $states;
     public $newAddress = ['name', 'mobile_number', 'pincode', 'locality', 'address', 'city', 'state', 'landmark', 'altrPhone'];
     public function render()
     {
@@ -20,6 +21,7 @@ class CheckoutAddress extends Component
     {
         $this->address = user_address::where('user_id', Auth::id())->orderBy('default', 'DESC')->get();
         $this->selectedAddress = json_decode(Cookie::get('selectedAddress'));
+        $this->states = state_list::all();
 //        dd(json_decode($this->selectedAddress));
     }
 

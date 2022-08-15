@@ -94,23 +94,14 @@
                                                     {{ $maxCouponDiscount < $couponDiscount ? $discount=$maxCouponDiscount : $discount=$couponDiscount }}
                                                 </li>
 
-                                                <li>Subtotal <span class="count">&#8377; {{ $total = $costWithoutCoupon - $discount }}</span></li>
-
-                                                <li>Net Amount <span class="count">&#8377; {{ $netAmount = round($total * 100/118) }}</span></li>
-                                                <li>GST (18%) <span class="count">&#8377; {{ round($total - $netAmount) }}</span></li>
+                                                <li>Subtotal <span class="count">&#8377; {{ $costWithoutCoupon }}</span></li>
+                                                <li style="display: none;">Subtotal <span class="count">&#8377; {{ $total = $costWithoutCoupon - $discount }}</span></li>
 
                                                 <li style="color: #00a20c;">COUPON ({{ strtoupper($coupon['code']) }})
                                                     <span class="count" style="color: #00a20c;">- &#8377; {{ round($discount) }} ({{ $coupon['value'] }}%)</span>
                                                 </li>
                                             @else
                                                 <li>Subtotal <span class="count">&#8377; {{ $total = $costWithoutCoupon }}</span></li>
-
-                                                <li style="display: none;">
-                                                    {{ $netAmount = $costWithoutCoupon * 100/118, $gst = $costWithoutCoupon - $netAmount }}
-                                                </li>
-
-                                                <li>Net Amount <span class="count">&#8377; {{ round($netAmount) }}</span></li>
-                                                <li>GST (18%) <span class="count">&#8377; {{ round($gst) }}</span></li>
                                             @endif
                                         </ul>
                                         <ul class="total">
@@ -122,6 +113,7 @@
                                             {{ Illuminate\Support\Facades\Cookie::queue('total', null, 60) }}
                                         @endif
 
+                                        <p>All prices are inclusive of gst.*</p>
                                         {{--    Coupon Starts   --}}
                                         <div class="coupon-code">
                                             <p role="button">Have Coupon?</p>

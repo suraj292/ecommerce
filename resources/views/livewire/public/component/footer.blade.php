@@ -5,7 +5,10 @@
                 <h4>about</h4>
             </div>
             <div class="footer-contant">
-                <div class="footer-logo"><img src="{{asset('assets/images/icon/logo/f8.png')}}" alt=""></div>
+                <a href="{{ route('home') }}" class="footer-logo">
+                    <!-- Logo -->
+                    <img src="{{asset('assets/fixed image/logo.png')}}" width="40px" alt="logo">
+                </a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                     ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                 <div class="footer-social">

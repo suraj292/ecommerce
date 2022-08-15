@@ -4,15 +4,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="main-menu border-top-0" >
+                    <div class="main-menu border-top-0" style="margin-bottom: -20px;">
                         <div class="menu-left">
-                            <div class="navbar">
+                            <div class="">
                                 <span>
                                     <i class="fa fa-bars sidebar-bar" aria-hidden="true" style="color: #ffffff00;"></i>
                                 </span>
                             </div>
                         </div>
-                        <div class="brand-logo layout2-logo" style="margin-left: 20px;">
+                        <div class="brand-logo layout2-logo" style="margin-left: 70px;">
                             <a href="{{route('home')}}">
                                 <h2>BHAVANA</h2>
                             </a>
@@ -166,7 +166,7 @@
             </div>
         </div>
         <!-- Navigation Menu -->
-        <div class="container" style="margin-top: -35px;">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="main-nav-center">
@@ -180,7 +180,7 @@
 {{--                                <li><a href="#">Home</a></li>--}}
                                 <li class="mega" id="hover-cls" wire:ignore>
                                     <a href="#">SHOP</a>
-                                    <ul class="mega-menu full-mega-menu">
+                                    <ul class="mega-menu full-mega-menu" style="z-index: 2">
                                         <li>
                                             <div class="container">
                                                 <div class="row">

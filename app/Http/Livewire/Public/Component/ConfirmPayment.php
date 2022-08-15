@@ -12,7 +12,9 @@ use Livewire\Component;
 
 class ConfirmPayment extends Component
 {
-    public $cart, $total, $coupon, $selectedAddress, $user, $productColor;
+    public $cart, $total, $coupon, $selectedAddress, $user, $productColor, $payment='prepaid', $codCharge=0;
+
+    protected $listeners = ['payment_mathod', 'codCharges'];
 
     public function render()
     {
@@ -49,7 +51,10 @@ class ConfirmPayment extends Component
          * eg: ORD2021110001
          * NOTE: first order will created by default to avoid database sql error
          */
-            $lastOrder = user_order::select('id')->latest('id')->first();
+            $lastOrder = user_order::select('id')
+                ->where('user_id', Auth::id())
+                ->latest('id')
+                ->first();
             $num = $lastOrder->id + 1;
             $order = date("Y").date("m").sprintf("%04d", $num);
 
@@ -80,6 +85,19 @@ class ConfirmPayment extends Component
 
     }
 
+    public function payment_mathod($payload)
+    {
+//        $this->payment = $payload;
+        dd($this->payment);
+    }
+
+    public function codCharges($payload)
+    {
+//        $this->codCharge = $payload;
+//        dd($this->codCharge);
+        dd($payload);
+    }
+
     public function checkoutCod()
     {
         $addId = json_decode(Cookie::get('selectedAddress'));
@@ -89,7 +107,10 @@ class ConfirmPayment extends Component
         }else{
             $addressId = $addId;
         }
-        $lastOrder = user_order::select('id')->latest('id')->first();
+        $lastOrder = user_order::select('id')
+            ->where('user_id', Auth::id())
+            ->latest('id')
+            ->first();
         $num = $lastOrder->id + 1;
         $order = date("Y").date("m").sprintf("%04d", $num);
         //$data = coupon code, coupon discount, total Amount & GST

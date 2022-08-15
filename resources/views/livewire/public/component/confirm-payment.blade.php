@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="cart_counter">
-                            <div class="countdownholder">
+                            <div class="countdownholder" wire:ignore>
                                Your cart will be expired in<span id="timer"></span> minutes!
                             </div>
                         </div>
@@ -119,12 +119,28 @@
                                                     @elseif($savings > 0)
                                                         <li style="color: #00a20c;">Total Saving <span style="color: #00a20c;">&#8377; {{ $savings }}</span></li>
                                                     @endif
-                                                    <li style="color: orangered;">Total
-                                                        <span style="color: orangered;">
-                                                            &#8377; {{ $finalCost = $total != null ? $total : $subtotal }}
-                                                            <del>&#8377; {{ $maximumAmount }}</del>
-                                                        </span>
-                                                    </li>
+                                                    @if($payment == 'prepaid')
+                                                        <li style="color: orangered;">Total
+                                                            <span style="color: orangered;">
+                                                                &#8377; {{ $finalCost = $total != null ? $total : $subtotal }}
+                                                                <del>&#8377; {{ $maximumAmount }}</del>
+                                                            </span>
+                                                        </li>
+                                                    @else
+                                                        <li style="color: orangered;">COD Charge
+                                                            <span style="display: none;">{{ $finalCost = $total != null ? $total : $subtotal }}</span>
+                                                            <span style="color: orangered;">
+                                                                &#8377; {{ $codCharge = $finalCost * 2.5 / 100 }}
+                                                            </span>
+                                                        </li>
+                                                        <li style="color: orangered;">Total
+                                                            <span style="color: orangered;">
+                                                                &#8377; {{ $withCod = $finalCost + $codCharge }}
+                                                                <del>&#8377; {{ $maximumAmount + $codCharge }}</del>
+                                                            </span>
+                                                        </li>
+{{--                                                        <input type="hidden" wire:model="codCharge">--}}
+                                                    @endif
                                                 </ul>
                                             </div>
 
@@ -138,9 +154,11 @@
                                                         <li>
                                                             <div class="radio-option">
                                                                 <input type="radio" name="payment-group" id="payment-2">
-                                                                <label for="payment-2">Cash On Delivery<span class="small-text">Please send a check to Store
-                                                                    Name, Store Street, Store Town, Store State /
-                                                                    County, Store Postcode.</span></label>
+                                                                <label for="payment-2" wire:ignire>Cash On Delivery
+                                                                    <span class="cod-msg small-text" style="color: red;">
+                                                                        Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         </li>
                                                         <li>
@@ -154,7 +172,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="text-end">
+                                            <div class="text-end" wire:ignore>
 {{--                                                <a href="#" class="btn-solid btn">Place Order</a>--}}
                                                 <form {{--wire:submit.prevent="getRazorpayResponse"--}} id="prepaid">
                                                     <script src="https://checkout.razorpay.com/v1/checkout.js"
@@ -175,19 +193,6 @@
                                                     <a href="#" class="btn-solid btn" wire:click="checkoutCod">Confirm</a>
                                                 </div>
                                             </div>
-                                            <script>
-                                                $(document).ready(function (){
-                                                    $(".razorpay-payment-button").addClass(' btn-solid btn');
-                                                    $("#payment-2").on('click', function (){
-                                                        $("#prepaid").hide();
-                                                        $("#cod").show();
-                                                    });
-                                                    $("#payment-3").on('click', function (){
-                                                        $("#cod").hide();
-                                                        $("#prepaid").show();
-                                                    });
-                                                });
-                                            </script>
                                         </div>
                                     </div>
                                     <span style="display: none;">
@@ -214,4 +219,23 @@
 @endsection
 @section('script')
     <script src="{{ asset('assets/js/timer1.js') }}"></script>
+    <script>
+        $(document).ready(function (){
+            // this is for add class styling to razorpay button
+            $(".razorpay-payment-button").addClass(' btn-solid btn');
+            // this click for cod
+            $("#payment-2").on('click', function (){
+                $("#prepaid").hide();
+                $("#cod").show();
+                // Livewire.emit('payment_mathod', 'cod')
+                {{--Livewire.emit('codCharges', '{{ $codCharge }}')--}}
+            });
+            // this click for prepaid
+            $("#payment-3").on('click', function (){
+                $("#cod").hide();
+                $("#prepaid").show();
+                // Livewire.emit('payment_mathod', 'prepaid')
+            });
+        });
+    </script>
 @endsection
