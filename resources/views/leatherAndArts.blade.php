@@ -4,7 +4,7 @@
 {{--        <h4>recent story</h4>--}}
         <h2 class="">Leather & Art</h2>
     </div>
-    <div class="sticky-top">
+    <div >
         <!-- Main -->
         <div class="d-md-flex h-md-100 align-items-center ">
             <div class="col-md-6 p-0 bg-indigo h-md-100 ">

@@ -30,7 +30,7 @@ class Checkout extends Component
             $this->cart = Session::get('cart');
         }
         if (is_null($this->cart) || count($this->cart) < 1){
-            dd('cart is null');
+            return redirect()->back();
         }
     }
 
