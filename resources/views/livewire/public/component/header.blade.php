@@ -63,7 +63,7 @@
                                                     <li><a href="{{ route('public.account') }}">Account</a></li>
                                                     <li><a href="{{ route('public.account').'/wallet' }}">Wallet</a></li>
                                                     <li><a href="{{ route('public.account').'/order' }}">My Orders</a></li>
-                                                    <li><a wire:click="logout">Logout</a></li>
+                                                    <li><a href="" wire:click="logout">Logout</a></li>
                                                 </ul>
                                             @endauth
                                             @guest()

@@ -63,7 +63,7 @@
                             <tbody>
 
                             @foreach($orders as $order)
-                                <tr wire:click="getOrder({{ $order->id }})">
+                                <tr wire:click="getOrder({{ $order->id }})" style="cursor: pointer;">
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->order_number }}</td>
                                     <td>{{ $order->created_at->format('d M Y') }}</td>

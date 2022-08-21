@@ -12,7 +12,9 @@ use Livewire\Component;
 
 class BuyNowConfirmPayment extends Component
 {
-    public $cart, $total, $coupon, $selectedAddress, $user, $productColor, $getColor;
+    public $cart, $total, $coupon, $selectedAddress, $user, $productColor, $getColor, $payment='prepaid';
+
+    protected $listeners = ['payment_mathod'];
 
     public function render()
     {
@@ -56,7 +58,7 @@ class BuyNowConfirmPayment extends Component
             * eg: ORD2021110001
             * NOTE: first order will created by default to avoid database sql error
             */
-            $newCart = user_cart::create($buyNowItem);
+
             $lastOrder = user_order::select('id')->latest('id')->first();
             $num = $lastOrder->id + 1;
             $order = date("Y").date("m").sprintf("%04d", $num);
@@ -82,11 +84,15 @@ class BuyNowConfirmPayment extends Component
             Cookie::queue('orderSuccess', $userOrder->id, 100*2);
 //            $cart = user_cart::where('user_id', Auth::id());
 //            $cart->delete();
-            $newCart->delete();
+
             $this->redirect(route('order-success'));
 
         }
 
+    }
+    public function payment_mathod($payload)
+    {
+        $this->payment = $payload;
     }
 
     public function checkoutCod()
@@ -98,7 +104,9 @@ class BuyNowConfirmPayment extends Component
         }else{
             $addressId = $addId;
         }
+        $newCart = user_cart::create($this->cart);
         $lastOrder = user_order::select('id')->latest('id')->first();
+        $codData = Cookie::get('codTotal');
         $num = $lastOrder->id + 1;
         $order = date("Y").date("m").sprintf("%04d", $num);
         //$data = coupon code, coupon discount, total Amount & GST
@@ -108,18 +116,17 @@ class BuyNowConfirmPayment extends Component
             'user_delivery_id' => $addressId,
             'i_think_logistics_id' => null,
             //this will get all ordered product [eg="1,2"]
-            'product_user_cart_ids' => $this->cart->implode('id', ','),
+            'product_user_cart_ids' => $newCart->id,
             'coupon_code' => $data['couponCode'],
             'coupon_discount' => $data['couponValue'],
             'order_number' => 'ORD'.$order,
 //            'invoice_number' => 'INV'.$order,
-            'total_payable_cost' => ($data['total'] * 0.027) + $data['total'],
+            'total_payable_cost' => $codData != null ? (int)$codData: $data['total'],
             'gst_charge' => $data['gst'],
         ]);
         $userOrder->save();
         Cookie::queue('orderSuccess', $userOrder->id, 100 * 2);
-        $cart = user_cart::where('user_id', Auth::id());
-        $cart->delete();
+        $newCart->delete();
         $this->redirect(route('order-success'));
     }
 }

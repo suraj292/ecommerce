@@ -12,9 +12,9 @@ use Livewire\Component;
 
 class ConfirmPayment extends Component
 {
-    public $cart, $total, $coupon, $selectedAddress, $user, $productColor, $payment='prepaid', $codCharge=0;
+    public $cart, $total, $coupon, $selectedAddress, $user, $productColor, $payment='prepaid';
 
-    protected $listeners = ['payment_mathod', 'codCharges'];
+    protected $listeners = ['payment_mathod'];
 
     public function render()
     {
@@ -87,15 +87,7 @@ class ConfirmPayment extends Component
 
     public function payment_mathod($payload)
     {
-//        $this->payment = $payload;
-        dd($this->payment);
-    }
-
-    public function codCharges($payload)
-    {
-//        $this->codCharge = $payload;
-//        dd($this->codCharge);
-        dd($payload);
+        $this->payment = $payload;
     }
 
     public function checkoutCod()
@@ -111,6 +103,7 @@ class ConfirmPayment extends Component
             ->where('user_id', Auth::id())
             ->latest('id')
             ->first();
+        $codData = Cookie::get('codTotal');
         $num = $lastOrder->id + 1;
         $order = date("Y").date("m").sprintf("%04d", $num);
         //$data = coupon code, coupon discount, total Amount & GST
@@ -125,7 +118,7 @@ class ConfirmPayment extends Component
             'coupon_discount' => $data['couponValue'],
             'order_number' => 'ORD'.$order,
 //            'invoice_number' => 'INV'.$order,
-            'total_payable_cost' => $data['total'],
+            'total_payable_cost' => $codData != null ? (int)$codData: $data['total'],
             'gst_charge' => $data['gst'],
         ]);
         $userOrder->save();

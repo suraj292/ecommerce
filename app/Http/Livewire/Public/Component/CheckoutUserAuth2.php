@@ -61,6 +61,7 @@ class CheckoutUserAuth2 extends Component
             user_verification::create(['user_id'=>$user->id,'mobile_otp'=>$otp,]);
         }
 
+        /*
         //sending otp to registered mobile
             // Account details
             $apiKey = urlencode('NmIzOTQyNTc0YjZlNGY0NjZlNDczNjQ3NTU3MTY1NzU=');
@@ -82,6 +83,7 @@ class CheckoutUserAuth2 extends Component
             curl_close($ch);
             // Process your response here
 //            dd($response);
+        */
         $this->otpDiv = true;
     }
 

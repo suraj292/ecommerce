@@ -101,8 +101,6 @@
                                                     <li style="display: none;">
                                                         {{ $netAmount = $subtotal * 100/118, $gst = $subtotal - $netAmount }}
                                                     </li>
-                                                    <li>Net Amount <span>&#8377; {{ round($netAmount) }}</span></li>
-                                                    <li>GST (18%) <span>&#8377; {{ round($gst) }}</span></li>
                                                     @if($coupon && $productWithoutOffer * $coupon['value'] > 0)
                                                         {{--    this li for cappin coupon max discount      --}}
                                                         <li style="display: none;">
@@ -138,8 +136,10 @@
                                                                 &#8377; {{ $withCod = $finalCost + $codCharge }}
                                                                 <del>&#8377; {{ $maximumAmount + $codCharge }}</del>
                                                             </span>
+                                                            <span style="display: none;">
+                                                                {{ \Illuminate\Support\Facades\Cookie::queue('codTotal', $withCod, 60*60*60) }}
+                                                            </span>
                                                         </li>
-{{--                                                        <input type="hidden" wire:model="codCharge">--}}
                                                     @endif
                                                 </ul>
                                             </div>
@@ -154,8 +154,8 @@
                                                         <li>
                                                             <div class="radio-option">
                                                                 <input type="radio" name="payment-group" id="payment-2">
-                                                                <label for="payment-2" wire:ignire>Cash On Delivery
-                                                                    <span class="cod-msg small-text" style="color: red;">
+                                                                <label for="payment-2" wire:ignore>Cash On Delivery
+                                                                    <span class="cod-msg small-text" style="color: red; display: none;">
                                                                         Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
                                                                     </span>
                                                                 </label>
@@ -174,7 +174,7 @@
                                             </div>
                                             <div class="text-end" wire:ignore>
 {{--                                                <a href="#" class="btn-solid btn">Place Order</a>--}}
-                                                <form {{--wire:submit.prevent="getRazorpayResponse"--}} id="prepaid">
+                                                <form id="prepaid">
                                                     <script src="https://checkout.razorpay.com/v1/checkout.js"
                                                             data-key="{{ env('RAZORPAY_KEY') }}"
                                                             data-amount="{{ $finalCost * 100 }}"
@@ -227,14 +227,15 @@
             $("#payment-2").on('click', function (){
                 $("#prepaid").hide();
                 $("#cod").show();
-                // Livewire.emit('payment_mathod', 'cod')
-                {{--Livewire.emit('codCharges', '{{ $codCharge }}')--}}
+                $(".cod-msg").show();
+                Livewire.emit('payment_mathod', 'cod');
             });
             // this click for prepaid
             $("#payment-3").on('click', function (){
                 $("#cod").hide();
                 $("#prepaid").show();
-                // Livewire.emit('payment_mathod', 'prepaid')
+                $(".cod-msg").hide();
+                Livewire.emit('payment_mathod', 'prepaid')
             });
         });
     </script>

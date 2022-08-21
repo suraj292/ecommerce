@@ -27,10 +27,10 @@ class ProductColorImg extends Component
             'colorId' => 'required',
             'stockQuantity' => 'required',
             'newImg1' => 'required|image|max:2564',
-            'newImg2' => 'required|image|max:2564',
-            'newImg3' => 'required|image|max:2564',
-            'newImg4' => 'required|image|max:2564',
-            'newImg5' => 'required|image|max:2564',
+            'newImg2' => 'nullable|image|max:2564',
+            'newImg3' => 'nullable|image|max:2564',
+            'newImg4' => 'nullable|image|max:2564',
+            'newImg5' => 'nullable|image|max:2564',
         ]);
         if (!is_null($this->newImg1)){
 //            $this->newImg1->store('public/product/large');
