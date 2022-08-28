@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Public\Component;
 
 use App\Models\state_list;
 use App\Models\user_address;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Livewire\Component;
@@ -55,22 +56,33 @@ class CheckoutAddress extends Component
         $address =user_address::where('user_id', Auth::id())
             ->where('default', true)
             ->get();
-        $newAddress = new user_address([
-            'user_id'=>Auth::id(),
-            'name'=>$this->newAddress['name'],
-            'phone'=>$this->newAddress['mobile_number'],
-            'pincode'=>$this->newAddress['pincode'],
-            'locality'=>$this->newAddress['locality'],
-            'address'=>$this->newAddress['address'],
-            'city'=>$this->newAddress['city'],
-            'state'=>$this->newAddress['state'],
-            'landmark'=>$this->newAddress['landmark'] ?? null,
-            'alternate_phone'=>$this->newAddress['altrPhone'] ?? null,
-            'default'=>$address->isEmpty(),
+        $data = json_encode([
+            "data"=>[
+                "pincode" => "201005",
+                "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
+                "secret_key" => "2b54c373427be180d1899400eeb21aab"
+            ]
         ]);
-        $newAddress->save();
-        $this->newAddress = null;
-        $this->address = user_address::where('user_id', Auth::id())->orderBy('default', 'DESC')->get();
+        $client = new Client();
+        $res = $client->request('POST','https://manage.ithinklogistics.com/api_v3/rate/check.json', ['body'=>$data]);
+
+        dd($res);
+//        $newAddress = new user_address([
+//            'user_id'=>Auth::id(),
+//            'name'=>$this->newAddress['name'],
+//            'phone'=>$this->newAddress['mobile_number'],
+//            'pincode'=>$this->newAddress['pincode'],
+//            'locality'=>$this->newAddress['locality'],
+//            'address'=>$this->newAddress['address'],
+//            'city'=>$this->newAddress['city'],
+//            'state'=>$this->newAddress['state'],
+//            'landmark'=>$this->newAddress['landmark'] ?? null,
+//            'alternate_phone'=>$this->newAddress['altrPhone'] ?? null,
+//            'default'=>$address->isEmpty(),
+//        ]);
+//        $newAddress->save();
+//        $this->newAddress = null;
+//        $this->address = user_address::where('user_id', Auth::id())->orderBy('default', 'DESC')->get();
     }
     public function addressSelected($id){
          Cookie::queue('selectedAddress', $id, 60);

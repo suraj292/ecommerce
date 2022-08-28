@@ -34,9 +34,8 @@ class newUserEmailVerification implements ShouldQueue
     public function handle()
     {
         $userMailID = $this->data['email'];
-        Mail::send('mail.email_verification', $this->data, function ($message) use ($userMailID){
-            $message->to($userMailID);
-            $message->subject('Email Verification');
+        Mail::send('mail.email_verification_demo', $this->data, function ($message) use ($userMailID){
+            $message->to($userMailID)->subject('Email Verification');
         });
     }
 }

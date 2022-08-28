@@ -199,6 +199,13 @@
                                         <td>{{ $DlAddress->alternate_phone }}</td>
                                     </tr>
                                     @endif
+                                    @if($getOrders->coupon_discount)
+                                    <tr>
+                                        <td>Coupon Discount </td>
+                                        <td>:</td>
+                                        <td>&#8377; {{ $getOrders->coupon_discount }}</td>
+                                    </tr>
+                                    @endif
                                 </table>
                             </div>
                         </div>
@@ -219,12 +226,7 @@
                                     </p>
                                 </div>
                                 <div class="col-sm-12 col-md-1">
-                                    @if($item->offer_price != null || $item->offer_price > 0)
-                                        <p>&#8377; {{ $item->offer_price }}</p>
-                                    @else
-                                        <p>&#8377; {{ $item->price }}</p>
-                                    @endif
-{{--                                    <p>&#8377; {{ $item->offer_price > 0 ? $item->offer_price : $item->price }}</p>--}}
+                                    <p>&#8377; {{ $item->offer_price > 0 ? $item->offer_price : $item->price }}</p>
                                 </div>
                             </div>
                         </div>

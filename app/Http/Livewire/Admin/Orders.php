@@ -34,7 +34,7 @@ class Orders extends Component
     public function getOrder($id)
     {
         $this->getOrders = user_order::with('user:id,name,email,mobile')
-            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id', 'razorpay_id', 'total_payable_cost')
+            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id', 'razorpay_id', 'total_payable_cost', 'coupon_discount')
             ->find($id);
         $this->color = select_product_color::all();
         $this->DlAddress = user_address::find($this->getOrders->user_delivery_id);
