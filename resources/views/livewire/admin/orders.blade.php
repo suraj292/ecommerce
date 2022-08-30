@@ -206,6 +206,13 @@
                                         <td>&#8377; {{ $getOrders->coupon_discount }}</td>
                                     </tr>
                                     @endif
+                                    @if($getOrders->cod_charge)
+                                    <tr>
+                                        <td>Cod Charges </td>
+                                        <td>:</td>
+                                        <td>&#8377; {{ $getOrders->cod_charge }}</td>
+                                    </tr>
+                                    @endif
                                 </table>
                             </div>
                         </div>
@@ -225,7 +232,7 @@
                                         Color: <img src="{{ asset('storage/color_image/'.$color->find($item->select_product_color_id)->color_image) }}" style="width: 25px;">
                                     </p>
                                 </div>
-                                <div class="col-sm-12 col-md-1">
+                                <div class="col-sm-12 col-md-2">
                                     <p>&#8377; {{ $item->offer_price > 0 ? $item->offer_price : $item->price }}</p>
                                 </div>
                             </div>

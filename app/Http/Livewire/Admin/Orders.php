@@ -25,7 +25,7 @@ class Orders extends Component
     public function mount()
     {
         $this->orders = User::join('user_order', 'user_order.user_id', 'Users.id')
-            ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id', 'user_order.dispatch'])
+            ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id', 'user_order.dispatch', 'cod_charge'])
             ->where('user_order.id', '!=', 1)
             ->get();
 //        dd($this->orders);
@@ -34,7 +34,7 @@ class Orders extends Component
     public function getOrder($id)
     {
         $this->getOrders = user_order::with('user:id,name,email,mobile')
-            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id', 'razorpay_id', 'total_payable_cost', 'coupon_discount')
+            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id', 'razorpay_id', 'cod_charge', 'total_payable_cost', 'coupon_discount')
             ->find($id);
         $this->color = select_product_color::all();
         $this->DlAddress = user_address::find($this->getOrders->user_delivery_id);
@@ -187,7 +187,7 @@ class Orders extends Component
                 ->where('user_order.id', '!=', 1)
                 ->get();
         }else{
-            dd('logistics error please contact your developer. Error: '.$result['data'][1]['remark']);
+            dd('logistics error please contact your developer or Logistics. Error: '.$result['data'][1]['remark']);
         }
 //        dd($result['data'][1]['waybill']);
 //        dd(json_decode($orderData, true));
