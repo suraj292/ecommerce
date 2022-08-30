@@ -120,6 +120,9 @@
                                 @if($order->coupon_discount > 0)
                                 <li>Discount <span>-&#8377; {{ $order->coupon_discount }}</span></li>
                                 @endif
+                                @if($order->cod_charge)
+                                <li>COD Charge <span>&#8377; {{ $order->cod_charge }}</span></li>
+                                @endif
                             </ul>
                         </div>
                         <div class="final-total">

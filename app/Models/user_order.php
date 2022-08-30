@@ -20,6 +20,7 @@ class user_order extends Model
         'order_number',
         'invoice_number',
         'dispatch',
+        'cod_charge',
         'total_payable_cost',
         'gst_charge',
         'delivery_status',

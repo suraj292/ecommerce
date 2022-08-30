@@ -138,7 +138,7 @@
                                                                 <del>&#8377; {{ $maximumAmount + $codCharge }}</del>
                                                             </span>
                                                             <span style="display: none;">
-                                                                {{ \Illuminate\Support\Facades\Cookie::queue('codTotal', $withCod, 60*60*60) }}
+                                                                {{ \Illuminate\Support\Facades\Cookie::queue('codTotal', $codCharge, 60*60*60) }}
                                                             </span>
                                                         </li>
                                                     @endif
