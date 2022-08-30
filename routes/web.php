@@ -75,7 +75,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
     Route::get('sale', Admin\Sale::class)->name('admin.sale');
     Route::get('gift-card', Admin\GiftCard::class)->name('admin.giftCard');
 
-
     Route::get('logistics-rate', Admin\LogisticsRate::class)->name('admin.logistics_rate');
 });
 //      Blog

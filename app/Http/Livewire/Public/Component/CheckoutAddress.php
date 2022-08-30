@@ -24,13 +24,13 @@ class CheckoutAddress extends Component
 
         $state = json_encode(["data"=>[
             "country_id" => "101",
-            "access_token" => env('I_THINK_LOGISTICS_ACCESS_TOKEN'),
-            "secret_key" => env('I_THINK_LOGISTICS_SECRET_KEY')
+            "access_token" => "ad22463c66a3718e3a2fc3d9f83ff108",
+            "secret_key" => "dd993a668718a340e67cd16b247ee53a"
         ]]);
         $client1 = new Client();
-        $res1 = $client1->request('POST','https://pre-alpha.ithinklogistics.com/api_v3/state/get.json', ['body'=>$state]);
+        $res1 = $client1->request('POST','https://manage.ithinklogistics.com/api_v3/state/get.json', ['body'=>$state]);
         $this->states = json_decode($res1->getBody()->getContents(), true)['data'];
-
+//        dd($this->states);
     }
 
     public function addNewAddress()
