@@ -110,6 +110,12 @@
                         <i class="mdi mdi-clipboard-text menu-icon"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.logistics_rate') }}">
+                        <span class="menu-title">Logistics rate</span>
+                        <i class="mdi mdi-currency-inr menu-icon"></i>
+                    </a>
+                </li>
                 <li class="nav-item sidebar-actions">
                   <span class="nav-link">
                     <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add Product</button>
