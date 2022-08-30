@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Admin;
 
+use GuzzleHttp\Client;
 use Livewire\Component;
 
 class LogisticsRate extends Component
 {
-    public $fromPin='201005', $toPin, $length, $width, $height, $weight, $paymentMode, $mrp;
+    public $fromPin='201005', $toPin, $length, $width, $height, $weight, $paymentMode='prepaid', $mrp;
 
     public function render()
     {
@@ -25,7 +26,10 @@ class LogisticsRate extends Component
             'paymentMode'=>'required',
             'mrp'=>'required'
         ]);
+        $client = new Client();
+        $data = [
 
+        ];
     }
 
 }

@@ -70,7 +70,11 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Shipment weight</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" placeholder="weight in kg" wire:model.defer="weight">
+{{--                                            <input type="text" class="form-control" placeholder="weight in kg" wire:model.defer="weight">--}}
+                                            <select class="form-control" wire:model.defer="weight">
+                                                <option value="prepaid" selected>PREPAID</option>
+                                                <option value="cod">COD</option>
+                                            </select>
                                             @error('weight')<p class="text-danger mt-1">{{ $message }}</p>@enderror
                                         </div>
                                     </div>
