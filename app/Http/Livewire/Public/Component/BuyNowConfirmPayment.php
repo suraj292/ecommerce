@@ -32,6 +32,8 @@ class BuyNowConfirmPayment extends Component
         $colorId = $buyNowItem['select_product_color_id'];
         $this->getColor = select_product_color::select('color_image')->find($colorId);
 
+//        dd($buyNowItem);
+
         $this->user = Auth::user();
         $coupon = Cookie::get('coupon');
         if ($coupon){
@@ -59,6 +61,8 @@ class BuyNowConfirmPayment extends Component
             * NOTE: first order will created by default to avoid database sql error
             */
 
+            $newCart = user_cart::create($buyNowItem);
+
             $lastOrder = user_order::select('id')->latest('id')->first();
             $num = $lastOrder->id + 1;
             $order = date("Y").date("m").sprintf("%04d", $num);
@@ -84,6 +88,7 @@ class BuyNowConfirmPayment extends Component
             Cookie::queue('orderSuccess', $userOrder->id, 100*2);
 //            $cart = user_cart::where('user_id', Auth::id());
 //            $cart->delete();
+            $newCart->delete();
 
             $this->redirect(route('order-success'));
 

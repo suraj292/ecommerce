@@ -27,6 +27,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        \Illuminate\Support\Facades\DB::table('users')
+            ->insert([
+                'name'=>'suraj', 'email'=>'admin@houseofbhavana.in', 'mobile'=>'9999999999', 'password'=>'password@123#'
+            ]);
     }
 
     /**

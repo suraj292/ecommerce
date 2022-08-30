@@ -25,9 +25,9 @@ Route::get('italian-leather', Public\ItalianLeather::class)->name('italianLeathe
 Route::get('buy', Public\BuyNow::class)->name('buyNow');
 
 Route::get('login', Public\Login::class)->middleware(['guest'])->name('login');
-//this confirm payment for cart
+//this confirms payment for cart
 Route::get('confirm-payment', Public\Component\ConfirmPayment::class)->name('confirm-payment');
-//this confirm payment for direct buy
+//this confirms payment for direct buy
 Route::get('payment', Public\Component\BuyNowConfirmPayment::class)->name('buyNow-confirm-payment');
 
 Route::get('order-success', Public\Component\OrderSuccess::class)->name('order-success');

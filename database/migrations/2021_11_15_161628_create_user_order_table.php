@@ -25,6 +25,7 @@ class CreateUserOrderTable extends Migration
             $table->string('order_number');
             $table->char('invoice_number')->nullable();
             $table->date('dispatch')->nullable();
+            $table->string('cod_charge')->nullable();
             $table->string('total_payable_cost');
             $table->string('gst_charge');
             $table->integer('delivery_status')->default(1);

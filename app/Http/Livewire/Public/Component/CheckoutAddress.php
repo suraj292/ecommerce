@@ -11,7 +11,7 @@ use Livewire\Component;
 class CheckoutAddress extends Component
 {
     public $address, $selectedAddress, $states;
-    public $newAddress = ['name', 'mobile_number', 'pincode', 'locality', 'address', 'city', 'state', 'landmark', 'altrPhone'];
+    public $newAddress = ['name'=> 'suraj', 'mobile_number'=>'7042611736', 'pincode'=>'201005', 'locality'=>'mahaveer chawk', 'address'=>'D 11', 'city'=>'ghaziabad', 'state', 'landmark', 'altrPhone'];
     public function render()
     {
         return view('livewire.public.component.checkout-address');
@@ -66,23 +66,26 @@ class CheckoutAddress extends Component
         $data = json_encode([
             "data"=>[
                 "pincode" => $this->newAddress['pincode'],
-                "access_token" => env('I_THINK_LOGISTICS_ACCESS_TOKEN'),
-                "secret_key" => env('I_THINK_LOGISTICS_SECRET_KEY')
+                "access_token" => "ad22463c66a3718e3a2fc3d9f83ff108",
+                "secret_key" => "dd993a668718a340e67cd16b247ee53a"
             ]
         ]);
         $client = new Client();
-        $res = $client->request('POST','https://pre-alpha.ithinklogistics.com/api_v3/pincode/check.json', ['body'=>$data]);
+        $res = $client->request('POST','https://my.ithinklogistics.com/api_v3/pincode/check.json', ['body'=>$data]);
         $response = json_decode($res->getBody()->getContents(), true);
 //        $cod = reset($response['data'][strval($this->newAddress['pincode'])])['cod'];
         $cod = array_values($response['data'][(string)$this->newAddress['pincode']]);
         if ($response['status_code'] == 200){
-            foreach ($cod as $x){
-                if($x['cod'] == 'Y'){
-                    return $y = 'available';
+//            dd(array_slice($cod, 5)); // this is for skip first 5 object from Array
+            foreach (array_slice($cod, 5) as $x){
+                if( $x['cod'] == 'Y' ){
+                    $y = true;
+                    break;
+                }else{
+                    $y = false;
                 }
             }
-            /*
-            if ( $cod == 'Y') {
+            if ( $y ) {
                 $newAddress = new user_address([
                     'user_id'=>Auth::id(),
                     'name'=>$this->newAddress['name'],
@@ -103,7 +106,6 @@ class CheckoutAddress extends Component
             }else{
                 session()->flash('pin_code_not_available', 'Please use other Pincode');
             }
-            */
         }else{
             session()->flash('pin_code_not_available', 'Please use other Pincode');
         }
