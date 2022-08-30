@@ -128,7 +128,7 @@
                                                         <li style="color: orangered;">COD Charge
                                                             <span style="display: none;">{{ $finalCost = $total != null ? $total : $subtotal }}</span>
                                                             <span style="color: orangered;">
-                                                                &#8377; {{ $codCharge = $finalCost * 2.5 / 100 }}
+                                                                &#8377; {{ $codCharge = $finalCost * 2.5 / 100 }} (2.5%)
                                                             </span>
                                                         </li>
                                                         <li style="color: orangered;">Total
@@ -137,7 +137,7 @@
                                                                 <del>&#8377; {{ $maximumAmount + $codCharge }}</del>
                                                             </span>
                                                             <span style="display: none;">
-                                                                {{ \Illuminate\Support\Facades\Cookie::queue('codTotal', $withCod, 60*60*60) }}
+                                                                {{ \Illuminate\Support\Facades\Cookie::queue('codTotal', $codCharge, 60*60*60) }}
                                                             </span>
                                                         </li>
                                                     @endif
@@ -156,7 +156,7 @@
                                                                 <input type="radio" name="payment-group" id="payment-2">
                                                                 <label for="payment-2" wire:ignore>Cash On Delivery
                                                                     <span class="cod-msg small-text" style="color: red; display: none;">
-                                                                        Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
+                                                                        COD Charges 2.5% on invoice value.
                                                                     </span>
                                                                 </label>
                                                             </div>

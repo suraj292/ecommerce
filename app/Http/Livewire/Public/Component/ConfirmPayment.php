@@ -118,7 +118,8 @@ class ConfirmPayment extends Component
             'coupon_discount' => $data['couponValue'],
             'order_number' => 'ORD'.$order,
 //            'invoice_number' => 'INV'.$order,
-            'total_payable_cost' => $codData != null ? (int)$codData: $data['total'],
+            'cod_charge' => $codData != null ? (int)$codData: null,
+            'total_payable_cost' => $codData != null ? (int)$codData+$data['total']: $data['total'],
             'gst_charge' => $data['gst'],
         ]);
         $userOrder->save();
