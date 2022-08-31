@@ -8,13 +8,14 @@ use App\Models\user_address;
 use App\Models\user_cart;
 use App\Models\user_order;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Orders extends Component
 {
     public $orders, $getOrders, $items, $color, $DlAddress;
-    public $selectLogistics = ['length'=>null, 'width', 'height', 'weight'];
+    public $selectLogistics = ['length'=>null, 'width', 'height', 'weight'], $logistic;
     public $logisticsDiv, $logisticsRate, $orderId;
 //    protected $listeners = ['getOrders'];
     public function render()
@@ -34,7 +35,7 @@ class Orders extends Component
     public function getOrder($id)
     {
         $this->getOrders = user_order::with('user:id,name,email,mobile')
-            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id', 'razorpay_id', 'cod_charge', 'total_payable_cost', 'coupon_discount')
+            ->select('id', 'product_user_cart_ids', 'user_id', 'user_delivery_id', 'delivery_status', 'i_think_logistics_id', 'razorpay_id', 'cod_charge', 'total_payable_cost', 'coupon_discount', 'order_number', 'product_user_cart_ids')
             ->find($id);
         $this->color = select_product_color::all();
         $this->DlAddress = user_address::find($this->getOrders->user_delivery_id);
@@ -85,8 +86,8 @@ class Orders extends Component
                     "order_type" => "forward",
                     "payment_method" => $payment,
                     "product_mrp" => $this->getOrders->total_payable_cost,
-                    "access_token" => env('I_THINK_LOGISTICS_ACCESS_TOKEN'),
-                    "secret_key" => env('I_THINK_LOGISTICS_SECRET_KEY'),
+                    "access_token" => "ad22463c66a3718e3a2fc3d9f83ff108",
+                    "secret_key" => "dd993a668718a340e67cd16b247ee53a",
                 ]
             ]);
         $client = new Client();
@@ -107,13 +108,16 @@ class Orders extends Component
 
     public function confirmLogistics()
     {
-        // entering data to to logistics
+        // Get user cart for product detail
+//        dd($this->items);
+        // entering data to logistics
+        /*
         $orderData = json_encode([
             "data" => [
             "shipments" => [
                 [
                     "waybill" => "",
-                    "order" => "22",
+                    "order" => $this->getOrders->order_number,
                     "sub_order" => "A",
                     "order_date" => now()->format('d-m-Y'),
                     "total_amount" => $this->getOrders->total_payable_cost,
@@ -151,7 +155,7 @@ class Orders extends Component
                     "total_discount" => "0",
                     "first_attemp_discount" => "0",
                     "cod_charges" => "0",
-                    "advance_amount" => $this->getOrders->razorpay_id ? $this->getOrders->total_payable_cost:0,
+                    "advance_amount" => $this->getOrders->razorpay_id ? $this->getOrders->total_payable_cost:"0",
                     "cod_amount" => $this->getOrders->razorpay_id ? "0":$this->getOrders->total_payable_cost, //total amount cod
                     "payment_mode" => $this->getOrders->razorpay_id ? 'prepaid':'cod',
                     "reseller_name" => "",
@@ -163,12 +167,13 @@ class Orders extends Component
             "pickup_address_id" => "1293",
             "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
             "secret_key" => "2b54c373427be180d1899400eeb21aab",
-            "logistics" => "Delhivery",
+            "logistics" => $this->logistic,
             "s_type" => "",
             "order_type" => ""
         ]
 
         ]);
+        */
         $newOrder = new Client();
         $order = $newOrder->post('https://pre-alpha.ithinklogistics.com/api_v3/order/add.json', ['body'=>$orderData]);
 

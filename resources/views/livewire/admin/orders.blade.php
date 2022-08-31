@@ -260,15 +260,27 @@
                                             <!-- Form -->
                                             @if($logisticsRate)
                                             <p>
-                                                Logistic Name : {{ $logisticsRate['data'][0]['logistic_name'] }}
-                                                <br>
+{{--                                                Logistic Name : {{ $logisticsRate['data'][0]['logistic_name'] }}--}}
+{{--                                                <br>--}}
                                                 Expected Delivery Date = {{ $logisticsRate['expected_delivery_date'] }}
                                                 <br>
                                                 Weight Slab = {{ $logisticsRate['data'][0]['weight_slab'] }} KG
                                                 <br>
                                                 Logistic Rate = {{ $logisticsRate['data'][0]['rate'] }}
-                                            </p>
-                                                <button type="submit" class="btn btn-primary" wire:click="confirmLogistics">Confirm Logistics</button>
+                                            </p><br>
+                                            <div class="form-group">
+                                                <label >Select Logistics</label>
+                                                <select class="form-control" wire:model="logistic">
+                                                    <option selected> -- Select Logistics -- </option>
+                                                    @foreach($logisticsRate['data'] as $logistics)
+                                                        <option value="{{ $logistics['logistic_name'] }}"> {{ $logistics['logistic_name'] }} </option>
+                                                    @endforeach
+                                                </select>
+{{--                                                <span>logistics: {{ $logistic }}</span>--}}
+                                            </div>
+{{--                                            <span style="display: none;">{{ \Illuminate\Support\Facades\Cookie::queue('logistic', $logistic, 60*60*60) }}</span>--}}
+
+                                            <button type="submit" class="btn btn-primary" wire:click="confirmLogistics">Confirm Logistics</button>
                                             @else
                                             <form wire:submit.prevent="confirmOrder({{ $getOrders->id }})">
                                                 <div class="form-group">
