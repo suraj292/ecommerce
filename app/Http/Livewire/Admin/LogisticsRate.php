@@ -46,7 +46,6 @@ class LogisticsRate extends Component
         $client = new Client();
         $res = $client->request('POST', 'https://manage.ithinklogistics.com/api_v3/rate/check.json', ['body'=>$data]);
         $this->data = json_decode($res->getBody()->getContents(), true);
-        dd($this->data);//data
     }
 
 }
