@@ -139,6 +139,67 @@
                 </div>
             </div>
 
+            <div class="col-sm-12 col-md-12 grid-margin stretch-card row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Left Image</h4>
+                            <div class="media">
+                                <i class="mdi mdi-earth icon-md text-info d-flex align-self-start mr-3"></i>
+                                <div class="media-body">
+                                    <p class="card-text">{{ $data->heading }}</p>
+                                </div>
+                            </div>
+                            <form wire:submit.prevent="heading">
+                                <div class="form-group">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter image" wire:model.defer="heading">
+                                        <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter Image redirect Link" wire:model.defer="heading">
+                                        <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Right Image</h4>
+                            <div class="media">
+                                <i class="mdi mdi-earth icon-md text-info d-flex align-self-start mr-3"></i>
+                                <div class="media-body">
+                                    <p class="card-text">{{ $data->heading }}</p>
+                                </div>
+                            </div>
+                            <form wire:submit.prevent="heading">
+                                <div class="form-group">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter image" wire:model.defer="heading">
+                                        <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter Image redirect Link" wire:model.defer="heading">
+                                        <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
