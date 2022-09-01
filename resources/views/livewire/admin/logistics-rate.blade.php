@@ -110,15 +110,16 @@
                 <div class="card">
                     <div class="card-body" style="overflow-y: auto;">
                         <h4 class="card-title">Logistics Rate</h4>
+                        <h5>Expected Delivery Date : {{ $data['expected_delivery_date'] }} </h5>
                         <div class="row">
                             @foreach($data['data'] as $logisticsRate)
                             <div class="col-md-4 stretch-card grid-margin">
                                 <div class="card bg-gradient-danger card-img-holder text-white">
                                     <div class="card-body">
-                                        <h4 class="font-weight-normal mb-3">Weekly Sales <i class="mdi mdi-chart-line mdi-24px float-right"></i>
-                                        </h4>
-                                        <h2 class="mb-5">$ 15,0000</h2>
-                                        <h6 class="card-text">Increased by 60%</h6>
+{{--                                        <h4 class="font-weight-normal mb-3">Weekly Sales <i class="mdi mdi-chart-line mdi-24px float-right"></i>--}}
+                                        <h4 class="font-weight-normal mb-3">{{ $logisticsRate['logistic_name'] }}</h4>
+                                        <h2 class="mb-5">₹ {{ $logisticsRate['rate'] }}</h2>
+                                        <h6 class="card-text">COD: {{ $logisticsRate['cod'] == 'Y' ? 'Y' : 'N' }}</h6>
                                     </div>
                                 </div>
                             </div>
