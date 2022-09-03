@@ -9,6 +9,6 @@ class HomeBannerImage extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "home_banner_image_table";
+    protected $table = "home_banner_image";
     protected $fillable = ['image_link', 'redirect_link'];
 }

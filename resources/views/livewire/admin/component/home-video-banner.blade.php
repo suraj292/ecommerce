@@ -147,25 +147,31 @@
                             <div class="media">
                                 <i class="mdi mdi-earth icon-md text-info d-flex align-self-start mr-3"></i>
                                 <div class="media-body">
-                                    <p class="card-text">{{ $data->heading }}</p>
+                                    <img src="{{ $banner[0]->image_link }}" width="250px">
+                                    <br>
+                                    <p>Redirect: <a href="{{ $banner[0]->redirect_link }}">{{ $banner[0]->redirect_link }}</a></p>
                                 </div>
                             </div>
-                            <form wire:submit.prevent="heading">
+                            <form wire:submit.prevent="left_image_link">
                                 <div class="form-group">
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" placeholder="Enter image" wire:model.defer="heading">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter image" wire:model.lazy="leftImageLink">
                                         <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
-                                    </span>
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                        </span>
                                     </div>
+                                    @error('leftImageLink')<p class="text-danger mt-1">{{ $message }}</p>@enderror
                                 </div>
+                            </form>
+                            <form wire:submit.prevent="left_image_redirect_link">
                                 <div class="form-group">
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" placeholder="Enter Image redirect Link" wire:model.defer="heading">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter Image redirect Link" wire:model.defer="leftImageRedirectLink">
                                         <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
-                                    </span>
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                        </span>
                                     </div>
+                                    @error('leftImageRedirectLink')<p class="text-danger mt-1">{{ $message }}</p>@enderror
                                 </div>
                             </form>
                         </div>
@@ -174,25 +180,31 @@
                             <div class="media">
                                 <i class="mdi mdi-earth icon-md text-info d-flex align-self-start mr-3"></i>
                                 <div class="media-body">
-                                    <p class="card-text">{{ $data->heading }}</p>
+                                    <img src="{{ $banner[1]->image_link }}" width="250px">
+                                    <br>
+                                    <p>Redirect: <a href="{{ $banner[1]->redirect_link }}">{{ $banner[1]->redirect_link }}</a></p>
                                 </div>
                             </div>
-                            <form wire:submit.prevent="heading">
+                            <form wire:submit.prevent="right_image_link">
                                 <div class="form-group">
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" placeholder="Enter image" wire:model.defer="heading">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter image" wire:model.defer="rightImageLink">
                                         <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
-                                    </span>
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                        </span>
                                     </div>
+                                    @error('rightImageLink')<p class="text-danger mt-1">{{ $message }}</p>@enderror
                                 </div>
+                            </form>
+                            <form wire:submit.prevent="right_image_redirect_link">
                                 <div class="form-group">
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" placeholder="Enter Image redirect Link" wire:model.defer="heading">
+                                        <input type="text" class="form-control file-upload-info" placeholder="Enter Image redirect Link" wire:model.defer="rightImageRedirectLink">
                                         <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
-                                    </span>
+                                            <button class="file-upload-browse btn btn-gradient-primary" type="submit">Update</button>
+                                        </span>
                                     </div>
+                                    @error('rightImageRedirectLink')<p class="text-danger mt-1">{{ $message }}</p>@enderror
                                 </div>
                             </form>
                         </div>
