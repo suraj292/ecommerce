@@ -111,7 +111,7 @@ class Orders extends Component
         // Get user cart for product detail
 //        dd($this->items);
         // entering data to logistics
-        /*
+
         $orderData = json_encode([
             "data" => [
             "shipments" => [
@@ -173,7 +173,7 @@ class Orders extends Component
         ]
 
         ]);
-        */
+
         $newOrder = new Client();
         $order = $newOrder->post('https://pre-alpha.ithinklogistics.com/api_v3/order/add.json', ['body'=>$orderData]);
 
