@@ -6,13 +6,14 @@ use App\Models\select_product_color;
 use App\Models\user_address;
 use App\Models\user_cart;
 use App\Models\user_order;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Livewire\Component;
 
 class BuyNowConfirmPayment extends Component
 {
-    public $cart, $total, $coupon, $selectedAddress, $user, $productColor, $getColor, $payment='prepaid';
+    public $cart, $total, $coupon, $selectedAddress, $user, $productColor, $getColor, $payment='prepaid', $cod;
 
     protected $listeners = ['payment_mathod'];
 
@@ -32,8 +33,6 @@ class BuyNowConfirmPayment extends Component
         $colorId = $buyNowItem['select_product_color_id'];
         $this->getColor = select_product_color::select('color_image')->find($colorId);
 
-//        dd($buyNowItem);
-
         $this->user = Auth::user();
         $coupon = Cookie::get('coupon');
         if ($coupon){
@@ -43,14 +42,45 @@ class BuyNowConfirmPayment extends Component
         $addId = json_decode(Cookie::get('selectedAddress'));
 
         if (is_null($addId)){
-            $addressId = user_address::select('id')->where('user_id', Auth::id())->where('default', true)->first();
-            if (is_null($addressId)){
+            $address = user_address::select('id', 'pincode')->where('user_id', Auth::id())->where('default', true)->first();
+            if (is_null($address)){
                 return redirect('checkout')->with('empty_address', 'Please select address.');
             }else {
-                $addressId = $addressId->id;
+                $addressId = $address->id;
             }
-        }else{
+        }else {
             $addressId = $addId;
+            $address = user_address::select('id', 'pincode')->where('user_id', Auth::id())->find($addressId);
+        }
+
+        $data = json_encode([
+            "data"=>[
+                "pincode" => $address->pincode,
+                "access_token" => "ad22463c66a3718e3a2fc3d9f83ff108",
+                "secret_key" => "dd993a668718a340e67cd16b247ee53a"
+            ]
+        ]);
+        $client = new Client();
+        $res = $client->request('POST','https://my.ithinklogistics.com/api_v3/pincode/check.json', ['body'=>$data]);
+        $response = json_decode($res->getBody()->getContents(), true);
+//        $cod = reset($response['data'][strval($this->newAddress['pincode'])])['cod'];
+        $cod = array_values($response['data'][(string)$address->pincode]);
+        if ($response['status_code'] == 200){
+//            dd(array_slice($cod, 5)); // this is for skip first 5 object from Array
+            foreach (array_slice($cod, 5) as $x){
+                if( $x['cod'] == 'Y' ){
+                    $y = true;
+                    break;
+                }else{
+                    $y = false;
+                }
+            }
+            if ( $y ) {
+                $this->cod = true;
+
+            }else{
+                $this->cod = null;
+            }
         }
 
         if (request('razorpay_payment_id')){
@@ -91,7 +121,6 @@ class BuyNowConfirmPayment extends Component
             $newCart->delete();
 
             $this->redirect(route('order-success'));
-
         }
 
     }

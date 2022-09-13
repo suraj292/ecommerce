@@ -84,7 +84,9 @@
                                 <div class="col-6">
                                     <input type="text" style="border: none; border-bottom: #d9d9d9c7 1px solid; font-size: 15px;" placeholder="Pincode" wire:model.defer="newAddress.pincode">
                                     @error('newAddress.pincode')<p class="text-danger mt-1">{{ $message }}</p>@enderror
-                                    @if(session()->has('pin_code_not_available'))<p class="text-danger mt-1">{{ session('pin_code_not_available') }}</p>@endif
+                                    @if(session()->has('pin_code_not_available'))
+                                        <p class="text-danger mt-1">{{ session('pin_code_not_available') }}</p>
+                                    @endif
                                 </div>
 
                                 <div class="col-6">

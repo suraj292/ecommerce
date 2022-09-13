@@ -74,43 +74,27 @@ class CheckoutAddress extends Component
         $res = $client->request('POST','https://my.ithinklogistics.com/api_v3/pincode/check.json', ['body'=>$data]);
         $response = json_decode($res->getBody()->getContents(), true);
 //        $cod = reset($response['data'][strval($this->newAddress['pincode'])])['cod'];
-        $cod = array_values($response['data'][(string)$this->newAddress['pincode']]);
+//        $cod = array_values($response['data'][(string)$this->newAddress['pincode']]);
         if ($response['status_code'] == 200){
-//            dd(array_slice($cod, 5)); // this is for skip first 5 object from Array
-            foreach (array_slice($cod, 5) as $x){
-                if( $x['cod'] == 'Y' ){
-                    $y = true;
-                    break;
-                }else{
-                    $y = false;
-                }
-            }
-            if ( $y ) {
-                $newAddress = new user_address([
-                    'user_id'=>Auth::id(),
-                    'name'=>$this->newAddress['name'],
-                    'phone'=>$this->newAddress['mobile_number'],
-                    'pincode'=>$this->newAddress['pincode'],
-                    'locality'=>$this->newAddress['locality'],
-                    'address'=>$this->newAddress['address'],
-                    'city'=>$this->newAddress['city'],
-                    'state'=>$this->newAddress['state'],
-                    'landmark'=>$this->newAddress['landmark'] ?? null,
-                    'alternate_phone'=>$this->newAddress['altrPhone'] ?? null,
-                    'default'=>$address->isEmpty(),
-                ]);
-                $newAddress->save();
-                $this->newAddress = null;
-                $this->address = user_address::where('user_id', Auth::id())->orderBy('default', 'DESC')->get();
-
-            }else{
-                session()->flash('pin_code_not_available', 'Please use other Pincode');
-            }
+            $newAddress = new user_address([
+                'user_id'=>Auth::id(),
+                'name'=>$this->newAddress['name'],
+                'phone'=>$this->newAddress['mobile_number'],
+                'pincode'=>$this->newAddress['pincode'],
+                'locality'=>$this->newAddress['locality'],
+                'address'=>$this->newAddress['address'],
+                'city'=>$this->newAddress['city'],
+                'state'=>$this->newAddress['state'],
+                'landmark'=>$this->newAddress['landmark'] ?? null,
+                'alternate_phone'=>$this->newAddress['altrPhone'] ?? null,
+                'default'=>$address->isEmpty(),
+            ]);
+            $newAddress->save();
+            $this->newAddress = null;
+            $this->address = user_address::where('user_id', Auth::id())->orderBy('default', 'DESC')->get();
         }else{
-            session()->flash('pin_code_not_available', 'Please use other Pincode');
+            session()->flash('pin_code_not_available', 'Please enter valid Pincode');
         }
-
-
     }
     public function addressSelected($id){
          Cookie::queue('selectedAddress', $id, 60);

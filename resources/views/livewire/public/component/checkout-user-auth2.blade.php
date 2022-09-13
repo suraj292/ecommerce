@@ -42,6 +42,11 @@
                                 <input type="text" style="border: none; border-bottom: #d9d9d9c7 1px solid; font-size: 15px;" placeholder="Enter OTP" wire:model.lazy="otp">
                                 @if(session()->has('incorrect_otp'))<p style="color: red; margin-top: 8px;">{{ session('incorrect_otp') }}</p>@endif
                                 <button type="submit" class="btn btn-solid me-3 mt-2">submit</button>
+{{--                                <div class="cart_counter">--}}
+                                    <div class="countdownholder mt-2" wire:ignore>
+                                        OTP will be expired in <span id="timer" style="color: red;"></span> minutes!
+                                    </div>
+{{--                                </div>--}}
                             </form>
                         @else
                             <form wire:submit.prevent="sendOTP">
@@ -66,4 +71,48 @@
             window.location.reload();
         })
     </script>
+    <script>
+
+        let sec = 5 * 60;
+            countDown = setInterval(function () {
+                'use strict';
+
+                secpass();
+            }, 1000);
+
+        function secpass() {
+            'use strict';
+
+            let min = Math.floor(sec / 60),
+                remSec = sec % 60;
+
+            if (remSec < 10) {
+
+                remSec = '0' + remSec;
+
+            }
+            if (min < 10) {
+
+                min = '0' + min;
+
+            }
+            document.getElementById("timer").innerHTML = min + ":" + remSec;
+
+            if (sec > 0) {
+
+                sec = sec - 1;
+
+            } else {
+
+                clearInterval(countDown);
+
+                // countDiv.innerHTML = 'countdown done';
+                window.location.href = "/buy"
+            }
+        }
+
+    </script>
 </div>
+@section('script')
+
+@endsection
