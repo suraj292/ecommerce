@@ -108,5 +108,5 @@ Route::get('test', function (){
     $response = curl_exec($ch);
     curl_close($ch);
     // Process your response here
-            dd($response);
+    dd($response);
 });

@@ -111,7 +111,24 @@ class Orders extends Component
         // Get user cart for product detail
 //        dd($this->items);
         // entering data to logistics
-
+        $data = [
+            ['id'=>1,'name'=>'suraj'],
+            ['id'=>2,'name'=>'naman'],
+        ];
+        foreach ($this->items as $cart){
+            $item = [
+                "product_name" => $cart['title'],
+                "product_sku" => null,
+                "product_quantity" => $cart['quantity'],
+                "product_price" => $cart['offer_price'] != null && $cart['offer_price'] > 0 ? $cart['offer_price'] : $cart['price'],
+                "product_tax_rate" => "0",
+                "product_hsn_code" => null,
+                "product_discount" => "0"
+                ];
+            $product[] = $item;
+        };
+        $codData = Cookie::get('codTotal');
+//        dd($product);
         $orderData = json_encode([
             "data" => [
             "shipments" => [
@@ -134,17 +151,7 @@ class Orders extends Component
                     "alt_phone" => $this->DlAddress->alternate_phone,
                     "email" => $this->getOrders->email,
                     "is_billing_same_as_shipping" => "yes",
-                    "products" => [
-                        [
-                            "product_name" => "HOUSE OF BHAVANA DELIVERY",
-                            "product_sku" => null,
-                            "product_quantity" => "1",
-                            "product_price" => $this->getOrders->total_payable_cost, // product amount 1
-                            "product_tax_rate" => "0",
-                            "product_hsn_code" => null,
-                            "product_discount" => "0"
-                        ],
-                    ],
+                    "products" => $product,
                     "shipment_length" => $this->selectLogistics['length'],
                     "shipment_width" => $this->selectLogistics['width'],
                     "shipment_height" => $this->selectLogistics['height'],
@@ -156,7 +163,8 @@ class Orders extends Component
                     "first_attemp_discount" => "0",
                     "cod_charges" => "0",
                     "advance_amount" => $this->getOrders->razorpay_id ? $this->getOrders->total_payable_cost:"0",
-                    "cod_amount" => $this->getOrders->razorpay_id ? "0":$this->getOrders->total_payable_cost, //total amount cod
+                    //$codData != null ? (int)$codData+$data['total']: $data['total'],
+                    "cod_amount" => $codData != null ? (int)$codData+$this->getOrders->total_payable_cost: null,//$this->getOrders->razorpay_id ? "0":$this->getOrders->total_payable_cost, //total amount cod
                     "payment_mode" => $this->getOrders->razorpay_id ? 'prepaid':'cod',
                     "reseller_name" => "",
                     "eway_bill_number" => "",
@@ -167,7 +175,7 @@ class Orders extends Component
             "pickup_address_id" => "1293",
             "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
             "secret_key" => "2b54c373427be180d1899400eeb21aab",
-            "logistics" => $this->logistic,
+            "logistics" => 'delhivery', //$this->logistic,
             "s_type" => "",
             "order_type" => ""
         ]
@@ -179,6 +187,7 @@ class Orders extends Component
 
         // response of logistics
         $result = json_decode($order->getBody()->getContents(), true);
+//        dd($result);
         // if logistics success
         if ($result['data'][1]['status'] != 'error') {
             $user_order = user_order::find($this->orderId);

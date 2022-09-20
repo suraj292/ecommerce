@@ -100,7 +100,7 @@ class ConfirmPayment extends Component
             $addressId = $addId;
         }
         $lastOrder = user_order::select('id')
-            ->where('user_id', Auth::id())
+//            ->where('user_id', Auth::id())
             ->latest('id')
             ->first();
         $codData = Cookie::get('codTotal');

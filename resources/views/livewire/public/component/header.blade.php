@@ -22,7 +22,7 @@
                                 <ul>
                                     <li class="onhover-div mobile-search">
                                         <div>
-                                            <img src="/assets/images/icon/search.png" onclick="openSearch()"
+                                            <img src="{{ asset('assets/images/icon/search.png') }}" onclick="openSearch()"
                                                   class="img-fluid blur-up lazyload" alt="">
                                             <i class="ti-search" onclick="openSearch()"></i>
                                         </div>
@@ -52,7 +52,7 @@
                                     </li>
                                     <li class="onhover-div mobile-setting">
                                         <div>
-                                            <img src="/assets/images/icon/setting.png"
+                                            <img src="{{ asset('assets/images/icon/setting.png') }}"
                                                  class="img-fluid lazyload" alt="">
                                             <i class="ti-settings"></i>
                                         </div>
@@ -85,7 +85,7 @@
                                     </li>
                                     <li class="onhover-div mobile-cart">
                                         <div>
-                                            <img src="assets/images/icon/cart.png"
+                                            <img src="{{ asset('assets/images/icon/cart.png') }}"
                                                  class="img-fluid blur-up lazyload" alt=""><i
                                                 class="ti-shopping-cart"></i>
                                         </div>
