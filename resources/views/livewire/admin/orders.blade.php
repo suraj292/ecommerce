@@ -111,6 +111,11 @@
         </div>
         @endif
 
+        @if(session()->has('order_confirmed'))
+        <div class="alert alert-success p-2">
+            {{ session('order_confirmed') }}
+        </div>
+        @endif
         @if($getOrders)
         <div class="row">
             {{--    CATEGORY    --}}
@@ -243,6 +248,10 @@
                             @if(!$getOrders->i_think_logistics_id)
                             <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" {{--wire:click="confirmOrder({{ $getOrders->id }})"--}}
                                 wire:click="showLogistics">Confirm Order</button>
+                            @else
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="track">Track</button>
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="shipmentLabel">Shipment Label</button>
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="manifest">Manifest</button>
                             @endif
 
                             <!-- Modal -->

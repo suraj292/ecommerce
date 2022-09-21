@@ -30,16 +30,16 @@
     <section class="container" id="home-img-animation">
         <div class="panels">
             <div class="panels__container">
-                <a href="#" class="panel">
+                <a href="{{ $image[0]->redirect_link }}" class="panel">
                     <div class="panel__content panel__title">
-                        <img src="https://images.unsplash.com/photo-1621252346441-c42a54aa8707?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80">
+                        <img src="https://drive.google.com/uc?export=view&id={{ $image[0]->image_link }}">
                         {{--                    <h3 class="panel__title">EXPLORE</h3>--}}
                         {{--                    <div style="height: 100%; "></div>--}}
                     </div>
                 </a>
-                <a href="#" class="panel">
+                <a href="{{ $image[1]->redirect_link }}" class="panel">
                     <div class="panel__content panel__title">
-                        <img src="https://images.unsplash.com/photo-1523779105320-d1cd346ff52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80">
+                        <img src="{{ $image[1]->image_link }}">
                         {{--                    <h3 class="panel__title">DISCOVER</h3>--}}
                         {{--                    <div style="height: 100%; "></div>--}}
                     </div>

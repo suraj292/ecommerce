@@ -111,10 +111,6 @@ class Orders extends Component
         // Get user cart for product detail
 //        dd($this->items);
         // entering data to logistics
-        $data = [
-            ['id'=>1,'name'=>'suraj'],
-            ['id'=>2,'name'=>'naman'],
-        ];
         foreach ($this->items as $cart){
             $item = [
                 "product_name" => $cart['title'],
@@ -127,14 +123,14 @@ class Orders extends Component
                 ];
             $product[] = $item;
         };
-        $codData = Cookie::get('codTotal');
 //        dd($product);
         $orderData = json_encode([
             "data" => [
             "shipments" => [
                 [
                     "waybill" => "",
-                    "order" => $this->getOrders->order_number,
+//                    "order" => $this->getOrders->order_number,
+                    "order" => rand(20, 99999),
                     "sub_order" => "A",
                     "order_date" => now()->format('d-m-Y'),
                     "total_amount" => $this->getOrders->total_payable_cost,
@@ -164,7 +160,7 @@ class Orders extends Component
                     "cod_charges" => "0",
                     "advance_amount" => $this->getOrders->razorpay_id ? $this->getOrders->total_payable_cost:"0",
                     //$codData != null ? (int)$codData+$data['total']: $data['total'],
-                    "cod_amount" => $codData != null ? (int)$codData+$this->getOrders->total_payable_cost: null,//$this->getOrders->razorpay_id ? "0":$this->getOrders->total_payable_cost, //total amount cod
+                    "cod_amount" => $this->getOrders->razorpay_id ? "0":$this->getOrders->total_payable_cost, //total amount cod
                     "payment_mode" => $this->getOrders->razorpay_id ? 'prepaid':'cod',
                     "reseller_name" => "",
                     "eway_bill_number" => "",
@@ -188,10 +184,11 @@ class Orders extends Component
         // response of logistics
         $result = json_decode($order->getBody()->getContents(), true);
 //        dd($result);
+//        /*
         // if logistics success
         if ($result['data'][1]['status'] != 'error') {
             $user_order = user_order::find($this->orderId);
-            $user_order->update(['delivery_status' => 2]);
+            $user_order->update(['i_think_logistics_id' => $result['data'][1]['waybill'],'delivery_status' => 2]);
             $this->getOrders = null;
             $this->logisticsDiv = false;
             $this->selectLogistics = null;
@@ -200,12 +197,11 @@ class Orders extends Component
                 ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id', 'user_order.dispatch'])
                 ->where('user_order.id', '!=', 1)
                 ->get();
+            Session::flash('order_confirmed', 'Order has been confirmed.');
         }else{
-            dd('logistics error please contact your developer or Logistics. Error: '.$result['data'][1]['remark']);
+            dd('logistics error please contact your developer or Logistics. Error: ('.$result['data'][1]['remark'].')');
         }
-//        dd($result['data'][1]['waybill']);
-//        dd(json_decode($orderData, true));
-//        dd($result['data'][1]['remark']);
+//        */
     }
 
 }

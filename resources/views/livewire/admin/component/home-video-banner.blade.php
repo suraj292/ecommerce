@@ -147,7 +147,7 @@
                             <div class="media">
                                 <i class="mdi mdi-earth icon-md text-info d-flex align-self-start mr-3"></i>
                                 <div class="media-body">
-                                    <img src="{{ $banner[0]->image_link }}" width="250px">
+                                    <img src="https://drive.google.com/uc?export=view&id={{ $banner[0]->image_link }}" width="250px">
                                     <br>
                                     <p>Redirect: <a href="{{ $banner[0]->redirect_link }}">{{ $banner[0]->redirect_link }}</a></p>
                                 </div>

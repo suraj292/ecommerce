@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Public;
 
 use App\Models\home_video_banner;
+use App\Models\HomeBannerImage;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 use Livewire\Component;
 
 class Home extends Component
 {
-    public $slides, $banners;
+    public $banners, $image;
     public function render()
     {
         return view('livewire.public.home');
@@ -23,6 +24,7 @@ class Home extends Component
 //            $this->slides = slider::all();
 //            Cache::put('slides', $this->slides, 2 * 60);
             $this->banners = home_video_banner::find(1);
+            $this->image = HomeBannerImage::find([1, 2]);
 //            Cache::put('banners', $this->banners, 2 * 60);
 //        }
     }

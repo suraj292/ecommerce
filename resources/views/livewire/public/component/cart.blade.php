@@ -31,8 +31,7 @@
                 <div class="col-sm-12">
                     <div class="cart_counter">
                         <div class="countdownholder">
-                            Your cart will be expired in<span id="timer"></span> minutes!
-{{--                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, incidunt?--}}
+                            Your cart will be expired in <span id="timer"></span> minutes!
                         </div>
                         <a href="{{ route('checkout') }}" class="cart_checkout btn btn-solid btn-xs">check out</a>
                     </div>
