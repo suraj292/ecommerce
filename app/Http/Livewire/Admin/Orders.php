@@ -9,6 +9,7 @@ use App\Models\user_cart;
 use App\Models\user_order;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -174,7 +175,7 @@ class Orders extends Component
             "logistics" => 'delhivery', //$this->logistic,
             "s_type" => "",
             "order_type" => ""
-        ]
+            ]
 
         ]);
 
@@ -202,6 +203,58 @@ class Orders extends Component
             dd('logistics error please contact your developer or Logistics. Error: ('.$result['data'][1]['remark'].')');
         }
 //        */
+    }
+
+    public function track($logisticsId)
+    {
+        dd($logisticsId);
+    }
+
+    public function shipmentLabel($logisticsId)
+    {
+        $data = json_encode([
+            "data" => [
+             "awb_numbers" => $logisticsId,
+             "page_size" => "A4",
+             "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
+             "secret_key" => "2b54c373427be180d1899400eeb21aab",
+             "display_cod_prepaid" => "",
+             "display_shipper_mobile" => "",
+             "display_shipper_address" => ""
+            ]
+        ]);
+        $client = new Client();
+        $response = $client->post('https://pre-alpha.ithinklogistics.com/api_v3/shipping/label.json', ['body'=>$data]);
+
+        // response of logistics
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        if ($result['status'] == 'success'){
+            Redirect::to($result['file_name']);
+        }else{
+            dd('Contact to your Developer or Logistics. error: '.$result['message']);
+        }
+    }
+    public function manifest($logisticsId)
+    {
+        $data = json_encode([
+            "data" => [
+                 "awb_numbers" => $logisticsId,
+                 "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
+                 "secret_key" => "2b54c373427be180d1899400eeb21aab"
+                 ]
+        ]);
+        $client = new Client();
+        $response = $client->post('https://pre-alpha.ithinklogistics.com/api_v3/shipping/manifest.json', ['body'=>$data]);
+
+        // response of logistics
+        $result = json_decode($response->getBody()->getContents(), true);
+//        dd($result);
+        if ($result['status'] == 'success'){
+            Redirect::to($result['file_name']);
+        }else{
+            dd('Contact to your Developer or Logistics. error: '.$result['message']);
+        }
     }
 
 }

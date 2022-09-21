@@ -245,13 +245,13 @@
                         @endforeach
                         <div class="form-group col-12" style="margin-bottom: -10px !important;">
 {{--                            <button type="button" class="btn btn-success btn-fw float-right" wire:click="ship({{ $getOrders->id }})">SHIP</button>--}}
-                            @if(!$getOrders->i_think_logistics_id)
-                            <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" {{--wire:click="confirmOrder({{ $getOrders->id }})"--}}
-                                wire:click="showLogistics">Confirm Order</button>
+                            @if($getOrders->i_think_logistics_id)
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="track({{ $getOrders->i_think_logistics_id }})">Track</button>
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="shipmentLabel({{ $getOrders->i_think_logistics_id }})">Shipment Label</button>
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="manifest({{ $getOrders->i_think_logistics_id }})">Manifest</button>
                             @else
-                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="track">Track</button>
-                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="shipmentLabel">Shipment Label</button>
-                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="manifest">Manifest</button>
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" {{--wire:click="confirmOrder({{ $getOrders->id }})"--}}
+                                wire:click="showLogistics">Confirm Order</button>
                             @endif
 
                             <!-- Modal -->
