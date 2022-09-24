@@ -257,4 +257,35 @@ class Orders extends Component
         }
     }
 
+    public function orderCancel($logisticsId)
+    {
+        $data = json_encode([
+            "data" => [
+                "awb_numbers" => $logisticsId,
+                "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
+                "secret_key" => "2b54c373427be180d1899400eeb21aab"
+            ]
+        ]);
+        $client = new Client();
+        $response = $client->post('https://pre-alpha.ithinklogistics.com/api_v3/order/cancel.json', ['body'=>$data]);
+
+        // response of logistics
+        $result = json_decode($response->getBody()->getContents(), true);
+        if ($result['status'] == 'success') {
+            $user_order = user_order::find($this->orderId);
+            $user_order->update(['delivery_status' => 4]);
+            $this->getOrders = null;
+            $this->logisticsDiv = false;
+            $this->selectLogistics = null;
+            $this->logisticsRate = null;
+            $this->orders = User::join('user_order', 'user_order.user_id', 'Users.id')
+                ->select(['name', 'order_number', 'total_payable_cost', 'razorpay_id', 'delivery_status', 'user_order.created_at', 'user_order.id', 'user_order.dispatch'])
+                ->where('user_order.id', '!=', 1)
+                ->get();
+            Session::flash('order_cancelled', 'Your Order has been successfully canceled.');
+        }else{
+            dd('Contact to your Developer or Logistics. error: '.$result['html_message']);
+        }
+    }
+
 }

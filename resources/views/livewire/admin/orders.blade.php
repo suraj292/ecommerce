@@ -246,7 +246,10 @@
                         <div class="form-group col-12" style="margin-bottom: -10px !important;">
 {{--                            <button type="button" class="btn btn-success btn-fw float-right" wire:click="ship({{ $getOrders->id }})">SHIP</button>--}}
                             @if($getOrders->i_think_logistics_id)
-                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="track({{ $getOrders->i_think_logistics_id }})">Track</button>
+                                @if($getOrders->delivery_status != 4)
+                                <button type="button" class="btn btn-danger btn-fw float-right mr-2 courierModel" wire:click="orderCancel({{ $getOrders->i_think_logistics_id }})">Cancel</button>
+                                @endif
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel disabled" {{-- wire:click="track({{ $getOrders->i_think_logistics_id }})" --}}>Track</button>
                                 <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="shipmentLabel({{ $getOrders->i_think_logistics_id }})">Shipment Label</button>
                                 <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="manifest({{ $getOrders->i_think_logistics_id }})">Manifest</button>
                             @else
