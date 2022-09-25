@@ -134,7 +134,7 @@ class Orders extends Component
                     "order" => rand(20, 99999),
                     "sub_order" => "A",
                     "order_date" => now()->format('d-m-Y'),
-                    "total_amount" => $this->getOrders->total_payable_cost,
+                    "total_amount" => $this->getOrders->cod_charge ? $this->getOrders->total_payable_cost - $this->getOrders->cod_charge : $this->getOrders->total_payable_cost,
                     "name" => $this->DlAddress->name,
                     "company_name" => "",
                     "add" => $this->DlAddress->address,
@@ -178,7 +178,8 @@ class Orders extends Component
             ]
 
         ]);
-
+//        dd(json_decode($orderData, true));
+//        /*
         $newOrder = new Client();
         $order = $newOrder->post('https://pre-alpha.ithinklogistics.com/api_v3/order/add.json', ['body'=>$orderData]);
 

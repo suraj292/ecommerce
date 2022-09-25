@@ -216,7 +216,7 @@
 
     <tr>
         <td class="section-t">
-            <a clicktracking="off" href="{{ route('home').'/'.'verification'.'/'.$userId.'/'.$link }}" class="button-solid">Verify Email</a>
+            <a clicktracking="off" href="{{ route('home').'/'.'verification'.'?id='.$userId.'&verification='.$link }}" class="button-solid">Verify Email</a>
         </td>
     </tr>
 

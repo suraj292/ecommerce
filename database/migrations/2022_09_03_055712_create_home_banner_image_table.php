@@ -20,11 +20,11 @@ return new class extends Migration
         });
         \Illuminate\Support\Facades\DB::table('home_banner_image')->insert([
             [
-                'image_link' => 'https://images.unsplash.com/photo-1621252346441-c42a54aa8707?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+                'image_link' => '1WEX1N1hN1xd_XZjifn8Sh1gFcHQqgHRS',
                 'redirect_link' => '#',
             ],
             [
-                'image_link' => 'https://images.unsplash.com/photo-1523779105320-d1cd346ff52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80',
+                'image_link' => '1dW1CjhoyhrFFrRAfVCE5N3szF4NB6nSd',
                 'redirect_link' => '#',
             ]
         ]);

@@ -51,6 +51,13 @@
                                     {{ session('already_verified') }}
                                 </p>
                             @endif
+                            @if(session()->has('varification_failed'))
+                                <p class="alert-danger h5 p-2 rounded">
+                                    <i class="fa fa-times-circle" style="font-size: 25px;"></i>
+                                    &nbsp;
+                                    {{ session('varification_failed') }}
+                                </p>
+                            @endif
                         </div>
                     </section>
                 </div>

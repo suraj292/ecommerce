@@ -14,9 +14,11 @@
                             <div class="banner-left">
                                 <h1> {{ $banners->heading }} </h1>
                                 <p> {{ $banners->para }} </p>
-                                <a {{ $banners->link }} class="btn btn-outline me-3" style="background: #0000004d; color: whitesmoke;">{{ $banners->button_name }}</a>
+                                <a href="{{ $banners->button_link }}" class="btn btn-outline me-3" style="background: #0000004d; color: whitesmoke; z-index: 1">
+                                    {{ $banners->button_name }}
+                                </a>
                             </div>
-                            <a href="{{ $banners->link }}">{{ $banners->button_name }}</a>
+{{--                            <a href="{{ $banners->button_link }}">{{ $banners->button_name }}{{ $banners->link }}</a>--}}
                         </div>
 
                     </div>
@@ -39,7 +41,7 @@
                 </a>
                 <a href="{{ $image[1]->redirect_link }}" class="panel">
                     <div class="panel__content panel__title">
-                        <img src="{{ $image[1]->image_link }}">
+                        <img src="https://drive.google.com/uc?export=view&id={{ $image[1]->image_link }}">
                         {{--                    <h3 class="panel__title">DISCOVER</h3>--}}
                         {{--                    <div style="height: 100%; "></div>--}}
                     </div>
