@@ -69,7 +69,7 @@ class Products extends Component
             'addProduct.care_instruction'=>'required',
             'addProduct.specification'=>'required',
             'addProduct.price'=>'required|integer',
-            'addProduct.offer_price'=>'integer',
+            'addProduct.offer_price'=>'nullable|integer',
         ]);
         $specification = implode(',', $this->addProduct['specification']);
         $product_details = new product_details([
