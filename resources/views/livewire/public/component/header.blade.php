@@ -178,6 +178,11 @@
                                                                              aria-hidden="true"></i></div>
                                 </li>
 {{--                                <li><a href="#">Home</a></li>--}}
+                                <style>
+                                    #hover-cls{
+                                        font-size: 17px;
+                                    }
+                                </style>
                                 <li class="mega" id="hover-cls" wire:ignore>
                                     <a href="#">SHOP</a>
                                     <ul class="mega-menu full-mega-menu" style="z-index: 2">

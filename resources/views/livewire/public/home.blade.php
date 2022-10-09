@@ -14,7 +14,24 @@
                             <div class="banner-left">
                                 <h1> {{ $banners->heading }} </h1>
                                 <p> {{ $banners->para }} </p>
-                                <a href="{{ $banners->button_link }}" class="btn btn-outline me-3" style="background: #0000004d; color: whitesmoke; z-index: 1">
+{{--                                <a href="{{ $banners->button_link }}" class="btn btn-outline me-3" style="background: #0000004d; color: whitesmoke; z-index: 1">--}}
+{{--                                    {{ $banners->button_name }}--}}
+{{--                                </a>--}}
+                                <style>
+                                    .xyz{
+                                        background: gray;
+                                        padding: 10px;
+                                        color: black;
+                                        border-radius: 4px;
+                                        font-size: larger;
+                                        cursor: pointer;
+                                    }
+                                    .xyz:hover{
+                                        background: #a1a0a0;
+                                        color: black;
+                                    }
+                                </style>
+                                <a class="xyz" style="">
                                     {{ $banners->button_name }}
                                 </a>
                             </div>

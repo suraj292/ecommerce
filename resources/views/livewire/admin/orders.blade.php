@@ -249,9 +249,177 @@
                                 @if($getOrders->delivery_status != 4)
                                 <button type="button" class="btn btn-danger btn-fw float-right mr-2 courierModel" wire:click="orderCancel({{ $getOrders->i_think_logistics_id }})">Cancel</button>
                                 @endif
-                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel disabled" {{-- wire:click="track({{ $getOrders->i_think_logistics_id }})" --}}>Track</button>
+{{--                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" data-toggle="modal" data-target="#exampleModalCenter">Track</button>--}}
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" id="track">Track</button>
                                 <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="shipmentLabel({{ $getOrders->i_think_logistics_id }})">Shipment Label</button>
                                 <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="manifest({{ $getOrders->i_think_logistics_id }})">Manifest</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" wire:ignore>
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <style>
+                                                        .card > div {
+                                                            padding: 0;
+                                                        }
+                                                        .acoord-body{ padding: 20px;}
+                                                    </style>
+                                                    <div class="accordion" id="accordionExample">
+{{--                                                        @if($logisticDetail)--}}
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingOne">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                        Details
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+
+                                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                                <div class="acoord-body">
+                                                                    <p>
+                                                                        AWB Number: {{ $logisticDetail['awb_no'] }}
+                                                                        <br>
+                                                                        Logistics: {{ $logisticDetail['logistic'] }}
+                                                                        <br>
+                                                                        Current Status: {{ $logisticDetail['current_status'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingTwo">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                        Last Scan details
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                                <div class="acoord-body">
+                                                                    <p>
+                                                                        Scan Location: {{ $logisticDetail['last_scan_details']['scan_location'] }}
+                                                                        <br>
+                                                                        Remark: {{ $logisticDetail['last_scan_details']['remark'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingThree">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                        Order Details
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                                                <div class="acoord-body">
+                                                                    <p>
+                                                                        Order Type: {{ $logisticDetail['order_details']['order_type'] }}
+                                                                        <br>
+                                                                        Order Number: {{ $logisticDetail['order_details']['order_number'] }}
+                                                                        <br>
+                                                                        Physical Weight: {{ $logisticDetail['order_details']['phy_weight'] }}
+                                                                        <br>
+                                                                        Net Payment: {{ $logisticDetail['order_details']['net_payment'] }}
+                                                                        <br>
+                                                                        Shipment Length: {{ $logisticDetail['order_details']['ship_length'] }}
+                                                                        <br>
+                                                                        Shipment Width: {{ $logisticDetail['order_details']['ship_width'] }}
+                                                                        <br>
+                                                                        Shipment Height: {{ $logisticDetail['order_details']['ship_height'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingFour">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                                                        Order Date Time
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                                                <div class="acoord-body">
+                                                                    <p>
+                                                                        Picked Date: {{ $logisticDetail['order_date_time']['pickup_date'] }}
+                                                                        <br>
+                                                                        Expected Delivery Date: {{ $logisticDetail['order_date_time']['expected_delivery_date'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingFive">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                                                                        Customer Details
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                                                <div class="acoord-body">
+                                                                    <p>
+                                                                        Customer Name: {{ $logisticDetail['customer_details']['customer_name'] }}
+                                                                        <br>
+                                                                        Customer Address: {{ $logisticDetail['customer_details']['customer_address1'] }}
+                                                                        <br>
+                                                                        Customer City: {{ $logisticDetail['customer_details']['customer_city'] }}
+                                                                        <br>
+                                                                        Customer State: {{ $logisticDetail['customer_details']['customer_state'] }}
+                                                                        <br>
+                                                                        Customer Pincode: {{ $logisticDetail['customer_details']['customer_pincode'] }}
+                                                                        <br>
+                                                                        Customer mobile: {{ $logisticDetail['customer_details']['customer_mobile'] }}
+                                                                        <br>
+                                                                        Customer Phone: {{ $logisticDetail['customer_details']['customer_phone'] }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingSix">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                                                                        Scan Details
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                                                                <div class="acoord-body">
+                                                                    @foreach($logisticDetail['scan_details'] as $scanDetail)
+                                                                    <p>
+                                                                        Scan Location: {{ $scanDetail['scan_location'] }}
+                                                                        <br>
+                                                                        Remark: {{ $scanDetail['remark'] }}
+                                                                        <br>
+                                                                        Date-Time: {{ $scanDetail['scan_date_time'] }}
+                                                                    </p>
+                                                                    <hr>
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </div>
+{{--                                                        @endif--}}
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    $('#track').on('click', function () {
+                                                        {{--window.livewire.emit('track', {{ $getOrders->i_think_logistics_id }});--}}
+                                                        $('#exampleModalCenter').modal('show');
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
                             @else
                                 <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" {{--wire:click="confirmOrder({{ $getOrders->id }})"--}}
                                 wire:click="showLogistics">Confirm Order</button>
@@ -422,10 +590,6 @@
                     .search(val ? '^' + $(this).val() + '$' : val, true, false)
                     .draw()
             });
-
-        });
-        $('#toggleLogistics').on('click', function () {
-            alert('hello world')
         });
     </script>
 @endsection

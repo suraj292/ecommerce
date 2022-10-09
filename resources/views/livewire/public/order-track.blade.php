@@ -30,12 +30,12 @@
                     <div class="row border-part">
                         <div class="col-xl-2 col-md-3 col-sm-4">
                             <div class="product-detail">
-                                <img src="{{asset('storage/product/small/'.$product->image)}}" class="img-fluid blur-up lazyloaded" alt="">
+                                <img src="{{asset('storage/product/small/'.$product->image)}}" class="img-fluid blur-up lazyloaded" alt="" width="200px">
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-5 col-sm-8">
+                        <div class="col-xl-9 col-lg-9 col-sm-8">
                             <div class="tracking-detail">
-                                <ul>
+                                <ul class="mx-auto">
                                     <li>
                                         <div class="left">
                                             <span>Order name</span>
@@ -74,7 +74,7 @@
                                             <span>shipping address</span>
                                         </div>
                                         <div class="right">
-                                            <span>{{ $address->address }}, <br>{{ $address->city }}, <br>{{ $address->state }}, ({{ $address->pincode }})</span>
+                                            <span>{{ $address->address }}, {{ $address->city }}, {{ $address->state }}, ({{ $address->pincode }})</span>
                                         </div>
                                     </li>
                                     @if($order->i_think_logistics_id)
@@ -98,11 +98,12 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-xl-5 col-lg-4">
-                            <div class="order-map">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55107.59629446948!2d-97.77629221286301!3d30.316123884942762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644ca7d7a2a6d0d%3A0x209a4c2782a39461!2sCentral%20Market!5e0!3m2!1sen!2sin!4v1607754725548!5m2!1sen!2sin" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                            </div>
-                        </div>
+{{--                        <div class="col-xl-5 col-lg-4">--}}
+{{--                            <div class="order-map">--}}
+{{--                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55107.59629446948!2d-97.77629221286301!3d30.316123884942762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644ca7d7a2a6d0d%3A0x209a4c2782a39461!2sCentral%20Market!5e0!3m2!1sen!2sin!4v1607754725548!5m2!1sen!2sin" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
                     </div>
 
                     <div class="wrapper">

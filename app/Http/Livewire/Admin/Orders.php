@@ -17,8 +17,9 @@ class Orders extends Component
 {
     public $orders, $getOrders, $items, $color, $DlAddress;
     public $selectLogistics = ['length'=>null, 'width', 'height', 'weight'], $logistic;
-    public $logisticsDiv, $logisticsRate, $orderId;
+    public $logisticsDiv, $logisticsRate, $orderId, $logisticDetail;
 //    protected $listeners = ['getOrders'];
+//    protected $listeners = ['track'];
     public function render()
     {
         return view('livewire.admin.orders')->layout('layouts.admin');
@@ -42,6 +43,26 @@ class Orders extends Component
         $this->DlAddress = user_address::find($this->getOrders->user_delivery_id);
         $this->items = user_cart::withTrashed()->find(explode(',', $this->getOrders->product_user_cart_ids));
         $this->orderId = $id;
+
+        // Order track pre fetch
+        if ($this->getOrders->i_think_logistics_id) {
+            $data = json_encode([
+                "data" => [
+                    "awb_numbers" => $this->getOrders->i_think_logistics_id,
+                    "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
+                    "secret_key" => "2b54c373427be180d1899400eeb21aab",
+                ]
+            ]);
+            $client = new Client();
+            $response = $client->post('https://pre-alpha.ithinklogistics.com/api_v3/order/track.json', ['body' => $data]);
+
+            // response of logistics
+            $result = json_decode($response->getBody()->getContents(), true);
+
+            if (reset($result['data'])['message'] == 'success') {
+                $this->logisticDetail = reset($result['data']);
+            }
+        }
     }
 
     // update order status
@@ -206,10 +227,28 @@ class Orders extends Component
 //        */
     }
 
-    public function track($logisticsId)
+    /*
+    public function track($payload)
     {
-        dd($logisticsId);
+//        dd($payload);
+        $data = json_encode([
+            "data" => [
+                "awb_numbers" => $payload,
+                "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
+                "secret_key" => "2b54c373427be180d1899400eeb21aab",
+            ]
+        ]);
+        $client = new Client();
+        $response = $client->post('https://pre-alpha.ithinklogistics.com/api_v3/order/track.json', ['body'=>$data]);
+
+        // response of logistics
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        if (reset($result['data'])['message'] == 'success') {
+            $this->logisticDetail =  reset($result['data']);
+        }
     }
+    */
 
     public function shipmentLabel($logisticsId)
     {
