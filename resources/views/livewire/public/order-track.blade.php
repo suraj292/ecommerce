@@ -83,7 +83,7 @@
                                             <span>carrier</span>
                                         </div>
                                         <div class="right">
-                                            <span>FedEx</span>
+                                            <span>{{ $logisticDetail['logistic'] }}</span>
                                         </div>
                                     </li>
                                     <li>
@@ -91,7 +91,7 @@
                                             <span>carrier tracking number</span>
                                         </div>
                                         <div class="right">
-                                            <span>656974541515484</span>
+                                            <span>{{ $logisticDetail['awb_no'] }}</span>
                                         </div>
                                     </li>
                                     @endif
@@ -109,8 +109,7 @@
                     <div class="wrapper">
                         <div class="arrow-steps clearfix">
                             <div class="step done"> <span> order placed</span> </div>
-                            <div class="step current"> <span>preparing to ship</span> </div>
-                            <div class="step"><span> shipped</span> </div>
+                            <div class="step current"> <span>Order Status</span> </div>
                             <div class="step"><span>delivered</span> </div>
                         </div>
                     </div>
@@ -125,30 +124,21 @@
                             </tr>
                             </thead>
                             <tbody>
+                                {{-- @foreach($logisticDetail['scan_details'] as $scanDetail)
+                                    Scan Location: {{ $scanDetail['scan_location'] }}
+                                    <br>
+                                    Remark: {{ $scanDetail['remark'] }}
+                                    <br>
+                                    Date-Time: {{ $scanDetail['scan_date_time'] }}
+                                @endforeach--}}
+                            @foreach($logisticDetail['scan_details'] as $scanDetail)
                             <tr>
-                                <td>20 Nov 2020</td>
-                                <td>12.00 AM</td>
-                                <td>shipped</td>
-                                <td>california</td>
+                                <td>{{ $scanDetail['scan_date_time'] }}</td>
+                                <td>{{ $scanDetail['status'] }}</td>
+                                <td>{{ $scanDetail['scan_location'] }}</td>
+                                <td>{{ $scanDetail['remark'] }}</td>
                             </tr>
-                            <tr>
-                                <td>20 Nov 2020</td>
-                                <td>12.00 AM</td>
-                                <td>shipping info received</td>
-                                <td>california</td>
-                            </tr>
-                            <tr>
-                                <td>20 Nov 2020</td>
-                                <td>12.00 AM</td>
-                                <td>origin scan</td>
-                                <td>california</td>
-                            </tr>
-                            <tr>
-                                <td>20 Nov 2020</td>
-                                <td>12.00 AM</td>
-                                <td>shipping info received</td>
-                                <td>california</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

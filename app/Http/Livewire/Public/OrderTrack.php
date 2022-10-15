@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class OrderTrack extends Component
 {
-    public $order, $product, $address;
+    public $order, $product, $address, $logisticDetail;
 
     public function render()
     {
@@ -33,19 +33,22 @@ class OrderTrack extends Component
             ->first();
 
         if ($this->order->i_think_logistics_id) {
-//        $response = $this->call('POST', 'messages', ['content' => 'content']);
-            $uri = 'https://pre-alpha.ithinklogistics.com/api_v3/order/track.json';
-            $api = new Client();
-            $res = $api->request('post', $uri, ['body'=>json_encode([
-                    'data' => [
-                        'awb_number_list'=>$this->order->i_think_logistics_id,
-                        'access_token'=>'5a7b40197cd919337501dd6e9a3aad9a',
-                        'secret_key'=>'2b54c373427be180d1899400eeb21aab',
-                    ]
-                ])
+            $data = json_encode([
+                "data" => [
+                    "awb_numbers" => $this->order->i_think_logistics_id,
+                    "access_token" => "5a7b40197cd919337501dd6e9a3aad9a",
+                    "secret_key" => "2b54c373427be180d1899400eeb21aab",
+                ]
             ]);
+            $client = new Client();
+            $response = $client->post('https://pre-alpha.ithinklogistics.com/api_v3/order/track.json', ['body' => $data]);
 
-            dd(json_decode($res->getBody(), true));
+            // response of logistics
+            $result = json_decode($response->getBody()->getContents(), true);
+
+            if (reset($result['data'])['message'] == 'success') {
+                $this->logisticDetail = reset($result['data']);
+            }
         }
     }
 }
