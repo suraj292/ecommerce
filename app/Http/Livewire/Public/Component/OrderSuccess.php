@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Public\Component;
 
+use App\Jobs\newUserEmailVerification;
+use App\Jobs\orderConfirmationMail;
 use App\Models\product_color_image;
 use App\Models\user_address;
 use App\Models\user_cart;
@@ -38,7 +40,7 @@ class OrderSuccess extends Component
             $product_color_stock = product_color_image::find($colorId);
             $product_color_stock->decrement('stock', $qty);
         }
-        // Send order number to user =>
+        // Sending SMS to user =>
         $user = Auth::user();
         $fullName = $user->name;
         $firstName = explode(' ', $fullName);
@@ -55,14 +57,24 @@ class OrderSuccess extends Component
         $numbers = implode(',', $numbers);
 
         // Prepare data for POST request
-        $data = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, 'message' => $message);
+        $sms = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, 'message' => $message);
         // Send the POST request with cURL
         $ch = curl_init('https://api.textlocal.in/send/');
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $sms);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
-        // Process your response here
+
+        // Sending EMAIL to user =>
+        $user = Auth::user();
+        $data = [
+            'name'=>$user->name,
+            'order'=>$this->order,
+            'address'=>$this->address,
+            'cart'=>$this->cart,
+            'email'=>$user->email,
+        ];
+        orderConfirmationMail::dispatch($data);
     }
 }

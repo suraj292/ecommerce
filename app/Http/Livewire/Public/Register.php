@@ -86,7 +86,6 @@ class Register extends Component
     public function hgoogle()
     {
         Socialite::driver('google')->redirect();
-//        dd($x);
     }
 
 }
