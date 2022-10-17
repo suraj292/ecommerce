@@ -3,209 +3,353 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> House Of Bhavana - Order Conformation </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="multikart">
+    <meta name="keywords" content="multikart">
+    <meta name="author" content="multikart">
+    {{--    <link rel="icon" href="{{asset('assets/images/favicon/5.png')}}" type="image/x-icon">--}}
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon/5.png')}}" type="image/x-icon">
+    <title>House Of Bhavana</title>
+
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@400;500;600;700;800;900&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;display=swap" rel="stylesheet">
+
+    <!--Slick slider css-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/slick.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/slick-theme.css')}}">
+
+    <!-- Animate icon -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/animate.css')}}">
+
+    <!-- Themify icon -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/themify-icons.css')}}">
+
+    <!-- Bootstrap css -->
+    {{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">--}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/fontawesome.css')}}">--}}
+
+    <!-- Theme css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+
+    <!--  jquery  -->
+    {{--    <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>--}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custome css -->
+    <style>
+        .manu-hover-effect:hover{
+            background-color: whitesmoke;
+            transition:800ms;
+        }
+    </style>
+    @yield('style')
+
+    <livewire:styles />
 </head>
 
-<body style="text-align: center; margin: 0 auto;   padding-left: 10%; padding-right: 10%; padding-top: 10px; font-family: 'Open Sans', sans-serif; background-color: #e2e2e2; display: block;">
-<table align="center" border="0" cellpadding="0" cellspacing="0"
-       style="padding: 0 30px;background-color: #fff; -webkit-box-shadow: 0 0 14px -4px rgba(0, 0, 0, 0.2705882353);box-shadow: 0 0 14px -4px rgba(0, 0, 0, 0.2705882353);width: 100%; margin-top: 30px">
-    <tbody>
-    <tr>
-        <td>
-            <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin-top: 30px">
-                <tr>
-                    <td>
-                        <img clicktracking="off" src="{{ asset('assets/images/email-temp/delivery.png') }}" alt=""
-                             style=";margin-bottom: 30px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img clicktracking="off" src="{{ asset('assets/images/email-temp/success.png') }}" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h2 style="color: #444444; font-size: 22px; font-weight: bold; margin-top: 10px; margin-bottom: 10px; padding-bottom: 0; text-transform: uppercase; display: inline-block; line-height: 1;">thank you</h2>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Payment Is Successfully Processed And Your Order Is On The Way</p>
-                        <p>Order ID:{{ $order['order_number'] }}</p>
-                    </td>
-                </tr>
-                <tr>
+<body>
+<!-- header start -->
+<livewire:public.component.header />
+{{--    <public-header></public-header>--}}
+<!-- header end -->
 
-                    <td>
-                        <div style="border-top:1px solid #777;height:1px;margin-top: 30px;">
+{{--    {{$slot}}--}}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="tools-grey border-box ratio_square">
+                <div class="product-box product-wrap">
+                    <div class="img-wrapper">
+                        <div class="ribbon"><span>sale</span></div>
+                        <div class="front">
+                            <a href="product-page(no-sidebar).html"><img alt=""
+                                                                         src="../assets/images/marijuana/pro/21.jpg"
+                                                                         class="img-fluid blur-up lazyload bg-img"></a>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img clicktracking="off" src="{{ asset('assets/images/email-temp/order-success.png') }}" alt=""
-                             style="margin-top: 30px;">
-                    </td>
-                </tr>
-            </table>
-            <table align="center" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td>
-                        <h2 style="color: #444444; font-size: 22px; font-weight: bold; margin-top: 40px; margin-bottom: 35px; padding-bottom: 0; text-transform: uppercase; display: inline-block; line-height: 1;">YOUR ORDER DETAILS</h2>
-                    </td>
-                </tr>
-            </table>
-            <table align="center" border="0" cellpadding="0" cellspacing="0" style="border: 1px solid #ddd; border-collapse: collapse;">
-                <tr align="left">
-                    <th style="font-size: 16px; padding: 15px; text-align: center; border: 1px solid #ddd; border-collapse: collapse;">PRODUCT</th>
-                    <th style="font-size: 16px; padding: 15px; text-align: center; border: 1px solid #ddd; border-collapse: collapse;">DESCRIPTION</th>
-                    <th style="font-size: 16px; padding: 15px; text-align: center; border: 1px solid #ddd; border-collapse: collapse;">QUANTITY</th>
-                    <th style="font-size: 16px; padding: 15px; text-align: center; border: 1px solid #ddd; border-collapse: collapse;">PRICE </th>
-                </tr>
-                @foreach($cart as $product)
-                <tr>
-                    <td style="border: 1px solid #ddd; border-collapse: collapse;">
-                        <img clicktracking="off" src="{{asset('storage/product/small/'.$product->image)}}" alt="" width="70">
-                    </td>
-                    <td valign="top" style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px;">
-                        <h5 style="margin-top: 15px; color: #444; text-align: left; font-weight: 400;">{{ $product->title }}</h5>
-                    </td>
-                    <td valign="top" style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px;">
-                        <h5 style="font-size: 14px; color:#444;margin-top: 10px; text-align: left; font-weight: 400;">QTY : <span>{{ $product->quantity }}</span></h5>
-                    </td>
-                    <td valign="top" style="border: 1px solid #ddd; border-collapse: collapse; padding-left: 15px;">
-                        <h5 style="font-size: 14px; color:#444;margin-top:15px">
-                            <b>
-                                @if($product->offer_price)
-                                    <h5>₹ {{ $price = $product->offer_price }}</h5>
-                                @else
-                                    <h5>₹ {{ $price = $product->price }}</h5>
-                                @endif
-                            </b>
-                        </h5>
-                    </td>
-                </tr>
-                @endforeach
-                <tr>
-                    <td colspan="2"
-                        style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px;font-size: 13px;color: #000000;padding-left: 20px;text-align:left;border-right: unset;">
-                        Products:</td>
-                    <td colspan="3" class="price"
-                        style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px;text-align: right;padding-right: 28px;font-size: 13px;color: #000000;border-left: unset;">
-                        <b>₹2600.00</b></td>
-                </tr>
-                <tr>
-                    <td colspan="2"
-                        style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px;font-size: 13px;color: #000000;padding-left: 20px;text-align:left;border-right: unset;">
-                        Discount :</td>
-                    <td colspan="3" class="price"
-                        style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px;text-align: right;padding-right: 28px;font-size: 13px;color: #000000;border-left: unset;">
-                        <b>₹10</b></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px; font-size: 13px;color: #000000;padding-left: 20px;text-align:left;border-right: unset;">
-                        Gift Wripping: </td>
-                    <td colspan="3" style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px;text-align: right;padding-right: 28px;font-size: 13px;color: #000000;border-left: unset;">
-                        <b>₹2600</b></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="line-height: 49px;font-size: 13px;color: #000000; padding-left: 20px;text-align:left;border-right: unset;">Shipping :</td>
-                    <td colspan="3" style="line-height: 49px;text-align: right;padding-right: 28px;font-size: 13px;color: #000000;border-left: unset;">
-                        <b>₹30</b></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px;font-size: 13px;color: #000000; padding-left: 20px;text-align:left;border-right: unset;">TOTAL PAID :</td>
-                    <td colspan="3" class="price"
-                        style="border: 1px solid #ddd; border-collapse: collapse; line-height: 49px;text-align: right;padding-right: 28px;font-size: 13px;color: #000000;border-left: unset;">
-                        <b>₹2600</b></td>
-                </tr>
-            </table>
-            <table align="center" cellpadding="0" cellspacing="0" border="0"
-                   style="width: 100%;margin-top: 30px;    margin-bottom: 30px;">
-                <tbody>
-                <tr>
-                    <td
-                        style="font-size: 13px; font-weight: 400; color: #444444; letter-spacing: 0.2px;width: 50%;">
-                        <h5
-                            style="font-size: 16px; font-weight: 500;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px; text-align: left;">
-                            DILIVERY ADDRESS</h5>
-                        <p
-                            style="text-align: left;font-weight: normal; font-size: 14px; color: #000000;line-height: 21px;    margin-top: 0;">
-                            {{ $address['address'].', '.$address['locality'].', '.$address['city'].', '.$address['state'].', ('.$address['pincode'].')' }}
-                        </p>
-                    </td>
-                    <td width="57" height="25" class="user-info"><img
-                            src="{{ asset('assets/images/email-temp/space.jpg') }}" alt=" " height="25" width="57"></td>
-                    <td class="user-info"
-                        style="font-size: 13px; font-weight: 400; color: #444444; letter-spacing: 0.2px;width: 50%;">
-                        <h5
-                            style="font-size: 16px;font-weight: 500;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">
-                            SHIPPING ADDRESS</h5>
-                        <p
-                            style="text-align: left;font-weight: normal; font-size: 14px; color: #000000;line-height: 21px;    margin-top: 0;">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi delectus, dolorem ducimus eos est et illo iste laborum obcaecati repudiandae tempore temporibus, veniam! Delectus libero quasi qui voluptas voluptatibus.
-                        </p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table class="main-bg-light" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="text-align: center; background-color: #fafafa; margin-top: 0;">
-                <tr>
-                    <td style="padding: 30px;">
-                        <div>
-                            <h4 style="color: #444444; font-size: 22px; font-weight: bold;   padding-bottom: 0; text-transform: uppercase; display: inline-block; line-height: 1; margin:0;text-align: center;">Follow us</h4>
+                        <div class="cart-info cart-wrap">
+                            <a href="javascript:void(0)" title="Add to Wishlist"><i class="fa fa-heart"
+                                                                                    aria-hidden="true"></i></a>
+                            <button data-bs-toggle="modal" data-bs-target="#addtocart" title="Add to cart"><i
+                                    class="ti-shopping-cart"></i> Buy </button>
+                            <a href="compare.html" title="Compare">
+                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            </a>
+                            <a class="mobile-quick-view" href="#" data-bs-toggle="modal"
+                               data-bs-target="#quick-view" title="Quick View"><i class="ti-search"
+                                                                                  aria-hidden="true"></i></a>
                         </div>
-                        <table border="0" cellpadding="0" cellspacing="0" align="center"
-                               style="margin-top:20px; text-align: center;">
-                            <tr>
-                                <td>
-                                    <a style="text-decoration: none; margin: 5px;" href="#"><img clicktracking="off" src="{{ asset('assets/images/email-temp/facebook.png') }}" alt=""></a>
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none; margin: 5px;" href="#"><img clicktracking="off" src="{{ asset('assets/images/email-temp/youtube.png') }}" alt=""></a>
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none; margin: 5px;" href="#"><img clicktracking="off" src="{{ asset('assets/images/email-temp/twitter.png') }}" alt=""></a>
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none; margin: 5px;" href="#"><img clicktracking="off" src="{{ asset('assets/images/email-temp/gplus.png') }}" alt=""></a>
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none; margin: 5px;" href="#"><img clicktracking="off" src="{{ asset('assets/images/email-temp/linkedin.png') }}" alt=""></a>
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none; margin: 5px;" href="#"><img clicktracking="off" src="{{ asset('assets/images/email-temp/pinterest.png') }}" alt=""></a>
-                                </td>
-                            </tr>
-                        </table>
-                        <div style="border-top: 1px solid #ddd; margin: 20px auto 0;"></div>
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 20px auto 0;">
-                            <tr>
-                                <td>
-                                    <a href="#" style="font-size:13px; text-decoration: none;">Want to change how you receive these emails?</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p style="font-size:13px; margin:0; text-decoration: none; ">2018 - 19 Copy Right by Themeforest powerd by Pixel
-                                        Strap</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" style="font-size:13px; margin:0;text-decoration: underline;">Unsubscribe</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                        <div class="quick-view-part">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View" style="color: whitesmoke;">
+{{--                                <i class="ti-search" aria-hidden="true"></i>--}}
+                                View Detail
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-info pt-3">
+                        <a href="product-page(no-sidebar).html">
+                            <h6>Slim Fit Cotton Shirt</h6>
+                        </a>
+                        <h4>$500.00</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- footer start -->
+<footer class="footer-light">
+    <div class="white-layout">
+        <div class="container">
+            <section class="small-section border-section border-top-0">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="subscribe">
+                            <div>
+                                <h4>KNOW IT ALL FIRST!</h4>
+                                <p>Never Miss Anything From Multikart By Signing Up To Our Newsletter.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <livewire:public.component.subscribe />
+                </div>
+            </section>
+        </div>
+    </div>
+    <section class="section-b-space white-layout">
+        <livewire:public.component.footer />
+    </section>
+    <div class="sub-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                    <div class="footer-end">
+                        <p><i class="fa fa-copyright" aria-hidden="true"></i> 2017-18 themeforest powered by
+                            pixelstrap</p>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                    <div class="payment-card-bottom">
+                        <ul>
+                            <li>
+                                <a href="#"><img src="{{asset('assets/images/icon/visa.png')}}" alt=""></a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="{{asset('assets/images/icon/mastercard.png')}}" alt=""></a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="{{asset('assets/images/icon/paypal.png')}}" alt=""></a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="{{asset('assets/images/icon/american-express.png')}}" alt=""></a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="{{asset('assets/images/icon/discover.png')}}" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer end -->
+
+
+<!-- offer section start -->
+{{--    <div class="sale-box" data-bs-toggle="modal" data-bs-target="#blackfriday">--}}
+{{--        <div class="heading-right">--}}
+{{--            <h3>Black Friday</h3>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+<!-- offer section end -->
+
+
+<!--modal popup start-->
+<div class="modal fade bd-example-modal-lg blackfriday-modal" id="blackfriday" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg">
+                                <div class="side-lines"><span></span></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="confetti">
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                    <div class="confetti-piece"></div>
+                                </div>
+                                <div class="content">
+                                    <h1>Black</h1>
+                                    <h1>Friday</h1>
+                                    <h2>sale</h2>
+                                    <div class="discount">get
+                                        <span>30%</span>
+                                        off
+                                        <span class="plus">+</span>
+                                        <span>FREE SHIPPING</span>
+                                    </div>
+                                    <div class="btn btn-solid">USE CODE: <span>BLACK</span></div>
+                                    <p>*check shipping conditions in our website</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal popup end-->
+
+
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content quick-view-modal">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div class="col-lg-6 col-xs-12">
+                        <div class="quick-view-img"><img src="{{asset('assets/images/pro3/1.jpg')}}" alt=""
+                                                         class="img-fluid blur-up lazyload"></div>
+                    </div>
+                    <div class="col-lg-6 rtl-text">
+                        <div class="product-right">
+                            <h2>Women Pink Shirt</h2>
+                            <h3>$32.96</h3>
+                            <ul class="color-variant">
+                                <li class="bg-light0"></li>
+                                <li class="bg-light1"></li>
+                                <li class="bg-light2"></li>
+                            </ul>
+                            <div class="border-product">
+                                <h6 class="product-title">product details</h6>
+                                <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
+                                    doloremque laudantium</p>
+                            </div>
+                            <div class="product-description border-product">
+                                <div class="size-box">
+                                    <ul>
+                                        <li class="active"><a href="javascript:void(0)">s</a></li>
+                                        <li><a href="javascript:void(0)">m</a></li>
+                                        <li><a href="javascript:void(0)">l</a></li>
+                                        <li><a href="javascript:void(0)">xl</a></li>
+                                    </ul>
+                                </div>
+                                <h6 class="product-title">quantity</h6>
+                                <div class="qty-box">
+                                    <div class="input-group"><span class="input-group-prepend"><button type="button"
+                                                                                                       class="btn quantity-left-minus" data-type="minus" data-field=""><i
+                                                    class="ti-angle-left"></i></button> </span>
+                                        <input type="text" name="quantity" class="form-control input-number"
+                                               value="1"> <span class="input-group-prepend"><button type="button"
+                                                                                                    class="btn quantity-right-plus" data-type="plus" data-field=""><i
+                                                    class="ti-angle-right"></i></button></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-buttons"><a href="#" class="btn btn-solid">add to cart</a> <a
+                                    href="#" class="btn btn-solid">view detail</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quick-view modal popup end-->
+
+<!-- Add to cart modal popup start-->
+<!-- Add to cart modal popup end-->
+
+
+<!-- tap to top start -->
+<div class="tap-top">
+    <div><i class="fa fa-angle-double-up"></i></div>
+</div>
+<!-- tap to top end -->
+
+<!-- latest jquery-->
+
+
+<!-- menu js-->
+<script src="{{asset('assets/js/menu.js')}}"></script>
+
+<!-- lazyload js-->
+<script src="{{asset('assets/js/lazysizes.min.js')}}"></script>
+
+<!-- slick js-->
+<script src="{{asset('assets/js/slick.js')}}"></script>
+<script src="{{asset('assets/js/slick-animation.min.js')}}"></script>
+
+<!-- Bootstrap js-->
+<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Video js-->
+<!--    <script src="assets/js/jquery.vide.min.js"></script>-->
+
+<!-- Bootstrap Notification js-->
+<script src="{{asset('assets/js/bootstrap-notify.min.js')}}"></script>
+
+<!-- Theme js-->
+{{--<script src="{{asset('assets/js/theme-setting.js')}}"></script>--}}
+<script src="{{asset('assets/js/script.js')}}"></script>
+<script src="{{asset('assets/js/custom-slick-animated.js')}}"></script>
+
+<script>
+    /*$(window).on('load', function () {
+        setTimeout(function () {
+            $('#blackfriday').modal('show');
+        }, 2500);
+    });
+
+    function openSearch() {
+        document.getElementById("search-overlay").style.display = "block";
+    }
+
+    function closeSearch() {
+        document.getElementById("search-overlay").style.display = "none";
+    }*/
+</script>
+
+<script type="text/javascript">
+    $('.custom-slider-2').slick({
+        infinite: true,
+        slidesToShow: 1,
+        autoplay: true,
+        arrows: false,
+    });
+</script>
+
+<script src="{{ mix('js/app.js') }}"></script>
+<livewire:scripts />
+@yield('script')
 </body>
 </html>

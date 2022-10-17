@@ -106,6 +106,7 @@
 {{--                        </div>--}}
                     </div>
 
+                    @if($logisticDetail)
                     <div class="wrapper">
                         <div class="arrow-steps clearfix">
                             <div class="step done"> <span> order placed</span> </div>
@@ -124,13 +125,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($logisticDetail['scan_details'] as $scanDetail)
-                                    Scan Location: {{ $scanDetail['scan_location'] }}
-                                    <br>
-                                    Remark: {{ $scanDetail['remark'] }}
-                                    <br>
-                                    Date-Time: {{ $scanDetail['scan_date_time'] }}
-                                @endforeach--}}
                             @foreach($logisticDetail['scan_details'] as $scanDetail)
                             <tr>
                                 <td>{{ $scanDetail['scan_date_time'] }}</td>
@@ -142,6 +136,37 @@
                             </tbody>
                         </table>
                     </div>
+                    @else
+                        <div class="wrapper">
+                            <div class="arrow-steps clearfix">
+                                <div class="step current"> <span> order placed</span> </div>
+                                <div class="step"> <span>Order Status</span> </div>
+                                <div class="step"><span>delivered</span> </div>
+                            </div>
+                        </div>
+                        <div class="order-table table-responsive-sm">
+                            <table class="table mb-0 table-striped table-borderless">
+                                <thead class="">
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Location</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ $order->created_at->format('d-m-Y') }}</td>
+                                        <td>{{ $order->created_at->format('h:i A') }}</td>
+                                        <td>Order Confirmed</td>
+                                        <td>Ghaziabad</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+
+
 
                 </div>
             </div>

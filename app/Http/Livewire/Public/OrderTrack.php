@@ -24,7 +24,7 @@ class OrderTrack extends Component
     {
         $order_id=(int)request('order');
         $product=request('product');
-        $this->order = user_order::select('order_number', 'created_at', 'user_delivery_id', 'i_think_logistics_id')->find($order_id);//$order_id=2,
+        $this->order = user_order::select('order_number', 'created_at', 'user_delivery_id', 'i_think_logistics_id', 'created_at')->find($order_id);//$order_id=2,
         $this->address = user_address::find($this->order->user_delivery_id);
 
         $this->product = user_cart::onlyTrashed()

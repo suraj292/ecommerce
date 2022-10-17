@@ -9,6 +9,7 @@ use App\Models\sub_category;
 use App\Models\user_cart;
 use Illuminate\Support\Facades\Auth;
 use App\Models\product_category;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -65,7 +66,6 @@ class Products extends Component
         ])->get();
     }
 
-    /*
     public function addToCart($id)
     {
         $product = product_details::with('product_color_img')->find($id);
@@ -77,17 +77,40 @@ class Products extends Component
         $addToCart = [
             'user_id' => $user_id,
             'product_id' => $product->product_id,
-            'product_color_id' => $product->product_color_img->product_color_id,
+//            'product_color_id' => $product->product_color_img->product_color_id,// not used in model
+            'select_product_color_id'=>$product->product_color_img->product_color_id,
+            'product_color_image_id'=>$product->product_color_img->id,
             'title' => $product->title,
             'price' => (int)$product->price,
             'offer_price' => (int)$product->offer_price,
             'image' => $image[0],
             'quantity' => 1,
         ];
-
+//        dd($addToCart);
         $this->emit('cartUpdated', $addToCart);
     }
-    */
+
+    public function buyNow($id)
+    {
+        $product = product_details::with('product_color_img')->find($id);
+        Auth::check() ? $user_id=Auth::id() : $user_id=null;
+        $image = explode(',', $product->product_color_img->images);
+        $data = [
+            'user_id' => $user_id,
+            'product_id' => $product->product_id,
+//            'product_color_id' => $product->product_color_img->id,
+            'select_product_color_id' => $product->product_color_img->getColor->id,
+            'product_color_image_id' => $product->product_color_img->id,
+            'title' => $product->title,
+            'price' => $product->price,
+            'offer_price' => $product->offer_price,
+            'image' => $image[0],
+            'quantity' => 1,
+        ];
+//        $this->addToCart($id);
+        Cookie::queue('buyNow', json_encode($data), 60*60*3);
+        $this->redirect(route('buyNow'));
+    }
 
     public function subCategory($id)
     {
