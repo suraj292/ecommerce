@@ -50,6 +50,23 @@
             background-color: whitesmoke;
             transition:800ms;
         }
+        @media only screen and (max-width: 560px) {
+            .brand-logo{
+                margin-left: 0;
+                margin-top: 65px;
+            }
+        }
+        @media only screen and (min-width: 1200px) {
+            .brand-logo{
+                margin-left: 5%;
+            }
+        }
+        @media only screen and (max-width: 1198px) {
+            .toggle-nav{
+                line-height: 96px;
+            }
+        }
+
     </style>
     @yield('style')
 

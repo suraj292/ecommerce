@@ -52,6 +52,9 @@
                                         <span>sale</span>
                                     </div>
                                 @endif
+                                    <div class="lable-block">
+                                        <span class="lable4">new</span>
+                                    </div>
                                 <div class="front">
                                     <a href="{{ route('product_details', str_replace(' ', '-', $product->details->title)) }}">
                                         <img alt="" src="{{ asset('storage/product/small/'.explode(',', $product->details->product_all_img[0]->images)[0]) }}" class="img-fluid blur-up lazyload bg-img" width="100%">

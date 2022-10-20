@@ -14,28 +14,10 @@
                             <div class="banner-left">
                                 <h1> {{ $banners->heading }} </h1>
                                 <p> {{ $banners->para }} </p>
-{{--                                <a href="{{ $banners->button_link }}" class="btn btn-outline me-3" style="background: #0000004d; color: whitesmoke; z-index: 1">--}}
-{{--                                    {{ $banners->button_name }}--}}
-{{--                                </a>--}}
-                                <style>
-                                    .xyz{
-                                        background: gray;
-                                        padding: 10px;
-                                        color: black;
-                                        border-radius: 4px;
-                                        font-size: larger;
-                                        cursor: pointer;
-                                    }
-                                    .xyz:hover{
-                                        background: #a1a0a0;
-                                        color: black;
-                                    }
-                                </style>
-                                <a class="xyz" style="">
+                                <a class="video-banner-btn">
                                     {{ $banners->button_name }}
                                 </a>
                             </div>
-{{--                            <a href="{{ $banners->button_link }}">{{ $banners->button_name }}{{ $banners->link }}</a>--}}
                         </div>
 
                     </div>
@@ -52,15 +34,11 @@
                 <a href="{{ $image[0]->redirect_link }}" class="panel">
                     <div class="panel__content panel__title">
                         <img src="https://drive.google.com/uc?export=view&id={{ $image[0]->image_link }}">
-                        {{--                    <h3 class="panel__title">EXPLORE</h3>--}}
-                        {{--                    <div style="height: 100%; "></div>--}}
                     </div>
                 </a>
                 <a href="{{ $image[1]->redirect_link }}" class="panel">
                     <div class="panel__content panel__title">
                         <img src="https://drive.google.com/uc?export=view&id={{ $image[1]->image_link }}">
-                        {{--                    <h3 class="panel__title">DISCOVER</h3>--}}
-                        {{--                    <div style="height: 100%; "></div>--}}
                     </div>
                 </a>
             </div>
@@ -72,6 +50,200 @@
 @section('style')
     <link rel="stylesheet/less" type="text/css" href="{{ 'assets/less/main.less' }}" />
     <style>
+
+        @media screen and (min-width: 1300px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panels__container img{
+                width: 100%;
+                height: 550px;
+            }
+            .banner-innner {
+                padding: 200px 0;
+                margin-top: 120px;
+            }
+        }
+
+        @media screen and (min-width: 1000px) and (max-width: 1300px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panels__container img{
+                width: 100%;
+                height: 430px;
+            }
+            .banner-innner {
+                padding: 200px 0;
+                margin-top: 120px;
+            }
+            #home-img-animation{
+                margin-top: -70px;
+            }
+        }
+        @media only screen and (min-width: 900px) and (max-width: 999px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panels__container img{
+                width: 100%;
+                height: 350px;
+            }
+            .banner-innner {
+                padding: 200px 0;
+            }
+            #home-img-animation{
+                margin-top: -80px;
+            }
+        }
+        @media only screen and (min-width: 800px) and (max-width: 899px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panels__container img{
+                width: 100%;
+                height: 350px;
+            }
+            .banner-innner {
+                padding: 150px 0;
+            }
+            #home-img-animation{
+                margin-top: -140px;
+            }
+        }
+        @media only screen and (min-width: 700px) and (max-width: 799px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panel__content img{
+                width: 100%;
+                height: 370px;
+            }
+            .banner-innner {
+                padding: 150px 0;
+            }
+            #home-img-animation{
+                margin-top: -150px;
+            }
+        }
+        @media only screen and (min-width: 600px) and (max-width: 699px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panel__content img{
+                width: 100%;
+                height: 330px;
+            }
+            .banner-innner {
+                padding: 150px 0;
+            }
+            #home-img-animation{
+                margin-top: -270px;
+            }
+        }
+        @media only screen and (min-width: 500px) and (max-width: 599px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panel__content img{
+                width: 100%;
+                height: 330px;
+            }
+            .banner-innner {
+                padding: 85px 0;
+            }
+            #home-img-animation{
+                margin-top: -300px;
+            }
+        }
+        @media only screen and (min-width: 400px) and (max-width: 499px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panel__content img{
+                width: 100%;
+                height: 300px;
+            }
+            .banner-innner {
+                padding: 70px 0;
+            }
+            .banner-left h1 {
+                font-size: 30px !important;
+                line-height: unset !important;
+            }
+            .banner-left p {
+                line-height: unset !important;
+            }
+            #home-img-animation{
+                margin-top: -350px;
+            }
+            .banner-left{
+                width: 100% !important;
+            }
+        }
+        @media only screen and (min-width: 300px) and (max-width: 399px) {
+            .banner video {
+                width: 100%;
+                position: absolute;
+                overflow: hidden;
+            }
+            .panel__content img{
+                width: 100%;
+                height: 220px;
+            }
+            .banner-innner {
+                padding: 50px 0;
+            }
+            .banner-left h1 {
+                font-size: 20px !important;
+                line-height: unset !important;
+                margin-bottom: 0 !important;
+            }
+            .banner-left p {
+                line-height: unset !important;
+                margin-bottom: 10px !important;
+            }
+            #home-img-animation{
+                margin-top: -450px;
+            }
+            .banner-left{
+                width: 100% !important;
+            }
+        }
+
+        /*.panels__container img{*/
+        /*    width: 100%;*/
+        /*    height: 450px;*/
+        /*}*/
+
+        .video-banner-btn{
+            background: gray;
+            padding: 10px;
+            color: black;
+            border-radius: 4px;
+            font-size: larger;
+            cursor: pointer;
+        }
+        .video-banner-btn:hover{
+            background: #a1a0a0;
+            color: black;
+        }
         .banner {
             height: 100vh;
             position: relative;
@@ -83,17 +255,6 @@
             /*width: 100%; 1300*/
             position: absolute;
             overflow: hidden;
-        }
-        @media screen and (min-width: 1300px) {
-            .banner video {
-                width: 100%;
-                position: absolute;
-                overflow: hidden;
-            }
-        }
-
-        .banner-innner {
-            padding: 200px 0;
         }
 
         header {
@@ -176,117 +337,22 @@
         .navbar-light .navbar-nav .nav-link:hover {
             color: #e91e63;
         }
-
         .dropdown-menu {
             padding: 0px;
         }
-
         span.navbar-toggler-icon {
             background-image: url(https://i.ibb.co/1v9M0dZ/menu.png) !important;
             width: 25px;
             height: 25px;
             cursor: pointer;
         }
-
         button.navbar-toggler:focus {
             outline: none;
         }
-
         a.dropdown-item {
             padding: 10px;
             background: #515156;
             color: #fff;
-        }
-
-
-
-        @media only screen and (max-width: 800px) {
-            .banner-left h1 {
-                color: #fff;
-                text-transform: uppercase;
-                font-size: 30px;
-                font-weight: 800;
-                line-height: 35px;
-                text-shadow: 1px 2px #000;
-            }
-
-            .banner {
-                padding: 120px 0;
-                height: auto;
-            }
-
-            .nav-color {
-                background: #000;
-            }
-
-            .navbar-light .navbar-nav .nav-link {
-                padding-left: 0;
-            }
-
-            .banner-innner {
-                padding: 120px 0;
-            }
-        }
-    </style>
-    <style>
-        @media screen and (min-width: 800px) {
-            .panels__container img{
-                width: 100%;
-                height: 550px;
-            }
-            .banner-innner{
-                margin-top: 100px;
-            }
-        }
-        @media screen and (max-width: 800px) {
-            .tagline-video{
-                margin-top: -30px;
-            }
-            /*.panel__content img{*/
-            /*    width: 100%;*/
-            /*    height: 415px;*/
-            /*}*/
-        }
-        @media screen and (max-width: 990px) {
-            .panel__content img{
-                width: 90%;
-                height: 350px;
-            }
-            .panels{
-                background: none;
-            }
-        }
-        @media screen and (max-width: 700px) {
-            .panel__content img{
-                width: 90%;
-                height: 290px;
-            }
-            .panels{
-                background: none;
-            }
-        }
-        @media screen and (max-width: 360px) {
-            #home-img-animation{
-                margin-top: -200px;
-            }
-            .panel__content img {
-                width: 90%;
-                height: 220px;
-            }
-            .panels{
-                background: none;
-            }
-        }
-        @media screen and (max-width: 576px) {
-            .tagline-video{
-                margin-top: -50px;
-            }
-        }
-        /*516*/
-        @media screen and (max-width: 516px) {
-            .home-img-animate{
-                margin-top: -50px;
-            }
         }
     </style>
 @endsection

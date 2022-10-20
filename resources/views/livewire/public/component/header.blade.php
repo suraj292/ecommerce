@@ -12,7 +12,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="brand-logo layout2-logo" style="margin-left: 70px;">
+                        <div class="brand-logo layout2-logo">
                             <a href="{{route('home')}}">
                                 <h2>BHAVANA</h2>
                             </a>
