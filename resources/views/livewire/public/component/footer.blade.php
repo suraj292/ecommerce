@@ -7,7 +7,7 @@
             <div class="footer-contant">
                 <a href="{{ route('home') }}" class="footer-logo">
                     <!-- Logo -->
-                    <img src="{{asset('assets/fixed image/logo.png')}}" width="40px" alt="logo" style="margin-left: 28px;">
+                    <img src="{{asset('assets/fixed-image/logo.png')}}" width="40px" alt="logo" style="margin-left: 28px;">
                     <h3 style="font-family: Trebuchet MS, Tahoma, sans-serif;">BHAVANA</h3>
                 </a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

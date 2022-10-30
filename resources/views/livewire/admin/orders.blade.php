@@ -250,9 +250,10 @@
                                 <button type="button" class="btn btn-danger btn-fw float-right mr-2 courierModel" wire:click="orderCancel({{ $getOrders->i_think_logistics_id }})">Cancel</button>
                                 @endif
 {{--                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" data-toggle="modal" data-target="#exampleModalCenter">Track</button>--}}
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click.prefetch="invoice({{ $getOrders->i_think_logistics_id }})">Invoice</button>
                                 <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" id="track">Track</button>
-                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="shipmentLabel({{ $getOrders->i_think_logistics_id }})">Shipment Label</button>
-                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click="manifest({{ $getOrders->i_think_logistics_id }})">Manifest</button>
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click.prefetch="shipmentLabel({{ $getOrders->i_think_logistics_id }})">Shipment Label</button>
+                                <button type="button" class="btn btn-primary btn-fw float-right mr-2 courierModel" wire:click.prefetch="manifest({{ $getOrders->i_think_logistics_id }})">Manifest</button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" wire:ignore>
                                         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -7,7 +7,9 @@ use App\Models\User;
 use App\Models\user_address;
 use App\Models\user_cart;
 use App\Models\user_order;
+use Barryvdh\DomPDF\Facade\Pdf;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -326,6 +328,16 @@ class Orders extends Component
         }else{
             dd('Contact to your Developer or Logistics. error: '.$result['html_message']);
         }
+    }
+
+    public function invoice($logisticsId)
+    {
+//        $pdf = Pdf::loadView('invoice', ['name'=>'Suraj', 'Surname'=>'sharma']);
+//        return $pdf->download('invoice.pdf');
+//        dd($logisticsId);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test: '.$logisticsId.'</h1>');
+        return $pdf->stream();
     }
 
 }

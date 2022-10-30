@@ -83,5 +83,16 @@ Route::view('blog', 'blog')->name('blog');
 //      Test
 //Route::get('test', App\Http\Livewire\Test::class);
 Route::get('test', function (){
-    return view('mail.order-confirmation');
+    $pdf = Barryvdh\DomPDF\Facade\Pdf::loadView('invoice');
+//    return $pdf->download('invoice.pdf');
+    return $pdf->stream();
+});
+Route::get('demo', function (){
+    $data = [
+        'name'=>'suraj',
+        'userId'=>2,
+        'link'=>'verification link',
+        'email'=>'surajkumarsharma123@gmail.com',
+    ];
+    App\Jobs\newUserEmailVerification::dispatch($data);
 });
