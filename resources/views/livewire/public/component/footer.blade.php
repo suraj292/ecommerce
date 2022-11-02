@@ -62,7 +62,7 @@
 {{--                </div>--}}
                 <div class="footer-contant">
                     <div class="">
-                        <img src="{{ asset('assets/fixed image/Make_In_India.png') }}" alt="make in india" width="200px">
+                        <img src="{{ asset('assets/fixed-image/Make_In_India.png') }}" alt="make in india" width="200px">
                     </div>
                 </div>
             </div>

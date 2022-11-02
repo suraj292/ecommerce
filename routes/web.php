@@ -12,7 +12,10 @@ Route::get('/', Public\Home::class)->name('home');
 Route::get('product', Public\Products::class)->name('products');
 Route::get('product_detail/{slug}', Public\ProductDetail::class)->name('product_details');
 //Route::view('product2', 'products');
-Route::view('leathers-and-arts', 'leatherAndArts')->name('leather&art');
+Route::view('leathers-and-aesthetics', 'leatherAndArts')->name('leather&aesthetics');
+//blogs
+Route::view('blog', 'blog')->name('blog');
+Route::view('blog/{id}', 'blog-detail')->name('blog.detail');
 
 //Route::get('product/{slug}', Public\ProductDetail::class)->name('product_details');
 Route::get('register', Public\Register::class)->middleware('guest')->name('register');

@@ -24,18 +24,11 @@
         <!-- Sub-Category -->
         <div class="category-button">
             <section class="section-b-space border-section border-bottom-0">
-                <div class="row partition1">
+                <div class="partition1">
                     @foreach($sub_categories as $subCategory)
-                        <div class="col-md-2 col-sm-6"><a
-                                href="{{ route('products', ['category'=>str_replace('-', ' ', request('category')), 'filter'=>str_replace(' ', '-', $subCategory->sub_category)]) }}"
-                                                          class="btn btn-outline">
-                                {{ $subCategory->sub_category }}</a>
-                        </div>
+                        <a href="{{ route('products', ['category'=>str_replace('-', ' ', request('category')), 'filter'=>str_replace(' ', '-', $subCategory->sub_category)]) }}"
+                           class="btn btn-solid btn-sm me-3">{{ $subCategory->sub_category }}</a>
                     @endforeach
-{{--                        <div class="col-md-2 col-sm-6">--}}
-{{--                            <a href="#" class="btn btn-outline me-3">outline</a>--}}
-{{--                        </div>--}}
-{{--                    <div class="col-md-2 col-sm-6"><a href="#" class="btn btn-outline btn-block">burn bag</a></div>--}}
                 </div>
             </section>
         </div>

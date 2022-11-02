@@ -2,7 +2,7 @@
     <!-- Home Video banner -->
     <section class="p-0 height-100 sm-responsive">
         <div class="banner">
-            <video autoplay muted loop class="tagline-video" style="width: 100%;">
+            <video autoplay loop class="tagline-video" style="width: 100%;">
                 <source src="https://drive.google.com/uc?export=download&id={{ $banners->video }}" type="video/mp4">
             </video>
             <div class="overlay"></div>
@@ -233,16 +233,15 @@
         /*}*/
 
         .video-banner-btn{
-            background: gray;
-            padding: 10px;
-            color: black;
-            border-radius: 4px;
-            font-size: larger;
+            border: 2px whitesmoke solid;
+            padding: 10px 25px 10px 25px;
+            border-radius: 20px;
+            color: whitesmoke;
             cursor: pointer;
+            font-size: 18px;
         }
         .video-banner-btn:hover{
-            background: #a1a0a0;
-            color: black;
+            color: whitesmoke;
         }
         .banner {
             height: 100vh;

@@ -12421,7 +12421,7 @@ header.stickycls {
   right: 30px;
   z-index: 8;
   display: none;
-  color: #fff;
+  color: var(--theme-deafult);
   text-align: center;
   background: #8d8d8d;
   border: none;
@@ -12437,7 +12437,9 @@ header.stickycls {
   .tap-top.gradient-top {
     background: -webkit-gradient(linear, left top, left bottom, from(var(--theme-deafult)), color-stop(99%, var(--theme-deafult2)));
     background: linear-gradient(180deg, var(--theme-deafult) 0%, var(--theme-deafult2) 99%); }
-
+.tap-top:hover{
+    color: whitesmoke;
+}
 /**=====================
     About us Page css start
 ==========================**/

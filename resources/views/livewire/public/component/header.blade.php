@@ -260,10 +260,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="{{ route('leather&art') }}">Leather & art</a>
+                                    <a href="{{ route('leather&aesthetics') }}">Leather & Aesthetics</a>
                                 </li>
 {{--                                <li><a href="#">value combo</a></li>--}}
-{{--                                <li><a href="{{ route('blog') }}">Blogs</a></li>--}}
+                                <li><a href="{{ route('blog') }}">Blogs</a></li>
                             </ul>
                         </nav>
                     </div>

@@ -130,7 +130,7 @@ if ( typeof Object.create !== 'function' ) {
 
             //CrossFade Wrappe
             if (self.options.imageCrossfade) {
-                self.zoomWrap = self.$elem.wrap('<div style="height:' + self.nzHeight + 'px;width:' + self.nzWidth + 'px;" class="zoomWrapper" />');
+                self.zoomWrap = self.$elem.wrap('<div style="height:' + self.nzHeight + 'px;width:' + self.nzWidth + 'px; margin: auto;" class="zoomWrapper" />');
                 self.$elem.css('position', 'absolute');
             }
 

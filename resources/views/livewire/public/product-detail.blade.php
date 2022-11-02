@@ -23,37 +23,16 @@
     <!-- breadcrumb end -->
 
     <!-- section start -->
-    <section style="background-image: url(https://preppywallpapers.com/wp-content/uploads/2019/01/header2.jpg);">
+    <section>
         <div class="collection-wrapper">
             <div class="container pt-5"  style="background-color: white;">
-                <div class="row col-md-12 mx-auto">
-                    <style>
-                        #thumb-image img{border:2px solid white;}
-
-                        /*Change the colour*/
-                        .active img{border:2px solid #333 !important;}
-                    </style>
-                    <div class="col-lg-4" wire:ignore>
-                        <div class="col-lg-12" id="zoomImage">
-{{--                            <img id="zoom_01"--}}
-{{--                                 src="{{ asset('storage/product/small/'.$images[0]) }}"--}}
-{{--                                 data-zoom-image="{{ asset('storage/product/large/'.$images[0]) }}"--}}
-{{--                                 class="img-fluid blur-up lazyload">--}}
-                        </div>
-                        <div class="col-lg-12 row mx-auto" id="thumb-image" style="margin-top: 10px;">
-{{--                            @foreach($images as $image)--}}
-{{--                                <div class="col-2">--}}
-{{--                                    <a type="button"--}}
-{{--                                       data-image="{{ asset('storage/product/small/'.$image) }}"--}}
-{{--                                       data-zoom-image="{{ asset('storage/product/large/'.$image) }}">--}}
-{{--                                        <img src="{{ asset('storage/product/small/'.$image) }}" width="60px" alt="Product Image"/>--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-                        </div>
+                <div class="row col-md-12">
+                    <div class="col-lg-5 mx-auto" wire:ignore>
+                        <div class="col-lg-12" id="zoomImage"></div>
+                        <div class="col-lg-12 d-flex justify-content-center" id="thumb-image"></div>
                     </div>
 
-                    <div class="col-lg-7 accordion-body mx-auto">
+                    <div class="col-lg-5 accordion-body mx-auto">
                         <div class="product-right product-description-box" id="test1">
                             <h2>{{ $product->title }}</h2>
                             <h4>
@@ -241,6 +220,23 @@
 {{-- also remove zoom.js --}}
 {{--<script src="{{ asset('assets/js/zoom-image.js') }}"></script>--}}
 {{--<script src="{{ asset('assets/js/main2.js') }}"></script>--}}
+<style>
+    #thumb-image img{border:2px solid white;}
+    /*Change the colour*/
+    .active img{border:2px solid #c1c1c1 !important;}
+    /*#thumb-image > div {*/
+    /*    margin: auto;*/
+    /*}*/
+    .accordion-button{
+        box-shadow: var(--theme-deafult) !important;
+        padding: 10px 10px 10px 20px !important;
+    }
+    .accordion-button:not(.collapsed){
+        color: whitesmoke;
+        background-color: var(--theme-deafult);
+        box-shadow: var(--theme-deafult) !important;
+    }
+</style>
 @endsection
 @section('script')
     <script>
