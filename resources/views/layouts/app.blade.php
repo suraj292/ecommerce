@@ -323,8 +323,7 @@
         arrows: false,
     });
 </script>
-
-<script src="{{ mix('js/app.js') }}"></script>
+    
 <livewire:scripts />
 @yield('script')
 </body>
