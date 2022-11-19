@@ -9,10 +9,13 @@ use App\Http\Controllers\login as Login;
 Route::get('/', Public\Home::class)->name('home');
 
 //Route::get('products/{category?}', Public\Products::class)->name('products');
+
 Route::get('product', Public\Products::class)->name('products');
 Route::get('product_detail/{slug}', Public\ProductDetail::class)->name('product_details');
+
 //Route::view('product2', 'products');
-Route::view('leathers-and-aesthetics', 'leatherAndArts')->name('leather&aesthetics');
+//Route::view('leathers-and-aesthetics', 'leatherAndArts')->name('leather&aesthetics');
+Route::get('leathers-and-aesthetics', Public\LeatherAndAesthetics::class)->name('leather&aesthetics');
 //blogs
 Route::view('blog', 'blog')->name('blog');
 Route::view('blog/{id}', 'blog-detail')->name('blog.detail');
@@ -79,6 +82,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
     Route::get('gift-card', Admin\GiftCard::class)->name('admin.giftCard');
 
     Route::get('logistics-rate', Admin\LogisticsRate::class)->name('admin.logistics_rate');
+
+    Route::get('leather&aesthetics', Admin\LeatherAsthetics::class)->name('admin.leather&aesthetics');
 });
 //      Blog
 Route::view('blog', 'blog')->name('blog');

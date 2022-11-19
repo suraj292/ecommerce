@@ -18,7 +18,7 @@ class Coupon extends Component
     }
     public function mount()
     {
-
+        $this->coupons = coupon_code::latest('id')->get();
     }
     public function couponGenerate()
     {

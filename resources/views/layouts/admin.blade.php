@@ -47,6 +47,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.leather&aesthetics') }}"  aria-controls="ui-basic">
+                        <span class="menu-title">Leather & Aesthetics</span>
+                        <i class="mdi mdi-image-multiple menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products">
                         <span class="menu-title">Products</span>
                         <i class="menu-arrow"></i>
@@ -150,7 +156,7 @@
 {{--<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>--}}
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<script src="{{ mix('js/app.js') }}"></script>
+{{--<script src="{{ mix('js/app.js') }}"></script>--}}
 <livewire:scripts />
 @yield('script')
 </body>

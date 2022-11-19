@@ -109,8 +109,9 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-sm-12">
                         <div class="footer-end">
-                            <p><i class="fa fa-copyright" aria-hidden="true"></i> 2017-18 themeforest powered by
-                                pixelstrap</p>
+                            <p>
+                                Copyright <i class="fa fa-copyright" aria-hidden="true"> </i> <span id="year"></span> All Right Reserved.
+                            </p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6 col-sm-12">
@@ -322,8 +323,9 @@
         autoplay: true,
         arrows: false,
     });
+    document.getElementById("year").innerHTML = new Date().getFullYear();
 </script>
-    
+
 <livewire:scripts />
 @yield('script')
 </body>

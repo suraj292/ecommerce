@@ -71,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
                     <div class="overlay">
                         <div class="border-portfolio">
@@ -95,150 +96,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/4.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/4.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector watch">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/14.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/14.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector watch">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/6.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/6.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/7.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/7.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector bags">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/8.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/8.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/9.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/9.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/10.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/10.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/11.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/11.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector bags">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/17.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/17.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/13.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/13.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/5.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/5.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 isotopeSelector fashion">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a href="../assets/images/portfolio/16.jpg">
-                                <div class="overlay-background">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="../assets/images/portfolio/16.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                -->
             </div>
         </div>
     </section>
