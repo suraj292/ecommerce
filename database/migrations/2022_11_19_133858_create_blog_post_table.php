@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blog_post', function (Blueprint $table) {
+        Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('thumbnail');
+            $table->longText('post');
+            $table->text('tags');
+            $table->boolean('publish')->default(0);
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Public;
 use App\Http\Livewire\Admin;
 use App\Http\Controllers\login as Login;
+use App\Http\Controllers\BlogController as Blog;
 
 //      PUBLIC
 Route::get('/', Public\Home::class)->name('home');
@@ -84,6 +85,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
     Route::get('logistics-rate', Admin\LogisticsRate::class)->name('admin.logistics_rate');
 
     Route::get('leather&aesthetics', Admin\LeatherAsthetics::class)->name('admin.leather&aesthetics');
+    Route::group(['prefix'=>'blog'], function (){
+        Route::get('/', [Blog::class, 'index'])->name('admin.blog');
+        Route::post('blog-thumbnail', [Blog::class, 'blogThumbnail'])->name('admin.blog.thumbnail');
+        Route::get('unpublished')->name('admin.blog.unpublished');
+        Route::get('published')->name('admin.blog.published');
+    });
 });
 //      Blog
 Route::view('blog', 'blog')->name('blog');
