@@ -39,15 +39,10 @@ class BlogForm extends Component
         Session::flash('saved', 'Your Post has been saved.');
     }
 
-    public function postView($id)
-    {
-        $post = BlogPost::find($id);
-        dd($post);
-    }
-
     public function postPublish($id)
     {
         $post = BlogPost::find($id);
-        dd($post);
+        $post->update(['publish' => true]);
+        return redirect()->back();
     }
 }

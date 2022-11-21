@@ -5,6 +5,12 @@
             @if(session()->has('deleted'))
                 <div class="alert alert-success">{{ session('deleted') }}</div>
             @endif
+            @if(session()->has('Published'))
+                <div class="alert alert-success">{{ session('Published') }}</div>
+            @endif
+            @if(session()->has('Unpublished'))
+                <div class="alert alert-danger">{{ session('Unpublished') }}</div>
+            @endif
             <h4 class="card-title">Posts</h4>
             <table id="dataTable" class="table table-striped table-bordered table-sm">
                 <thead>
@@ -61,7 +67,7 @@
                         <td>{{ $post->tags }}</td>
 
                         <td>
-                            <button class="btn btn-sm btn-primary" wire:click="view({{ $post->id }})">View</button>
+                            <a class="btn btn-sm btn-primary" href="{{ route('blog.detail', ['id'=>$post->id]) }}" target="_blank">View</a>
                         </td>
 
                         <td>

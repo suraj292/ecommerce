@@ -18,8 +18,8 @@ Route::get('product_detail/{slug}', Public\ProductDetail::class)->name('product_
 //Route::view('leathers-and-aesthetics', 'leatherAndArts')->name('leather&aesthetics');
 Route::get('leathers-and-aesthetics', Public\LeatherAndAesthetics::class)->name('leather&aesthetics');
 //blogs
-Route::view('blog', 'blog')->name('blog');
-Route::view('blog/{id}', 'blog-detail')->name('blog.detail');
+Route::get('blog', [Blog::class, 'view'])->name('blog');
+Route::get('blog/{id}', [Blog::class, 'detail'])->name('blog.detail');
 
 //Route::get('product/{slug}', Public\ProductDetail::class)->name('product_details');
 Route::get('register', Public\Register::class)->middleware('guest')->name('register');
@@ -92,8 +92,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
 //        Route::get('published', [Blog::class, 'published'])->name('admin.blog.published');
     });
 });
-//      Blog
-Route::view('blog', 'blog')->name('blog');
 
 //      Test
 //Route::get('test', App\Http\Livewire\Test::class);

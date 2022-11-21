@@ -6,17 +6,17 @@ use App\Models\BlogPost;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
-class BlogUnpublish extends Component
+class Blogs extends Component
 {
-    public $posts;
+    public $posts, $edit;
     public function render()
     {
-        return view('livewire.admin.component.blog-unpublish');
+        return view('livewire.admin.component.blogs');
     }
 
     public function edit($id)
     {
-        dd($id);
+        $this->edit = BlogPost::find($id);
     }
 
     public function delete($id)

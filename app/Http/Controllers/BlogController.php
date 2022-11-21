@@ -30,9 +30,25 @@ class BlogController extends Controller
         }
     }
 
+    // Admin Blogs
     public function post()
     {
         $posts = BlogPost::all();
-        return view('admin.blog-unpublished', ['posts' => $posts]);
+        return view('admin.blog-manage', ['posts' => $posts]);
+    }
+
+    // Public Blogs
+    public function view()
+    {
+        $blogs = BlogPost::all();
+        return view('blog', ['blogs' => $blogs]);
+    }
+
+    // Public Blog Detail
+    public function detail(BlogPost $id)
+    {
+        $blog = BlogPost::find($id);
+//        dd($blog[0]->title);
+        return view('blog-detail', ['post' => $blog[0]]);
     }
 }

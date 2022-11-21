@@ -37,16 +37,16 @@
                 </div>
             </div>
             <div class="row zoom-gallery">
-
-                <div class="isotopeSelector filter fashion col-sm-12 col-md-6">
+                @foreach($blogs as $blog)
+                <div class="isotopeSelector filter {{--fashion--}} col-sm-12 col-md-6">
                     <div class="overlay">
                         <div class="border-portfolio">
-                            <a href="{{ route('blog.detail', ['id'=>rand(1,9)]) }}">
+                            <a href="{{ route('blog.detail', ['id'=>$blog->id]) }}">
                                 <div class="overlay-background" title="view details">
                                     <div class="blog">
                                         <div class="m-4 text-center">
                                             <h2 class="text-uppercase">
-                                                hello suraj
+                                                {{ $blog->title }}
                                             </h2>
                                             <p class="mt-4">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur esse libero necessitatibus neque nesciunt odio similique, soluta temporibus vel....
@@ -55,12 +55,13 @@
                                     </div>
 
                                 </div>
-                                <img src="{{ asset('assets/images/portfolio/grid/1.jpg') }}" class="img-fluid blur-up lazyload bg-img">
+                                <img src="{{ asset('storage/blog/thumbnail/'.$blog->thumbnail) }}" class="img-fluid blur-up lazyload bg-img">
                             </a>
                         </div>
                     </div>
                 </div>
-
+                @endforeach
+                <!--
                 <div class="isotopeSelector filter shoes col-sm-12 col-md-6">
                     <div class="overlay">
                         <div class="border-portfolio">
@@ -74,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-
+                -->
             </div>
         </div>
     </section>
