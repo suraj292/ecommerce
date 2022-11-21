@@ -22,11 +22,11 @@ class BlogForm extends Component
     {
         $data = $this->validate([
             'title' => 'required',
-            'thumbnail' => 'required|image',
+            'thumbnail' => 'required',
             'post' => 'required',
             'tags' => 'required',
         ]);
-        $this->thumbnail->store('public\leatherAesthetics');
+        $this->thumbnail->store('public/blog/thumbnail');
 
         $post = BlogPost::create([
             'title' => $this->title,

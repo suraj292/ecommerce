@@ -88,8 +88,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
     Route::group(['prefix'=>'blog'], function (){
         Route::get('/', [Blog::class, 'index'])->name('admin.blog');
         Route::post('blog-thumbnail', [Blog::class, 'blogThumbnail'])->name('admin.blog.thumbnail');
-        Route::get('unpublished')->name('admin.blog.unpublished');
-        Route::get('published')->name('admin.blog.published');
+        Route::get('post', [Blog::class, 'post'])->name('admin.blog.post');
+//        Route::get('published', [Blog::class, 'published'])->name('admin.blog.published');
     });
 });
 //      Blog

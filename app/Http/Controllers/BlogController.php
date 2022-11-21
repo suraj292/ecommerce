@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -27,5 +28,11 @@ class BlogController extends Controller
             @header('Content-type: text/html; charset=utf-8');
             echo $response;
         }
+    }
+
+    public function post()
+    {
+        $posts = BlogPost::all();
+        return view('admin.blog-unpublished', ['posts' => $posts]);
     }
 }

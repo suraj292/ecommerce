@@ -88,9 +88,8 @@
                     </a>
                     <div class="collapse" id="blogs">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog')}}">New Blog</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('sub_category')}}">Published</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('sub_category')}}">Unpublished</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog')}}">New Post</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('admin.blog.post')}}">Post</a></li>
                         </ul>
                     </div>
                 </li>
