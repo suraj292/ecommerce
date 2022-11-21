@@ -9,16 +9,7 @@ use App\Models\LeatherAndAesthetics as Leather;
 class LeatherAndAesthetics extends Component
 {
     public $categories, $images, $ip;
-    protected $listeners = ['ip'];
 
-    public function ip($payload)
-    {
-        $cookie = Cookie::get('ip');
-        if (is_null(json_decode($cookie))) {
-            Cookie::queue('ip', $payload, 86400);
-            $this->ip = Cookie::get('ip');
-        }
-    }
     public function render()
     {
         return view('livewire.public.leather-and-aesthetics');
@@ -33,9 +24,10 @@ class LeatherAndAesthetics extends Component
     public function like($id)
     {
         $ip = Cookie::get('ip');
-        if ($ip != "" || $ip != null){
-            $img = Leather::find($id);
-            $img->increment('likes');
+        if ($ip != $this->ip){
+            Cookie::queue('ip', $this->ip, 86400);
+            $data = Leather::find($id);
+            $data->increment('likes');
             $this->images = Leather::all();
         }
     }

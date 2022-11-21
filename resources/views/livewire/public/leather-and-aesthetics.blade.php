@@ -201,7 +201,8 @@
 
             $.ajax({url: "https://api.ipify.org/?format=json", success: function(result){
                     // alert(result['ip']);
-                    window.livewire.emit('ip', result['ip']);
+                    // window.livewire.emit('ip', result['ip']);
+                    @this.set('ip', result['ip'])
             }});
         });
     </script>

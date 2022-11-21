@@ -48,9 +48,9 @@
                                             <h2 class="text-uppercase">
                                                 {{ $blog->title }}
                                             </h2>
-                                            <p class="mt-4">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur esse libero necessitatibus neque nesciunt odio similique, soluta temporibus vel....
-                                            </p>
+{{--                                            <p class="mt-4">--}}
+{{--                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur esse libero necessitatibus neque nesciunt odio similique, soluta temporibus vel....--}}
+{{--                                            </p>--}}
                                         </div>
                                     </div>
 
