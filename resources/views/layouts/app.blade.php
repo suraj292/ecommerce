@@ -20,6 +20,17 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;display=swap" rel="stylesheet">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-249958635-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-249958635-1');
+    </script>
+
+
     <!--Slick slider css-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/slick.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/slick-theme.css')}}">
@@ -46,27 +57,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Custome css -->
     <style>
-        .manu-hover-effect:hover{
-            background-color: whitesmoke;
-            transition:800ms;
+        .full-mega-menu{
+            left: 25% !important;
         }
-        @media only screen and (max-width: 560px) {
-            .brand-logo{
-                margin-left: 0;
-                margin-top: 65px;
-            }
+        .header-2:hover{
+            background-color: #f0f8ff87;
+            transition: 0.5s;
         }
-        @media only screen and (min-width: 1200px) {
-            .brand-logo{
-                margin-left: 5%;
-            }
+        .setting, .shopping-cart{
+            top: 70px !important;
         }
-        @media only screen and (max-width: 1198px) {
-            .toggle-nav{
-                line-height: 96px;
-            }
-        }
-
     </style>
     @yield('style')
 
@@ -74,6 +74,7 @@
 </head>
 
 <body>
+
     <!-- header start -->
     <livewire:public.component.header />
 {{--    <public-header></public-header>--}}
@@ -324,6 +325,10 @@
         arrows: false,
     });
     document.getElementById("year").innerHTML = new Date().getFullYear();
+    // Mobile menu
+    if($(window).width() < 1199){
+        $('#mobile-shop').removeClass('row');
+    }
 </script>
 
 <livewire:scripts />

@@ -26,6 +26,7 @@ Route::get('register', Public\Register::class)->middleware('guest')->name('regis
 Route::get('verification', Public\Component\EmailVerify::class)->name('email_verify');
 Route::get('sendEmailVerification', Public\Component\ResendEmailLink::class)->name('send_email_verify');
 Route::get('collection/{slug?}', Public\Collection::class)->name('collection');
+
 Route::get('cart', Public\Component\Cart::class)->name('cart');
 Route::get('checkout', Public\Component\Checkout::class)->name('checkout');
 Route::get('italian-leather', Public\ItalianLeather::class)->name('italianLeather');
@@ -95,12 +96,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
 
 //      Test
 //Route::get('test', App\Http\Livewire\Test::class);
-Route::get('test', function (){
-    $pdf = Barryvdh\DomPDF\Facade\Pdf::loadView('invoice');
-//    return $pdf->download('invoice.pdf');
-    return $pdf->stream();
+Route::get('invoice', function (){
+    return view('invoice');
 });
-Route::get('demo', function (){
+/*
+Route::get('email', function (){
     $data = [
         'name'=>'suraj',
         'userId'=>2,
@@ -109,3 +109,4 @@ Route::get('demo', function (){
     ];
     App\Jobs\newUserEmailVerification::dispatch($data);
 });
+*/

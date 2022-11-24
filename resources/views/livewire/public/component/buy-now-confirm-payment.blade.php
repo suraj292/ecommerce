@@ -176,9 +176,9 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="text-end" wire:ignore>
+                                            <div class="text-end">
                                                 {{--<a href="#" class="btn-solid btn">Place Order</a>--}}
-                                                <form id="prepaid">
+                                                <form id="prepaid" wire:ignore>
                                                     <script src="https://checkout.razorpay.com/v1/checkout.js"
                                                             data-key="{{ env('RAZORPAY_KEY') }}"
                                                             data-amount="{{ $finalCost * 100 }}"
@@ -193,7 +193,7 @@
                                                     >
                                                     </script>
                                                 </form>
-                                                <div id="cod" style="display: none;">
+                                                <div id="cod" style="display: none;" wire:ignore>
                                                     <a href="#" class="btn-solid btn" wire:click="checkoutCod">Confirm</a>
                                                 </div>
                                             </div>

@@ -6,11 +6,11 @@
     <h6 class="font-weight-light">Sign in to continue.</h6>
     <form class="pt-3" wire:submit.prevent="login">
         <div class="form-group">
-            <input type="text" class="form-control form-control-lg"  placeholder="Username" wire:model.lazy="username">
+            <input type="text" class="form-control form-control-lg"  placeholder="Username" wire:model.defer="username">
             @error('username') <p class="text-danger mt-2">{{ $message }}</p> @enderror
         </div>
         <div class="form-group">
-            <input type="password" class="form-control form-control-lg"  placeholder="Password" wire:model.lazy="password">
+            <input type="password" class="form-control form-control-lg"  placeholder="Password" wire:model.defer="password">
             @error('password') <p class="text-danger mt-2">{{ $message }}</p> @enderror
         </div>
         <div class="mt-3">

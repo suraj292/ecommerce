@@ -6,14 +6,14 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="page-title">
-                        <h2>LEATHER & AESTHETICS</h2>
+                        <h2>BLOGS</h2>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <nav aria-label="breadcrumb" class="theme-breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">LEATHER & AESTHETICS</li>
+                            <li class="breadcrumb-item active" aria-current="page">BLOGS</li>
                         </ol>
                     </nav>
                 </div>
@@ -42,7 +42,7 @@
                     <div class="overlay">
                         <div class="border-portfolio">
                             <a href="{{ route('blog.detail', ['id'=>$blog->id]) }}">
-                                <div class="overlay-background" title="view details">
+                                <div class="overlay-background" title="Read more">
                                     <div class="blog">
                                         <div class="m-4 text-center">
                                             <h2 class="text-uppercase">
@@ -85,7 +85,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/magnific-popup.css') }}">
     <style>
         .blog{
-            position: absolute; height: 100%; display: flex; align-items: center;
+            position: absolute;
+            width: 100%;
+            top: 25%;
+            align-items: center;
         }
         .blog > div > h2, .blog > div > p{
             color: white;
@@ -98,6 +101,9 @@
         .search:hover{
             background-color: #737373;
             color: #cfcfcf;
+        }
+        .overlay-background{
+            background-color: #0000006b;
         }
     </style>
 @endsection

@@ -15,7 +15,7 @@
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tr class="header">
                         <td valign="top" style="padding-top: 20px;">
-                            <img clicktracking="off" src="{{asset('assets/fixed-image/logo.png')}}"  style="width: 30px;
+                            <img clicktracking="off" src="{{asset('assets/fixed-image/logo.png')}}"  style="display: block; width: 30px;
                             height: auto;" alt="logo" />
                             <h3 style="font-family: Trebuchet MS, Tahoma, sans-serif;">
                                 BHAVANA
@@ -31,7 +31,7 @@
                 <table>
                     <tr>
                         <td colspan="2">
-                            <img clicktracking="off" style="width: 100%; margin-bottom: -6px;" src="{{ asset('assets/images/banner5.jpg') }}" alt="banner" />
+                            <img clicktracking="off" style="display: block; width: 100%; margin-bottom: -6px;" src="{{ asset('assets/images/banner5.jpg') }}" alt="banner" />
                         </td>
                     </tr>
                 </table>

@@ -100,10 +100,6 @@
                             </td>
                             <td>
                                 <div class="qty-box">
-{{--                                    <div class="input-group">--}}
-{{--                                        <input type="number" name="quantity" class="form-control input-number"--}}
-{{--                                               value="{{ $cartProduct['quantity'] }}">--}}
-{{--                                    </div>--}}
                                     <div class="input-group">
                                         <span class="input-group-prepend">
                                             <button type="button" class="btn"

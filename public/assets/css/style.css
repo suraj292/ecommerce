@@ -1084,6 +1084,17 @@ del {
 button {
   cursor: pointer; }
 
+.btn{
+    border: 2px #414141 solid;
+    /*padding: 10px 25px 10px 25px;*/
+    border-radius: 20px;
+    color: #414141;
+    font-size: 18px;
+}
+.btn:hover{
+    color: #414141;
+}
+/*
 .btn {
   line-height: 20px;
   text-transform: uppercase;
@@ -1155,7 +1166,7 @@ button {
       color: #ffffff;
       -webkit-transition: none;
       transition: none; }
-
+*/
 .btn-outline {
   display: inline-block;
   padding: 13px 29px;
@@ -9351,7 +9362,7 @@ header.stickycls {
     position: absolute;
     z-index: 9;
     right: 175px;
-    top: -105px; }
+    top: -115px; }
   .layout3-menu .main-menu .menu-left .main-menu-right .toggle-nav {
     right: unset;
     top: -1px; } }

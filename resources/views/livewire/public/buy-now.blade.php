@@ -64,19 +64,15 @@
                                                 <li class="text-capitalize">{{ $cart['title'] }} × {{ $cart['quantity'] }}
 
                                                     @if($cart['offer_price'])
-
                                                         <span>
-                                                                &#8377; {{ $price = $cart['offer_price'] * $cart['quantity'] }}
-                                                                <del>&#8377; {{ $cart['price'] * $cart['quantity'] }}</del>
-                                                            </span>
+                                                            &#8377; {{ $price = $cart['offer_price'] * $cart['quantity'] }}
+                                                            <del>&#8377; {{ $cart['price'] * $cart['quantity'] }}</del>
+                                                        </span>
                                                         <span style="display: none;"> {{ $withoutOffer = 0 }}</span>
-
                                                     @else
-
                                                         <span>
-                                                                &#8377; {{ $withoutOffer = $price = $cart['price'] * $cart['quantity'] }}
-                                                            </span>
-
+                                                            &#8377; {{ $withoutOffer = $price = $cart['price'] * $cart['quantity'] }}
+                                                        </span>
                                                     @endif
 
                                                     <span style="display: none;">
