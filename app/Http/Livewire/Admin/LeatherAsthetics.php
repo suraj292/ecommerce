@@ -10,7 +10,7 @@ use Livewire\WithFileUploads;
 class LeatherAsthetics extends Component
 {
     use WithFileUploads;
-    public $images, $image, $category;
+    public $images, $image, $category, $newImageDiv;
     public function render()
     {
         return view('livewire.admin.leather-asthetics')->layout('layouts.admin');
@@ -46,5 +46,10 @@ class LeatherAsthetics extends Component
         $this->image = "";
         $this->category = "";
 //        dd($file);
+    }
+
+    public function addCollection()
+    {
+        $this->newImageDiv = true;
     }
 }

@@ -77,7 +77,7 @@
                                 <a href="{{ route('product_details', str_replace(' ', '-', $product->details->title)) }}">
                                     <h6>{{ $product->details->title }}</h6>
                                 </a>
-                                @if(is_null($product->details->offer_price))
+                                @if(is_null($product->details->offer_price) || $product->details->offer_price != 0)
                                     <h4>₹{{ $product->details->price }}</h4>
                                 @else
                                     <h4>

@@ -5,7 +5,7 @@
                 <h4 class="card-title">Product Details</h4>
                 @if(session()->has('product_detail_updated'))
                 <p class="alert-success p-2">{{ session('product_detail_updated') }}</p>
-                @else
+                @endif
                 <form class="forms-sample" wire:submit.prevent="editProductDetails">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Title</label>
@@ -103,7 +103,6 @@
                     <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
 {{--                    <button class="btn btn-light" @click="isOpen = !isOpen">Cancel</button>--}}
                 </form>
-                @endif
             </div>
         </div>
     </div>

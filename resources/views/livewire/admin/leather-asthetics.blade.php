@@ -19,7 +19,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <button class="btn btn-gradient-primary w-100" wire:click="addCollection">+ Add New Collection
+                        <button class="btn btn-gradient-primary w-100" wire:click="addCollection">+ Add New Post
                         </button>
                         @if(session()->has('added'))
                             <p class="alert-success p-2 mt-2">{{ session('added') }}</p>
@@ -74,6 +74,7 @@
             </div>
         </div>
 
+        @if($newImageDiv)
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
@@ -81,7 +82,7 @@
                         @if(session()->has('image_saved'))
                             <p class="alert-success p-2">{{ session('image_saved') }}</p>
                         @endif
-                            <h4 class="text-uppercase">Add new Image</h4>
+                            <h4 class="text-uppercase">Add new Post</h4>
                         <div class="row">
                             <div class="col-12 grid-margin stretch-card">
                                 <div class="card">
@@ -126,7 +127,7 @@
                 </div>
             </div>
         </div>
-
+        @endif
     </div>
 </div>
 @section('script')

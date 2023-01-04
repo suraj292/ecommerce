@@ -99,7 +99,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['R_admin'], /*'as'=>'admin.'*/],
 Route::get('invoice', function (){
     return view('invoice');
 });
-/*
+///*
 Route::get('email', function (){
     $data = [
         'name'=>'suraj',
@@ -109,4 +109,4 @@ Route::get('email', function (){
     ];
     App\Jobs\newUserEmailVerification::dispatch($data);
 });
-*/
+//*/
