@@ -50,7 +50,7 @@
                                     </div>
                                 <div class="front">
                                     <a href="{{ route('product_details', str_replace(' ', '-', $product->details->title)) }}">
-                                        <img alt="" src="{{ asset('storage/product/small/'.explode(',', $product->details->product_all_img[0]->images)[0]) }}" class="img-fluid blur-up lazyload bg-img" width="100%">
+                                        <img alt="" src="{{ asset('storage/product/small/'.explode(',', $product->product_all_img[0]->images)[0]) }}" class="img-fluid blur-up lazyload bg-img" width="100%">
                                     </a>
                                 </div>
                                 <div class="cart-info cart-wrap">
@@ -74,6 +74,12 @@
                                 </div>
                             </div>
                             <div class="product-info pt-3">
+                                <!-- Colors -->
+                                <div>
+                                    @foreach($product->product_all_img as $productImage)
+                                        <img src="{{  asset('storage/color_image/'.$productImage->color) }}" alt="product color" width="20px">
+                                    @endforeach
+                                </div>
                                 <a href="{{ route('product_details', str_replace(' ', '-', $product->details->title)) }}">
                                     <h6>{{ $product->details->title }}</h6>
                                 </a>

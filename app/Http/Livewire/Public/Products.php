@@ -29,9 +29,9 @@ class Products extends Component
         $subCategory = str_replace('-', ' ', $subCat);
 
         if (is_null($subCat)){
-            $this->products = Product::with('details', 'details.product_all_img')->where('category_name', $category)->get();
+            $this->products = Product::with('details', 'product_all_img')->where('category_name', $category)->get();
         }else{
-            $this->products = Product::with('details', 'details.product_all_img')->where('sub_category_name', $subCategory)->get();
+            $this->products = Product::with('details', 'product_all_img')->where('sub_category_name', $subCategory)->get();
         }
 
         $categoryId = Product::where('category_name', $category)->first();
@@ -39,6 +39,8 @@ class Products extends Component
             return redirect(route('home'));
         }
         $this->sub_categories = sub_category::where('product_category_id', $categoryId->product_category_id)->get();
+
+//        dd($this->products[0]->product_all_img);
 //        dd($categoryId);
 //        $this->productCategoryId = product_category::where('$category', $category)->value('id');
 //        $this->sub_categories = sub_category::where('product_category_id', $this->productCategoryId)->get();
